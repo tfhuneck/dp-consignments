@@ -1,4 +1,5 @@
 import Container from 'react-bootstrap/Container';
+import { Button } from 'react-bootstrap';
 
 function Info() {
 
@@ -134,15 +135,21 @@ function Info() {
                 </div>
                 <br />
                 <div className='row'> 
-                    tba
+                    tbd
                 </div>
                 <div className='row'> 
-                    tba
+                    tbd
                 </div>
                 <div className='row'> 
-                    tba
+                    tbd
                 </div>
-                
+                <div className='row'>
+                    <div className='col d-flex justify-content-center '>
+                        <a href="/register">
+                            <Button className='info-btn' variant="danger">Register Now</Button>
+                        </a>
+                    </div>
+                </div>
             </Container>
         </>
     )

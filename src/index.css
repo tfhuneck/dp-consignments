@@ -49,6 +49,7 @@ body {
 }
 .home-header{
   font-weight: 100;
+  color: #CFE6FC;
 }
 .home-text{
   filter: drop-shadow(0 0 .75rem #141618);
@@ -351,6 +352,45 @@ body {
   text-align: center;
   color: #CFE6FC;
 }
+.register {
+  position: relative;
+  font-weight: 200;
+  background-color: #474F57;
+  display: block;
+  padding: 1rem;
+  max-width: 350px;
+  margin-bottom: 4em;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.register::before{
+  content: '';
+  top: -0.25em;
+  left: -0.25em;
+  position: absolute;
+  margin: auto;
+  z-index: -1;
+  width: 350px;
+  height: 450px;
+  border-radius: 1rem;
+  pointer-events: none;
+  background: linear-gradient(-25deg, #DF1E36 0%, #2AB0E9 100% );
+  filter: blur(20px);
+  transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.register:hover::before{
+  transform: rotate(180deg);
+}
+
+.register-title {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  color: #CFE6FC;
+}
 
 .input-container {
   position: relative;
@@ -372,6 +412,12 @@ body {
   width: 300px;
   border-radius: 0.5rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.input-container textarea {
+  padding: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .input-container span {
@@ -409,6 +455,8 @@ body {
 }
 
 .signup-link {
+  margin-top: 0.5em;
+  font-weight: 300;
   color: #CFE6FC;
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -428,4 +476,31 @@ body {
   margin-bottom: 4rem;
   width: 50vw;
   text-align: left;
+}
+.contact{
+  position: relative;
+  font-weight: 200;
+  background-color: #474F57;
+  display: block;
+  padding: 1rem;
+  max-width: 350px;
+  margin-bottom: 4em;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.contact::before{
+  content: '';
+  top: -0.25em;
+  left: -0.25em;
+  position: absolute;
+  margin: auto;
+  z-index: -1;
+  width: 350px;
+  height: 400px;
+  border-radius: 1rem;
+  pointer-events: none;
+  background: linear-gradient(-25deg, #DF1E36 0%, #2AB0E9 100% );
+  filter: blur(20px);
+  transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

@@ -7,6 +7,7 @@ import Info from './components/Info';
 import Login from './components/Login';
 import Contact from './components/Contact';
 import About from './components/About';
+import Register from './components/Register';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/login' index element={<Login/>} />
           <Route path='/contact' index element={<Contact/>} />
           <Route path='/about' index element={<About/>} />
+          <Route path='/register' index element={<Register/>} />
         </Routes>
       </BrowserRouter>
     </>

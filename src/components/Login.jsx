@@ -57,7 +57,7 @@ function Login() {
                             </button>
                             <p className="signup-link">
                                 No account? &nbsp;
-                                <a href="">Create Account</a>
+                                <a href="/register">Create Account</a>
                             </p>
                         </form>
                     </div>
