@@ -283,6 +283,7 @@ body {
 
 .card:hover::before {
   height: 100%;
+  filter: blur(10px);
 }
 
 .card:hover {

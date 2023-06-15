@@ -97,6 +97,7 @@ function Register() {
                                     </svg>
                                 </span>
                             </div>
+                            <br />
                             <button className="submit btn btn-outline-danger" type="submit">
                                 Create Account
                             </button>
