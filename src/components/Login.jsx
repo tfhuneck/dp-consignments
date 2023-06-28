@@ -52,9 +52,11 @@ function Login() {
                                     </svg>
                                 </span>
                             </div>
-                            <button className="submit btn btn-outline-danger" type="submit">
-                                Sign in
-                            </button>
+                            <a href="/usr">
+                                <button className="submit btn btn-outline-danger" type="button">
+                                    Sign in
+                                </button>
+                            </a>
                             <p className="signup-link">
                                 No account? &nbsp;
                                 <a href="/register">Create Account</a>

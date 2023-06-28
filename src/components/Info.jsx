@@ -8,7 +8,7 @@ function Info() {
             <Container>
                 <div className='row'>
                     <div className='col d-flex justify-content-center'> 
-                        <div className="card">
+                        <div className="card-info">
                             <div className="content">
                                 <p className="heading">Consignment Rates
                                 </p><p className="para">
