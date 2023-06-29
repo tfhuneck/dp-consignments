@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 function Element(props) {
 
@@ -9,9 +10,9 @@ function Element(props) {
         <div className={classes()}>
             <div className="card-body">
                 {props.title && (<h5 className="card-title">{props.title}</h5>)}
-                {props.subtitle && (<h6 class="card-subtitle mb-2 text-body-secondary">{props.subtitle}</h6>) }
-                {props.text && (<p className="card-text">{props.text}</p>)}
-                {props.link && (<a href={props.href} class="card-link">{props.link}</a>)}
+                {props.subtitle && (<h6 className="card-subtitle mb-2 text-body-secondary">{props.subtitle}</h6>) }
+                {props.text && (<div className="card-text">{props.text}</div>)}
+                {props.link && (<Link to={props.to} className="card-link">{props.link}</Link>)}
                 {props.body}
             </div>
         </div>

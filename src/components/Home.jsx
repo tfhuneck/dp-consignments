@@ -67,7 +67,7 @@ function Home() {
                 </div>
                 <div className='row'>
                     <div className='col d-flex justify-content-center home-text'>
-                        <a className='link' href="https://www.ebay.com/str/dphobbyshop">ebay.com/str/dphobbyshop</a>
+                        <a className='link' href="https://www.ebay.com/str/dphobbyshop" target="_blank">ebay.com/str/dphobbyshop</a>
                     </div>
                 </div>
                 <div className='row'>

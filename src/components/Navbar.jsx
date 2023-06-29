@@ -47,7 +47,7 @@ function Navigation() {
     
     return (
         <>
-            <NavLink>
+
                 <Container className='navcontainer' >
                     <Navbar expand="md">
                         <Container>
@@ -84,7 +84,7 @@ function Navigation() {
                         </Container>
                     </Navbar>
                 </Container>    
-            </NavLink>
+
         </> 
     )
 }
