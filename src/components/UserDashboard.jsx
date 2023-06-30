@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import Element from "./DashElement";
-import UserPanel from "./UserPanel";
 
 function UserDashboard(props) {
     
@@ -17,13 +16,16 @@ function UserDashboard(props) {
     const weekDay = () => {
         const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
         let day = weekday[date.getDay()];
-        console.log(day);
+        // console.log(day);
+        // console.log(hours);
         return day;
     };
 
     const greeting = () => {
         if(ampm === 'am') return 'Good Monring'
-        if(ampm === 'pm') return 'Good Evening'
+        if(ampm === 'pm' && hours < 17) return 'Good Afternoon'
+        if(ampm === 'pm' && hours >= 17) return 'Good Evening'
+        
     }
 
    
@@ -31,9 +33,6 @@ function UserDashboard(props) {
 
     return (
         <>
-            <div className="fixed-top">
-                <UserPanel/>
-            </div>
             <div className="user-dash">
                 <div className="row">
                     <div className="col">

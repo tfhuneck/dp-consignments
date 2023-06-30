@@ -20,11 +20,11 @@ function UserPanel() {
                 </div>
                 <div className='card-body d-flex flex-column justify-content-evenly'>
                     <div className='row justify-content-center'>
-                        <Link className='user-nav-link' to='/usr'>
+                        <Link className='user-nav-link' to='/usr/notifications'>
                             <div className='col'>
-                                <svg 
+                                {/* <svg 
                                     className='user-nav-icn'
-                                    stroke="currentColor"
+                                    // stroke="currentColor"
                                     xmlns="http://www.w3.org/2000/svg" 
                                     version="1.1" 
                                     x="0px" 
@@ -32,12 +32,34 @@ function UserPanel() {
                                     viewBox="0 0 32 40"  
                                 >
                                     <path
-                                         fill="currentColor"  
+                                        fill="currentColor"  
                                         d="M29.635,21.223l-2.253-2.742v-5.999C27.382,6.206,22.276,1.1,16,1.1S4.618,6.206,4.618,12.481v5.999l-2.252,2.741   c-0.483,0.588-0.75,1.33-0.75,2.092c0,1.816,1.478,3.295,3.294,3.295h22.179c1.816,0,3.294-1.479,3.294-3.295   C30.384,22.552,30.118,21.81,29.635,21.223z M27.089,24.808H4.911c-0.824,0-1.495-0.67-1.495-1.494c0-0.345,0.121-0.682,0.34-0.948   l2.458-2.991c0.132-0.161,0.205-0.363,0.205-0.571v-6.321C6.418,7.198,10.716,2.9,16,2.9s9.582,4.298,9.582,9.581v6.321   c0,0.208,0.072,0.41,0.205,0.571l2.458,2.992c0.219,0.266,0.339,0.603,0.339,0.947C28.584,24.138,27.914,24.808,27.089,24.808z"
                                     />
                                     <path 
-                                         fill="currentColor" 
+                                        fill="currentColor" 
                                         d="M19.167,29.1h-6.333c-0.497,0-0.9,0.403-0.9,0.9s0.403,0.9,0.9,0.9h6.333c0.497,0,0.9-0.403,0.9-0.9   S19.664,29.1,19.167,29.1z"
+                                    />
+                                </svg> */}
+                                <svg 
+                                    className='user-nav-icn'
+                                    // stroke="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    version="1.1" 
+                                    x="0px" 
+                                    y="0px" 
+                                    viewBox="0 0 32 40" 
+                                >
+                                    <path
+                                        fill="#DF1E36" 
+                                        d="M25.12,8.12c0.14-0.14,0.26-0.29,0.37-0.45c0.11-0.17,0.2-0.34,0.28-0.52c0.07-0.18,0.13-0.37,0.17-0.56     C25.98,6.39,26,6.2,26,6c0-0.2-0.02-0.39-0.06-0.59c-0.04-0.19-0.1-0.38-0.17-0.56c-0.08-0.18-0.17-0.35-0.28-0.52     c-0.11-0.16-0.23-0.31-0.37-0.45c-0.14-0.14-0.29-0.26-0.45-0.37c-0.17-0.11-0.34-0.2-0.52-0.28c-0.18-0.07-0.37-0.13-0.56-0.17     c-0.39-0.08-0.79-0.08-1.18,0c-0.19,0.04-0.38,0.1-0.56,0.17c-0.18,0.08-0.35,0.17-0.52,0.28c-0.16,0.11-0.31,0.23-0.45,0.37     C20.32,4.44,20,5.21,20,6s0.32,1.56,0.88,2.12C21.44,8.68,22.21,9,23,9S24.56,8.68,25.12,8.12z"
+                                    />
+                                    <path
+                                        fill="currentColor" 
+                                        d="M28,22v-0.76c0-1.07-0.42-2.07-1.17-2.83l-0.24-0.24C26.21,17.79,26,17.29,26,16.76V12c0-0.55-0.45-1-1-1s-1,0.45-1,1     v4.76c0,1.07,0.42,2.07,1.17,2.83l0.24,0.24c0.38,0.38,0.59,0.88,0.59,1.41V22c0,1.1-0.9,2-2,2H8c-1.1,0-2-0.9-2-2v-0.76     c0-0.53,0.21-1.04,0.59-1.41l0.24-0.24C7.58,18.83,8,17.83,8,16.76V12c0-4.41,3.59-8,8-8c0.3,0,0.6,0.02,0.89,0.05     c0.55,0.06,1.04-0.34,1.1-0.88c0.06-0.55-0.34-1.04-0.88-1.1C16.75,2.02,16.38,2,16,2C10.49,2,6,6.49,6,12v4.76     c0,0.53-0.21,1.04-0.59,1.41l-0.24,0.24C4.42,19.17,4,20.17,4,21.24V22c0,2.21,1.79,4,4,4h16C26.21,26,28,24.21,28,22z"
+                                    />
+                                    <path
+                                        fill="currentColor" 
+                                        d="M13,28c-0.55,0-1,0.45-1,1s0.45,1,1,1h6c0.55,0,1-0.45,1-1s-0.45-1-1-1H13z"
                                     />
                                 </svg>
                             </div>
@@ -47,7 +69,7 @@ function UserPanel() {
                         </Link>
                     </div>
                     <div className='row justify-content-center'>
-                        <Link className='user-nav-link' to='/usr'>
+                        <Link className='user-nav-link' to='/usr/profile'>
                             <div className='col'>
                                 <svg 
                                     className='user-nav-icn'
@@ -80,7 +102,7 @@ function UserPanel() {
                         </Link>
                     </div>
                     <div className='row justify-content-center'>
-                        <Link className='user-nav-link' to='/credit'>
+                        <Link className='user-nav-link' to='/usr/settings'>
                             <div className='col'>
                                 <svg 
                                     className='user-nav-icn'
@@ -106,7 +128,7 @@ function UserPanel() {
                         </Link>
                     </div>
                     <div className='row justify-content-center'>
-                        <Link className='user-nav-link' to='/logout'>
+                        <Link className='user-nav-link' to=''>
                             <div className='col'>
                                 <svg 
                                     className='user-nav-icn'

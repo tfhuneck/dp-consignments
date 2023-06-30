@@ -287,6 +287,7 @@ a{
   background: linear-gradient(-25deg, #DF1E36 0%, #2AB0E9 100% );
   z-index: 1;
   transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  filter: blur(10px);
 }
 
 .card-info:hover::before {
@@ -624,7 +625,7 @@ a{
   color: #d4e2ee;
   text-align: center;
   font-weight: 500;
-  font-size: 2.5rem;
+  font-size: 2rem;
   transition: all 1s;
 }
 .dash-header:hover >.card-body > .card-text > .dash-header-num{
@@ -665,4 +666,8 @@ table tbody tr:last-child td:first-child {
 }
 table tbody tr:last-child td:last-child {
   border-radius: 0 0 10px 0;
+}
+.dash-element{
+  height: 80vh;
+  background-color: #1d2c39;
 }

@@ -41,7 +41,7 @@ function UserNav() {
                         </Link>
                     </div>
                     <div className='row justify-content-center'>
-                        <Link className='user-nav-link' to='/credit'>
+                        <Link className='user-nav-link' to='/usr/credit'>
                             <div className='col'>
                                 <svg 
                                     className='user-nav-icn'
@@ -64,7 +64,7 @@ function UserNav() {
                         </Link>
                     </div>
                     <div className='row justify-content-center'>
-                        <Link className='user-nav-link' to='/cashout'>
+                        <Link className='user-nav-link' to='/usr/cashout'>
                             <div className='col'>
                                 <svg
                                     className='user-nav-icn'
@@ -111,7 +111,7 @@ function UserNav() {
                         </Link>
                     </div>
                     <div className='row justify-content-center'>
-                        <Link className='user-nav-link' to='/message'>
+                        <Link className='user-nav-link' to='/usr/message'>
                             <div className='col'>
                                 <svg
                                     className='user-nav-icn'
