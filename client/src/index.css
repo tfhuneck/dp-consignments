@@ -11,7 +11,7 @@ a{
   text-decoration: none;
 }
 .card{
-  border-radius: 30px;
+  border-radius: 1.5rem;
   box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
   background-color: #16222c;
   color: #CFE6FC;
@@ -274,40 +274,32 @@ a{
   transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
   filter: blur(10px);
 }
-
 .card-info:hover::before {
   height: 100%;
   /* filter: blur(10px); */
 }
-
 .card-info:hover { 
   box-shadow: none;
 } 
-
 .card-info:hover .btn {
   color: #CFE6FC;
   background: #474F57;
 }
-
 .content .btn:hover {
   outline: 2px solid #CFE6FC;
   background: transparent;
   color: #CFE6FC;
 }
-
 .content .btn:active {
   box-shadow: none;
 }
-
 .rates th, td{
   font-weight: 300;
   padding: 0.5em 2em 0.5em 1em;
 }
-
 .background-box:hover{
   transform: rotate(-180deg);
 }
-
 .login {
   position: relative;
   font-weight: 200;
@@ -319,7 +311,6 @@ a{
   border-radius: 1rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
-
 .login::before{
   content: '';
   top: -0.25em;
@@ -335,11 +326,9 @@ a{
   filter: blur(20px);
   transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
 .login:hover::before{
   transform: rotate(180deg);
 }
-
 .login-title {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -358,7 +347,6 @@ a{
   border-radius: 1rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
-
 .register::before{
   content: '';
   top: -0.25em;
@@ -374,11 +362,9 @@ a{
   filter: blur(20px);
   transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
 .register:hover::before{
   transform: rotate(180deg);
 }
-
 .register-title {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -386,18 +372,15 @@ a{
   text-align: center;
   color: #CFE6FC;
 }
-
 .input-container {
   position: relative;
   color: #141618;
 }
-
 .input-container input, .login button {
   outline: none;
   border: 1px solid #e5e7eb;
   margin: 8px 0;
 }
-
 .input-container input {
   background-color: #fff;
   padding: 1rem;
@@ -408,13 +391,11 @@ a{
   border-radius: 0.5rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
-
 .input-container textarea {
   padding: 1rem;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
 }
-
 .input-container span {
   display: grid;
   position: absolute;
@@ -425,13 +406,11 @@ a{
   padding-right: 1rem;
   place-content: center;
 }
-
 .input-container span svg {
   color: #66727D;
   width: 1rem;
   height: 1rem;
 }
-
 .submit {
   display: block;
   padding-top: 0.75rem;
@@ -503,7 +482,6 @@ a{
 .contact:hover::before{
   opacity: 100%;
 }
-
 .usr-nav {
   text-align: center;
   margin-top: 4rem;
@@ -637,9 +615,9 @@ a{
 .card-subtitle{
   color: #fff !important;
 }
-
 .dash-main{
   margin-top: 1rem;
+  margin-bottom: 2rem;
   min-height: 50vh;
   background-color: #1d2c39;
 }
@@ -673,7 +651,7 @@ table tbody tr:last-child td:last-child {
 .accordion-button{
   /* background-color: #16222c; */
   color: #CFE6FC !important;
-  transition: all 1.5s ease;
+  transition: all .75s ease;
 }
 .accordion-button::after{
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
@@ -683,7 +661,7 @@ table tbody tr:last-child td:last-child {
 }
 .accordion-collapse{
   background-color:  #66727D;
-  transition: all 1s ease;
+  transition: all .75s ease;
   padding: 0;
 }
 .accordion-body{
@@ -700,7 +678,7 @@ table tbody tr:last-child td:last-child {
   text-align: center;
 }
 .time-left{
-  font-weight: 300;
+  font-weight: 400;
   color: #DE1F38 !important;
 }
 .price{
@@ -708,11 +686,12 @@ table tbody tr:last-child td:last-child {
   color: green;
 }
 .listing-img{
-  text-align: center;
-  width: 12rem;
+  width: fit-content;
 }
 .product-img{
   height: 14rem;
+  width: inherit;
+  border-radius: 5px;
 }
 .search {
   position: relative;
@@ -731,12 +710,12 @@ table tbody tr:last-child td:last-child {
 .clear-search{
   position: absolute;
   right: 3rem;
-  top: 7.5rem;
-  transition: all .5s;
+  top: 7.75rem;
+  transition: all .4s;
 }
 .clear-search:hover{
   cursor: pointer;
-  transform: rotate(90deg);
+  transform: rotate(180deg);
 }
 .dash-list {
   margin: 0.5rem;
@@ -752,7 +731,7 @@ table tbody tr:last-child td:last-child {
   font-family: inherit;
   text-align: center;
   cursor: pointer;
-  transition: 0.4s;
+  transition: 0.3s;
  }
  .dash-list:hover {
   box-shadow: #2AB0E9 0px 30px 80px -15px, 
@@ -764,7 +743,7 @@ table tbody tr:last-child td:last-child {
               #2AB0E9 0px -2px 20px 0px inset;
  }
  .btn-active {
-  box-shadow: #2AB0E9 0px 30px 80px -15px, 
+  box-shadow: #2AB0E9 0px 20px 80px -20px, 
               #2AB0E9 0px -2px 20px 0px inset;
  }
 

@@ -67,15 +67,15 @@ function Listings() {
     }
 
     async function getImages(url) {
-        await axios.post(serverUrl + '/getimage', {
-          imageUrl: url
-        })
-        .then(function(res) {
-            console.log(res)
-        })
-        .catch(function (error) {
-            console.log(error);
-          });
+        // await axios.post(serverUrl + '/getimage', {
+        //   imageUrl: url
+        // })
+        // .then(function(res) {
+        //     console.log(res)
+        // })
+        // .catch(function (error) {
+        //     console.log(error);
+        //   });
     }
     
 
@@ -107,7 +107,7 @@ function Listings() {
     }
 
     function time(data){
-        let fixed = data.replace('D', 'd ').replace('H', 'h ').replace('M', 'min ').replace('S', 'sec').slice(1).split('T')
+        let fixed = data.replace('D', 'd ').replace('H', 'h ').replace('M', 'min ').replace('S', 'sec').slice(1).substr(0, 12).split('T')
         return fixed
     }
 
@@ -115,12 +115,10 @@ function Listings() {
         
         return (
             <>
-                <input placeholder="Search" class="search" name="text" type="text" value={searchValue} onChange={handleSearch}/>
-                <div className="clear-search" onClick={clearSearch}>
-                    <svg fill="#CFE6FC" width="20px" height="20px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M202.82861,197.17188a3.99991,3.99991,0,1,1-5.65722,5.65624L128,133.65723,58.82861,202.82812a3.99991,3.99991,0,0,1-5.65722-5.65624L122.343,128,53.17139,58.82812a3.99991,3.99991,0,0,1,5.65722-5.65624L128,122.34277l69.17139-69.17089a3.99991,3.99991,0,0,1,5.65722,5.65624L133.657,128Z"/>
-                    </svg>
-                </div>
+                <input placeholder="Search" className="search" name="text" type="text" value={searchValue} onChange={handleSearch}/>
+                <svg className="clear-search" onClick={clearSearch} fill="#CFE6FC" width="20px" height="20px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M202.82861,197.17188a3.99991,3.99991,0,1,1-5.65722,5.65624L128,133.65723,58.82861,202.82812a3.99991,3.99991,0,0,1-5.65722-5.65624L122.343,128,53.17139,58.82812a3.99991,3.99991,0,0,1,5.65722-5.65624L128,122.34277l69.17139-69.17089a3.99991,3.99991,0,0,1,5.65722,5.65624L133.657,128Z"/>
+                </svg>
                 <table className='table table-dark table-striped table-hover'>
                 <thead>
                     <tr>
@@ -157,7 +155,8 @@ function Listings() {
                                                                     class='listing-img' 
                                                                     body={(
                                                                         <>
-                                                                            <img src={getImages(data.ListingDetails.ViewItemURL._text)} className='product-img' />
+                                                                            <img src='https://i.ebayimg.com/images/g/6-IAAOSwOolkrJ8b/s-l1600.jpg' className='product-img' />
+                                                                            {/* <img src={getImages(data.ListingDetails.ViewItemURL._text)} className='product-img' /> */}
                                                                         </>
                                                                     )}
                                                                 />    

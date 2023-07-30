@@ -1,15 +1,16 @@
 import Element from "./DashElement";
 import Listings from './Activelistings';
+import Sold from "./Soldlistings";
 import { useState, useEffect } from "react";
 
 function UserDashboard(props) {
 
-    const [ displayList, setDisplayList ]   = useState('activeListings');
-    const activeListButton                  = document.getElementById('dash-list-active')
-    const soldListButton                    = document.getElementById('dash-list-sold')
+    const [ displayList, setDisplayList ]   = useState('');
+    const activeListButton                  = document.getElementById('dashListActive');
+    const soldListButton                    = document.getElementById('dashListSold');
     
     props.funcNav('usr');
-
+    
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth();
@@ -27,17 +28,29 @@ function UserDashboard(props) {
     };
 
     const greeting = () => {
-        if(ampm === 'am') return 'Good Monring'
+        if(ampm === 'am') return 'Good Morning'
         if(ampm === 'pm' && hours < 17) return 'Good Afternoon'
         if(ampm === 'pm' && hours >= 17) return 'Good Evening'
     }
 
-    const displayActive = () => {
-        setDisplayList('activeListings');
-    }
-    const displaySold = () => {
-        setDisplayList('soldListings')
-    }
+    useEffect(()=> {
+        setDisplayList('activeListings')
+    }, [])
+
+    useEffect(()=> {
+        if(activeListButton && soldListButton){
+            if(displayList === 'activeListings'){
+                activeListButton.className = 'dash-list btn-active';
+                soldListButton.className = 'dash-list';
+            }
+            if(displayList === 'soldListings'){
+                activeListButton.className = 'dash-list';
+                soldListButton.className = 'dash-list btn-active';
+            } 
+        };
+       
+        console.log('buttons updated and active button is:', displayList)
+    },[displayList, activeListButton, soldListButton]);
 
     return (
         <>
@@ -127,13 +140,16 @@ function UserDashboard(props) {
                             class='dash-main' 
                             title={(
                                 <>
-                                <button id="dash-list-active" className="dash-list btn-active" onClick={displayActive}>Active Listings</button>
-                                <button id="dash-list-sold" className="dash-list" onClick={displaySold}>Sold Items</button>
+                                <button id="dashListActive" className="dash-list" onClick={()=> setDisplayList('activeListings')}>Active Listings</button>
+                                <button id="dashListSold" className="dash-list" onClick={()=> setDisplayList('soldListings')}>Sold Items</button>
                                 </>
                             )}
                             text=''
                             body={
-                                <Listings/>
+                                <>
+                                    { displayList === 'activeListings' && <Listings/> }
+                                    { displayList === 'soldListings' && <Sold/>  }
+                                </>
                             }
                         /> 
                     </div>
