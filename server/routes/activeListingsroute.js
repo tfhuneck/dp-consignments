@@ -1,8 +1,11 @@
 const express               = require('express');
 const router                = express.Router();
-const activelistingsapi     = require('../controllers/activelistingsapi');
+const updateListings     = require('../controllers/updateListings');
+const converter             = require('../middleware/converListingData');
+const getListings           = require('../controllers/getListings')
 
-router.route('/') 
-    .post(activelistingsapi.enterListings);
+router.route('/')
+    .get(getListings)
+    .post(converter, updateListings)
 
 module.exports=router;

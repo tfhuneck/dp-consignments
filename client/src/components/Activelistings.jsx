@@ -22,11 +22,11 @@ function Listings() {
 
     useEffect(() => {
         async function fetchData(){
-            await axios.get(serverUrl + '/getlistings')
+            await axios.get(serverUrl + '/listings')
                 .then(async res => {
+                    let data = (res.data)
                     console.log(res.data);
-                    let dataArray = res.data.GetMyeBaySellingResponse.ActiveList.ItemArray.Item;
-                    setUserData(dataArray);
+                    setUserData(data);
                 })
             .catch(err => console.log(err));
         }
@@ -87,20 +87,6 @@ function Listings() {
     var ampm = hours >= 12 ? 'pm' : 'am';
     const today = month + " - " + day + " - " + year;
 
-    function bidcount(bids) {
-       if (bids.hasOwnProperty('BidCount')) {
-        return bids.BidCount._text
-       } else {
-        return '0'
-       }
-    }
-    function watchcount(data) {
-        if(data.hasOwnProperty('WatchCount')){
-            return data.WatchCount._text
-        } else {
-            return '0'
-        }
-    }
     function listed(data) {
         let fixed = data.substring(0, 10);
         return fixed
@@ -143,7 +129,7 @@ function Listings() {
                                                     aria-expanded="false" 
                                                     aria-controls="flush-collapseOne"
                                                 >
-                                                    {data.Title._text}
+                                                    {data.title}
                                                 </button>
                                             </h2>
                                             <div id={`flush-collapse${key}`} className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -166,7 +152,7 @@ function Listings() {
                                                                     <div className='col d-flex justify-content-center'>
                                                                         <Element
                                                                             class='listing-details' 
-                                                                        title= {<a href={data.ListingDetails.ViewItemURL._text} target="_blank">View in  <img src={ebayLogo} style={{height:"1.2rem", width:"auto"}} /> </a>}
+                                                                        title= {<a href={data.itemurl} target="_blank">View in  <img src={ebayLogo} style={{height:"1.2rem", width:"auto"}} /> </a>}
                                                                     />    
                                                                     </div>
                                                                     <div className='col d-flex justify-content-center'>
@@ -175,7 +161,7 @@ function Listings() {
                                                                             title='Listed on:'
                                                                             subtitle={( 
                                                                                 <>
-                                                                                    {listed(data.ListingDetails.StartTime._text)}
+                                                                                    {listed(data.starttime)}
                                                                                 </> 
                                                                             )}
                                                                         />
@@ -186,7 +172,7 @@ function Listings() {
                                                                             title='Bids:'
                                                                             subtitle={( 
                                                                                     <>
-                                                                                        {bidcount(data.SellingStatus)}
+                                                                                        {data.bidcount}
                                                                                     </>
                                                                                 )}
                                                                         />
@@ -197,7 +183,7 @@ function Listings() {
                                                                             title='Watching:'
                                                                             subtitle={(  
                                                                                 <>
-                                                                                    {watchcount(data)}
+                                                                                    {data.watchcount}
                                                                                 </> 
                                                                                 )}
                                                                         />
@@ -209,7 +195,7 @@ function Listings() {
                                                                             subtitle={( 
                                                                                     <>
                                                                                         <span className='time-left'>
-                                                                                            {time(data.TimeLeft._text)}
+                                                                                            {time(data.timeleft)}
                                                                                         </span>
                                                                                     </>
                                                                             )}
@@ -222,7 +208,7 @@ function Listings() {
                                                                             subtitle={( 
                                                                                 <>
                                                                                     <span className='price'>
-                                                                                        ${data.SellingStatus.CurrentPrice._text}
+                                                                                        ${data.currentprice}
                                                                                     </span>
                                                                                 </>
                                                                             )}
@@ -239,12 +225,12 @@ function Listings() {
                                 </td>
                                 <td>
                                     <span className='time-left'>
-                                        {time(data.TimeLeft._text)}
+                                        {time(data.timeleft)}
                                     </span>
                                 </td>
                                 <td>
                                     <span className='price'>
-                                        ${data.SellingStatus.CurrentPrice._text}
+                                        ${data.currentprice}
                                     </span>
                                 </td>
                             </tr>
