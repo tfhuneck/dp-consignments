@@ -13,7 +13,7 @@ function UserDashboard(props) {
     
     var date = new Date();
     var year = date.getFullYear();
-    var month = date.getMonth();
+    var month = date.getMonth()+1;
     var day = date.getDate();
     var hours = date.getHours();
     var ampm = hours >= 12 ? 'pm' : 'am';
@@ -48,7 +48,6 @@ function UserDashboard(props) {
                 soldListButton.className = 'dash-list btn-active';
             } 
         };
-       
         console.log('buttons updated and active button is:', displayList)
     },[displayList, activeListButton, soldListButton]);
 

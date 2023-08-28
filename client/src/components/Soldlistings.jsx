@@ -21,12 +21,11 @@ function Sold() {
 
     useEffect(() => {
         async function fetchData(){
-            await axios.get(serverUrl + '/getsold')
+            await axios.get(serverUrl + '/sold')
                 .then(async res => {
+                    let data = (res.data)
                     console.log(res.data);
-                    let dataArray = res.data.GetMyeBaySellingResponse.SoldList.OrderTransactionArray.OrderTransaction;
-                    console.log(dataArray);
-                    setUserData(dataArray);
+                    setUserData(data);
                 })
             .catch(err => console.log(err));
         }
@@ -36,7 +35,7 @@ function Sold() {
     useEffect(() => {
         if (searchValue) {
             let filtered = userData.filter((data) => {
-                    return data.Title._text.toString().toLowerCase().includes(searchValue.toLowerCase()) 
+                    return data.title.toString().toLowerCase().includes(searchValue.toLowerCase()) 
                  })
             console.log(searchValue)
             console.log(filtered)
@@ -111,6 +110,11 @@ function Sold() {
         return fixed
     }
 
+    function listed(data) {
+        let fixed = data.substring(0, 10);
+        return fixed
+    }
+
     if (currentRecords) {
         
         return (
@@ -143,6 +147,7 @@ function Sold() {
                                                         aria-expanded="false" 
                                                         aria-controls="flush-collapseOne"
                                                     >
+                                                        {data.title}
                                                     </button>
                                                 </h2>
                                                 <div id={`flush-collapse${key}`} className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -164,37 +169,62 @@ function Sold() {
                                                                         <div className='col d-flex justify-content-center'>
                                                                             <Element
                                                                                 class='listing-details' 
-                                                                            title= {<a target="_blank">View in  <img src={ebayLogo} style={{height:"1.2rem", width:"auto"}} /> </a>}
+                                                                            title= {<a href={data.itemurl} target="_blank">View in  <img src={ebayLogo} style={{height:"1.2rem", width:"auto"}} /> </a>}
                                                                         />    
                                                                         </div>
                                                                         <div className='col d-flex justify-content-center'>
                                                                             <Element
                                                                                 class='listing-details' 
                                                                                 title='Listed on:'
+                                                                                subtitle={(
+                                                                                    <>
+                                                                                        {listed(data.starttime)}
+                                                                                    </>
+                                                                                )}
                                                                             />
                                                                         </div>
                                                                         <div className='col d-flex justify-content-center'>
                                                                             <Element
                                                                                 class='listing-details' 
-                                                                                title='Bids:'
+                                                                                title='Sold on:'
+                                                                                subtitle={(
+                                                                                    <>
+                                                                                        {listed(data.endtime)}
+                                                                                    </>
+                                                                                )}
                                                                             />
                                                                         </div>
                                                                         <div className='col d-flex justify-content-center'>
                                                                             <Element
                                                                                 class='listing-details' 
-                                                                                title='Watching:'
+                                                                                title='Status:'
+                                                                                subtitle={(
+                                                                                    <>
+                                                                                        {data.paymentstatus}
+                                                                                    </>
+                                                                                )}
                                                                             />
                                                                         </div>
                                                                         <div className='col d-flex justify-content-center'>
                                                                             <Element
                                                                                 class='listing-details' 
-                                                                                title='Time Left:'
+                                                                                title='Total Price:'
+                                                                                subtitle={(
+                                                                                    <>
+                                                                                        {data.price}
+                                                                                    </>
+                                                                                )}
                                                                             />
                                                                         </div>
                                                                         <div className='col d-flex justify-content-center'>
                                                                             <Element
                                                                                 class='listing-details'
-                                                                                title='Current Price:' 
+                                                                                title='Total Payout:' 
+                                                                                subtitle={(
+                                                                                    <>
+                                                                                        {data.price}
+                                                                                    </>
+                                                                                )}
                                                                             />
                                                                         </div>
                                                                     </div>
@@ -208,10 +238,12 @@ function Sold() {
                                     </td>
                                     <td>
                                         <span className='time-left'>
+                                            $ {data.price}
                                         </span>
                                     </td>
                                     <td>
                                         <span className='price'>
+                                            $ {data.price}
                                         </span>
                                     </td>
                                 </tr>

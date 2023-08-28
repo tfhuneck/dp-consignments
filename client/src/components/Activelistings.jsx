@@ -36,7 +36,7 @@ function Listings() {
     useEffect(() => {
         if (searchValue) {
             let filtered = userData.filter((data) => {
-                    return data.Title._text.toString().toLowerCase().includes(searchValue.toLowerCase()) 
+                    return data.title.toString().toLowerCase().includes(searchValue.toLowerCase()) 
                  })
             console.log(searchValue)
             console.log(filtered)

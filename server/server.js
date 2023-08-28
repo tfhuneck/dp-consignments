@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const express           = require('express');
 const bodyParser        = require('body-parser')
 const app               = express();
@@ -7,7 +8,8 @@ const axios             = require('axios');
 const cheerio           = require('cheerio');
 const mongoose          = require('mongoose');
 const connectDB         = require('./config/dbConn');
-const model             = require('./model/Activelisting');
+const lstingsModel      = require('./model/Activelisting');
+const soldModel         = require('./model/Solditem');
 
 // Connect to MongoDB
 connectDB();
@@ -19,29 +21,15 @@ app.use(cors());
 var jsonParser = bodyParser.json({limit: "5mb"});
 app.use(jsonParser);
 
-// ======= Get Listing Data ========
-// app.get('/getlistings', async (req, res) => {
-//     res.end(activeData)
-//     // res.end(soldData)
-// });
-
-// ======= Get Active Data ========
-// app.get('/getsold', async (req, res) => {
-//     res.end(soldData)
-//     // res.end(soldData)
-// });
-
-// routes 
-
+// =====routes===== 
 // ====== Routes to get and post Actie Listings to DB ======== 
 app.use('/listings', require('./routes/activeListingsroute'));
-
+app.use('/sold', require('./routes/soldroute'));
 
 // Route to confirm server is running
 app.get('/', (req, res) => {
     res.send('🔥🔥🔥🔥🔥 Consignment App Server Side running 🔥🔥🔥🔥🔥🔥');
   });
-
 
 //===========Getting ebay images for listings=========
 app.post('/getimage', jsonParser, (req, res) => {
