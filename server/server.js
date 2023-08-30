@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const express           = require('express');
 const bodyParser        = require('body-parser')
 const app               = express();
@@ -11,12 +10,17 @@ const connectDB         = require('./config/dbConn');
 const lstingsModel      = require('./model/Activelisting');
 const soldModel         = require('./model/Solditem');
 const user              = require('./model/User');
+const Redis             = require('redis');
+
 
 // Connect to MongoDB
 connectDB();
 
 // cors policy
 app.use(cors());
+
+// Redis client
+const client = Redis.createClient();
 
 // create application/json parser
 var jsonParser = bodyParser.json({limit: "5mb"});
