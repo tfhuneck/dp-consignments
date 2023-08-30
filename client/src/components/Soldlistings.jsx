@@ -16,6 +16,8 @@ function Sold() {
     const [ currentPage, setCurrentPage ]       = useState(1); 
     const [ nPages, setNPages ]                 = useState();  
     const [ recordsPerPage ]                    = useState(10);
+    const [ load, setLoad ]                     = useState(null);
+    const [ image, setImage ]                   = useState();
     const indexOfLastRecord                     = currentPage * recordsPerPage;
     const indexOfFirstRecord                    = indexOfLastRecord - recordsPerPage;  
 
@@ -65,18 +67,25 @@ function Sold() {
         setSearchValue(e.target.value);
     }
 
-    async function getImages(url) {
-        // await axios.post(serverUrl + '/getimage', {
-        //   imageUrl: url
-        // })
-        // .then(function(res) {
-        //     console.log(res)
-        // })
-        // .catch(function (error) {
-        //     console.log(error);
-        //   });
-    }
-    
+    useEffect(() => {
+        
+        async function getImages(url) {
+            await axios.post( serverUrl + '/soldimage', {
+              imageUrl: url
+            })
+            .then(function(res) {
+                console.log(res.data)
+                setImage(res.data)
+                console.log(image);
+            })
+            .catch(function (error) {
+                console.log(error);
+              });
+        }
+        if(load) {
+            getImages(load);
+        }
+    }, [load, setLoad, image, setImage])
 
     var date = new Date();
     var year = date.getFullYear();
@@ -146,6 +155,7 @@ function Sold() {
                                                         data-bs-target={`#flush-collapse${key}`} 
                                                         aria-expanded="false" 
                                                         aria-controls="flush-collapseOne"
+                                                        onClick={() => setLoad(data.itemurl)}
                                                     >
                                                         {data.title}
                                                     </button>
@@ -159,7 +169,7 @@ function Sold() {
                                                                         class='listing-img' 
                                                                         body={(
                                                                             <>
-                                                                                {/* <img src={getImages(data.ListingDetails.ViewItemURL._text)} className='product-img' /> */}
+                                                                                <img src={image} className='product-img' />
                                                                             </>
                                                                         )}
                                                                     />    

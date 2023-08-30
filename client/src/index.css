@@ -319,7 +319,7 @@ a{
   margin: auto;
   z-index: -1;
   width: 350px;
-  height: 320px;
+  height: 440px;
   border-radius: 1rem;
   pointer-events: none;
   background: linear-gradient(-25deg, #DF1E36 0%, #2AB0E9 100% );
@@ -355,7 +355,7 @@ a{
   margin: auto;
   z-index: -1;
   width: 350px;
-  height: 475px;
+  height: 500px;
   border-radius: 1rem;
   pointer-events: none;
   background: linear-gradient(-25deg, #DF1E36 0%, #2AB0E9 100% );
@@ -746,4 +746,49 @@ table tbody tr:last-child td:last-child {
   box-shadow: #2AB0E9 0px 20px 80px -20px, 
               #2AB0E9 0px -2px 20px 0px inset;
  }
+ .googlebtn {
+  display: flex;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  align-items: center;
+  color: rgb(65, 63, 63);
+  background-color: #fff;
+  cursor: pointer;
+  transition: all .6s ease;
+}
+.googlebtn:hover{
+  background-color: #fff;
+  transform: scale(1.01);
+}
+.googlebtn svg {
+  height: 20px;
+  margin-right: 1.75rem;
+}
+ .fbbtn {
+  display: flex;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  align-items: center;
+  color: rgb(65, 63, 63);
+  background-color: #1778f2;
+  border-color:#1778f2 !important;
+  cursor: pointer;
+  transition: all .6s ease;
+}
+.fbbtn:hover{
+  background-color: #1778f2;
+  transform: scale(1.01);
+}
+.fbbtn svg {
+  color: #ffffff;
+  height: 20px;
+  margin-right: 1.75rem;
+}
+#error{
+  color: #DF1E36;
+  font-weight: 400;
+  font-size: small;
+}
 

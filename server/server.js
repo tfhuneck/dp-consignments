@@ -10,6 +10,7 @@ const mongoose          = require('mongoose');
 const connectDB         = require('./config/dbConn');
 const lstingsModel      = require('./model/Activelisting');
 const soldModel         = require('./model/Solditem');
+const user              = require('./model/User');
 
 // Connect to MongoDB
 connectDB();
@@ -23,8 +24,10 @@ app.use(jsonParser);
 
 // =====routes===== 
 // ====== Routes to get and post Actie Listings to DB ======== 
-app.use('/listings', require('./routes/activeListingsroute'));
-app.use('/sold', require('./routes/soldroute'));
+app.use('/listings', require('./routes/activeListingsRoute'));
+app.use('/sold', require('./routes/soldRoute'));
+app.use('/soldimage', require('./routes/soldImageRoute'));
+app.use('/create', require('./routes/createNewUserRoute'));
 
 // Route to confirm server is running
 app.get('/', (req, res) => {

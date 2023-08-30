@@ -1,16 +1,17 @@
 import Element from "./DashElement";
 import Listings from './Activelistings';
 import Sold from "./Soldlistings";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from '../App';
+
 
 function UserDashboard(props) {
 
     const [ displayList, setDisplayList ]   = useState('');
     const activeListButton                  = document.getElementById('dashListActive');
     const soldListButton                    = document.getElementById('dashListSold');
-    
-    props.funcNav('usr');
-    
+    const user = useContext(AuthContext);
+
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth()+1;

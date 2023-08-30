@@ -1,9 +1,8 @@
 import Element from "./DashElement";
 
 function Messenger(props) {
-
-    props.funcNav('usr');
-
+ 
+    // .......
 
     return (
         <>

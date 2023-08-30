@@ -2,7 +2,7 @@ import Element from "./DashElement";
 
 function Credit(props) {
 
-    props.funcNav('usr');
+
 
 
     return (

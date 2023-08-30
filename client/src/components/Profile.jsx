@@ -3,7 +3,7 @@ import profile from '../images/New_Headshot.png'
 
 function Profile(props) {
 
-    props.funcNav('usr');
+
 
 
     return (

@@ -2,7 +2,7 @@ import Element from "./DashElement";
 
 function Notifications(props) {
 
-    props.funcNav('usr');
+
 
 
     return (

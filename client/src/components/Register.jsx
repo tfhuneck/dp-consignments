@@ -1,7 +1,58 @@
 import { Container } from "react-bootstrap";
-import user from '../images/user.png'
+import axios from "axios";
+import authApp from '../config/firebase';
+import { useNavigate} from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 
 function Register() {
+    const auth          = getAuth(authApp);
+    const serverUrl     = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
+    const navigate      = useNavigate();
+
+    const handleRegister = async () => {
+        const name          = document.getElementById('name').value;
+        const email         = document.getElementById('email').value;
+        const password      = document.getElementById('password').value;
+        const password2     = document.getElementById('password2').value;
+        const error         = document.getElementById('error');
+
+        if(password !== password2) {
+            error.innerHTML = 'Error: passwords must match'
+        } 
+        if(password.length < 6 ){
+            error.innerHTML = 'Error: passwords must be at least 6 characters'
+        }
+        
+        else{
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(async (userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    await axios.post(serverUrl + `/create`, {
+                        'userid': user.uid,
+                        'name': name,
+                        'email': email,
+                        'password': password,
+                    })
+                    .then(async res => {
+                        console.log('New accounte created');
+                    })
+                    .catch(err => console.log(err));
+                    navigate('/usr');
+                })
+                .catch((err) => {
+                    const errorCode = err.code;
+                    const errorMessage = err.message;
+                    if (errorCode === 'auth/email-already-in-use'){
+                        error.innerHTML = 'E-mail already in use'
+                    }
+
+                    console.log(errorCode)
+                    // ..
+                });
+        }
+    }
 
     return (
         <>
@@ -12,7 +63,7 @@ function Register() {
                         <form className="register">
                             <p className="login-title">Create a new account</p>
                             <div className="input-container">
-                                <input placeholder="Enter name" type="text" />
+                                <input placeholder="Enter name" type="text" id='name' required />
                                 <span>
                                 <svg
                                         stroke="currentColor"
@@ -32,7 +83,7 @@ function Register() {
                                 </span>
                             </div>
                             <div className="input-container">
-                                <input placeholder="Enter email" type="email" />
+                                <input placeholder="Enter email" type="email" id='email' required />
                                 <span>
                                     <svg
                                         stroke="currentColor"
@@ -50,7 +101,7 @@ function Register() {
                                 </span>
                             </div>
                             <div className="input-container">
-                                <input placeholder="Enter password" type="password" />
+                                <input placeholder="Enter password" type="password" id='password' required />
                                 <span>
                                     <svg
                                         stroke="currentColor"
@@ -74,7 +125,7 @@ function Register() {
                                 </span>
                             </div>
                             <div className="input-container">
-                                <input placeholder="Repeat password" type="password" />
+                                <input placeholder="Repeat password" type="password" id='password2' required />
                                 <span>
                                     <svg
                                         stroke="currentColor"
@@ -98,7 +149,9 @@ function Register() {
                                 </span>
                             </div>
                             <br />
-                            <button className="submit btn btn-outline-danger" type="submit">
+                            <div id="error"></div>
+                            <br />
+                            <button className="submit btn btn-outline-danger" id='register' type="button" onClick={handleRegister}>
                                 Create Account
                             </button>
                             <p className="signup-link">

@@ -2,7 +2,7 @@ import Element from "./DashElement";
 
 function Cashout(props) {
 
-    props.funcNav('usr');
+
 
     return (
         <>

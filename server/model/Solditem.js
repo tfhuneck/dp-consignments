@@ -1,4 +1,4 @@
- const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const solditemSchema = new mongoose.Schema({
     itemid: {type: String, default: null},

@@ -1,11 +1,29 @@
 import profile from '../images/New_Headshot.png'
-import { NavLink, Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../App';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
+import authApp from '../config/firebase';
+import { getAuth, signOut } from "firebase/auth";
+
 
 function UserPanel() {
+    
+    const navigate  = useNavigate();
+    const auth      = getAuth(authApp);
+    const [ userAuth, setUserAuth ] = useContext(AuthContext);
+
+    const handleLogout = () => {
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            setUserAuth(null);
+            navigate('/');
+        }).catch((error) => {
+        // An error happened.
+        });
+    }
 
     return (
         <>
-
             <div className='card usr container-fluid'>
                 <div className='row d-flex '>
                     <div className='col d-flex justify-content-center'>
@@ -128,7 +146,7 @@ function UserPanel() {
                         </Link>
                     </div>
                     <div className='row justify-content-center'>
-                        <Link className='user-nav-link' to=''>
+                        <Link className='user-nav-link' onClick={handleLogout}>
                             <div className='col'>
                                 <svg 
                                     className='user-nav-icn'
@@ -155,7 +173,6 @@ function UserPanel() {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

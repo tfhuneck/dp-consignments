@@ -1,6 +1,6 @@
 import './index.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, createContext, useEffect } from 'react';
 import Navigation from "./components/Navbar";
 import logo from './images/logo.png'
 import Home from './components/Home';
@@ -18,48 +18,73 @@ import Messenger from './components/Messenger';
 import Notifications from './components/Notifications';
 import Profile from './components/Profile';
 import Settings from './components/Settings';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import authApp from './config/firebase';
+
+export const AuthContext = createContext();
 
 function App() {
+  const auth                      = getAuth(authApp);
+  const [ userAuth, setUserAuth ] = useState(null);
+  // var userData = {};
 
-  const [showNav, setShowNav] = useState('home');
+
+  useEffect (() => {
+    onAuthStateChanged(auth, async (user) => {
+      var token = ''
+      if (user) {
+        await user.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+          // Send token to your backend via HTTPS
+          token = idToken
+        }).catch(function(error) {
+          // Handle error
+        });
+        const userid = user.uid;
+        const userData = {
+          idToken : token,
+          userid : userid
+        }
+        setUserAuth(userData);
+      } else {
+        setUserAuth(null);
+        // console.log(userAuth)
+      }
+    });
+  }, [onAuthStateChanged, auth]);
 
   return (
     <>
-      <BrowserRouter>
-        {/* <img className='logo' src={logo}/> */}
-        { showNav === 'home' &&
-          <Navigation/>  
-        }
-        <div className='container-fluid'>
-          <div className='row'>
-            <div className='col-sm-2 fixed-top one'>
-              { showNav === 'usr' &&
-                <UserNav/>     
-              }
+      <AuthContext.Provider value={[ userAuth, setUserAuth ]}>
+        <BrowserRouter>
+          {/* <img className='logo' src={logo}/> */}
+          {!userAuth && <Navigation />}
+          <div className='container-fluid'>
+            <div className='row'>
+              <div className='col-sm-2 fixed-top one'>
+                {userAuth && <UserNav />}
+              </div>
             </div>
+            <div className="fixed-top">
+              {userAuth && <UserPanel />}
+            </div>
+            <Routes>
+              <Route path='/' index element={<Home />} />
+              <Route path='/info' element={<Info />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/contact' element={<Contact />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/register' element={<Register />} />
+                {userAuth && <Route path='/usr' element={<UserDashboard />} />}
+                {userAuth && <Route path='/usr/credit' element={<Credit />} />}
+                {userAuth && <Route path='/usr/cashout' element={<Cashout />} />}
+                {userAuth && <Route path='/usr/message' element={<Messenger />} />}
+                {userAuth && <Route path='/usr/notifications' element={<Notifications />} />}
+                {userAuth && <Route path='/usr/profile' element={<Profile />} />}
+                {userAuth && <Route path='/usr/settings' element={<Settings />} />}
+            </Routes>
           </div>
-          <div className="fixed-top">
-          { showNav === 'usr' &&
-                <UserPanel/>
-              }
-            </div>
-          <Routes>
-            <Route path='/' index element={<Home/>} />
-            <Route path='/info'  element={<Info/>} />
-            <Route path='/login'  element={<Login/>} />
-            <Route path='/contact'  element={<Contact/>} />
-            <Route path='/about'  element={<About/>} />
-            <Route path='/register'  element={<Register/>} />
-            <Route path='/usr' element={<UserDashboard funcNav={setShowNav}/>} />
-            <Route path='/usr/credit' element={<Credit funcNav={setShowNav}/>}  /> 
-            <Route path='/usr/cashout' element={<Cashout funcNav={setShowNav}/>}  /> 
-            <Route path='/usr/message' element={<Messenger funcNav={setShowNav}/>}  /> 
-            <Route path='/usr/notifications' element={<Notifications funcNav={setShowNav}/>}  /> 
-            <Route path='/usr/profile' element={<Profile funcNav={setShowNav}/>}  /> 
-            <Route path='/usr/settings' element={<Settings funcNav={setShowNav}/>}  /> 
-          </Routes>
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </AuthContext.Provider>
     </>
   );
 }

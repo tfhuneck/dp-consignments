@@ -14,7 +14,9 @@ function Navigation() {
     const [active, setActive] = useState('home')
 
     const Navbutton = ({to, id, image, name}) => {
-        
+       
+        // ===== storing active state of navbar buttons =====
+
         const clss = () => {
             const activeclss = (to === active) ? ' navactive' : '';
             return 'navbtn' + activeclss;
@@ -22,7 +24,7 @@ function Navigation() {
         
         useEffect(() => {
             let url = window.location.pathname;
-            console.log(url)
+            // console.log(url)
             if (url !== active) {
                 setActive(url)
             }
@@ -47,44 +49,42 @@ function Navigation() {
     
     return (
         <>
-
-                <Container className='navcontainer' >
-                    <Navbar expand="md">
-                        <Container>
-                            <Navbutton 
-                                to='/'
-                                id='home'
-                                image={home}
-                                name='Home'
-                            />
-                            <Navbutton 
-                                to='/info'
-                                id='info'
-                                image={info}
-                                name='Info'
-                            />
-                            <Navbutton
-                                to='/login'
-                                id='login'
-                                image={user}
-                                name='Login'
-                            />
-                            <Navbutton 
-                                to='/contact'
-                                id='contact'
-                                image={mail}
-                                name='Contact'
-                            />
-                            <Navbutton 
-                                to="/about"
-                                id='about'
-                                image={about}
-                                name='About'
-                            />
-                        </Container>
-                    </Navbar>
-                </Container>    
-
+            <Container className='navcontainer' >
+                <Navbar expand="md">
+                    <Container>
+                        <Navbutton 
+                            to='/'
+                            id='home'
+                            image={home}
+                            name='Home'
+                        />
+                        <Navbutton 
+                            to='/info'
+                            id='info'
+                            image={info}
+                            name='Info'
+                        />
+                        <Navbutton
+                            to='/login'
+                            id='login'
+                            image={user}
+                            name='Login'
+                        />
+                        <Navbutton 
+                            to='/contact'
+                            id='contact'
+                            image={mail}
+                            name='Contact'
+                        />
+                        <Navbutton 
+                            to="/about"
+                            id='about'
+                            image={about}
+                            name='About'
+                        />
+                    </Container>
+                </Navbar>
+            </Container>    
         </> 
     )
 }
