@@ -3,6 +3,7 @@ import Listings from './Activelistings';
 import Sold from "./Soldlistings";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from '../App';
+import axios from 'axios'
 
 
 function UserDashboard(props) {
@@ -10,15 +11,29 @@ function UserDashboard(props) {
     const [ displayList, setDisplayList ]   = useState('');
     const activeListButton                  = document.getElementById('dashListActive');
     const soldListButton                    = document.getElementById('dashListSold');
-    const user = useContext(AuthContext);
+    const [ userAuth, setUserAuth ]         = useContext(AuthContext);
+    var date                                = new Date();
+    var year                                = date.getFullYear();
+    var month                               = date.getMonth()+1;
+    var day                                 = date.getDate();
+    var hours                               = date.getHours();
+    var ampm                                = hours >= 12 ? 'pm' : 'am';
+    const today                             = month + " - " + day + " - " + year;
+    const serverUrl                         = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
 
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = date.getMonth()+1;
-    var day = date.getDate();
-    var hours = date.getHours();
-    var ampm = hours >= 12 ? 'pm' : 'am';
-    const today = month + " - " + day + " - " + year;
+    useEffect(() => {
+        async function fetchData(){
+            await axios.get(serverUrl + '/user',
+                {params:{
+                        userAuth
+                }})
+                .then(async res => {
+                    console.log(res.data);
+                })
+                .catch(err => console.log(err));
+        }
+    fetchData();
+    },[]);
 
     const weekDay = () => {
         const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];

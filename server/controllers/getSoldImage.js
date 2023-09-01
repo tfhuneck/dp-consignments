@@ -1,7 +1,6 @@
 const axios     = require('axios');
 const cheerio  = require('cheerio');
 
-
 const getImage = async (req, res, next) => {
     const reqUrl = req.body.imageUrl;
     // console.log(reqUrl)

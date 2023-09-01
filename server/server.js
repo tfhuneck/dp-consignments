@@ -7,10 +7,11 @@ const axios             = require('axios');
 const cheerio           = require('cheerio');
 const mongoose          = require('mongoose');
 const connectDB         = require('./config/dbConn');
-const lstingsModel      = require('./model/Activelisting');
-const soldModel         = require('./model/Solditem');
-const user              = require('./model/User');
+const ListingsModel      = require('./model/Activelisting');
+const SoldModel         = require('./model/Solditem');
+const UserModel         = require('./model/User');
 const Redis             = require('redis');
+const auth              = require('./middleware/auth');
 
 
 // Connect to MongoDB
@@ -20,7 +21,8 @@ connectDB();
 app.use(cors());
 
 // Redis client
-const client = Redis.createClient();
+// const redisClient = Redis.createClient();
+// const DEFAULT_EXPIRATION = 3600
 
 // create application/json parser
 var jsonParser = bodyParser.json({limit: "5mb"});
@@ -32,6 +34,37 @@ app.use('/listings', require('./routes/activeListingsRoute'));
 app.use('/sold', require('./routes/soldRoute'));
 app.use('/soldimage', require('./routes/soldImageRoute'));
 app.use('/create', require('./routes/createNewUserRoute'));
+app.use('/updateuser', require('./routes/updateUserRoute'));
+app.use('/getuser', require('./routes/getUserRoute'));
+app.use('/user', require('./routes/redisCacheRoute'));
+app.use('/collectall', require('./routes/collectAllRoute'))
+
+
+// ========= Redis get data and Caching ===========
+// app.get('/user', auth, async (req, res, next) => {
+//     const userData = req.userData
+//     console.log(userData);
+//     await redisClient.connect();
+//     redisClient.get('user', async (error, user) => {
+//         if (error) console.log(error)
+//         if (user != null) {
+//             return res.json(JSON.parse(user))
+//         } else{
+//             await axios.get('/updateuser', {
+//                 params: { userData }
+//             });
+
+//             await axios.get('/getuser', {
+//                 params: { userData }
+//             })
+//             .then(async res => {
+//                 console.log(res.data);
+//             })
+//             .catch(err => console.log(err));
+//         }
+//     })
+// })
+
 
 // Route to confirm server is running
 app.get('/', (req, res) => {
