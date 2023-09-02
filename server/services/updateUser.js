@@ -4,7 +4,7 @@ const Listing       = require ('../model/Activelisting');
 
 const updateUser = async (req, res, next) => {
     
-    console.log(req.query)
+    // console.log(req.query)
     const userId        = req.query.userData.uid
     const getUser       = await User.findOne({userid: userId}).exec();
     const soldItemSub   = getUser.solditems;

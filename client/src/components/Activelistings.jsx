@@ -1,14 +1,16 @@
 import Element from "./DashElement";
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import ebayLogo from '../images/ebay-logo.png'
 import Loading from './Loading';
 import Pagination from "./Pagination";
+import { AuthContext } from '../App';
 
 const serverUrl = 'http://localhost:8080'
 
-function Listings() {
+function Listings(props) {
     
+    const [ userAuth, setUserAuth ]             = useContext(AuthContext);
     const [ userData, setUserData ]             = useState();
     const [ searchValue, setSearchValue ]       = useState('');
     const [ filteredData, setFilteredData ]     = useState(userData);
@@ -19,18 +21,20 @@ function Listings() {
     const indexOfLastRecord                     = currentPage * recordsPerPage;
     const indexOfFirstRecord                    = indexOfLastRecord - recordsPerPage;  
 
-
     useEffect(() => {
         async function fetchData(){
-            await axios.get(serverUrl + '/listings')
+            await axios.get(serverUrl + '/user/listings',
+                {params:{
+                        userAuth
+                }})
                 .then(async res => {
-                    let data = (res.data)
                     console.log(res.data);
+                    let data = (res.data)
                     setUserData(data);
                 })
-            .catch(err => console.log(err));
+                .catch(err => console.log(err));
         }
-        fetchData();
+    fetchData();
     },[]);
 
     useEffect(() => {
@@ -116,7 +120,7 @@ function Listings() {
                 <tbody>
                     {currentRecords.map((data, key) => {
                         return(
-                            <tr>
+                            <tr key={key}>
                                 <td>
                                     <div className="accordion">
                                         <div className="accordion-item">

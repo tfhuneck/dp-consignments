@@ -6,12 +6,13 @@ import { AuthContext } from '../App';
 import axios from 'axios'
 
 
-function UserDashboard(props) {
+function UserDashboard() {
 
     const [ displayList, setDisplayList ]   = useState('');
     const activeListButton                  = document.getElementById('dashListActive');
     const soldListButton                    = document.getElementById('dashListSold');
     const [ userAuth, setUserAuth ]         = useContext(AuthContext);
+    const [ userData, setUserData ]         = useState();
     var date                                = new Date();
     var year                                = date.getFullYear();
     var month                               = date.getMonth()+1;
@@ -29,6 +30,8 @@ function UserDashboard(props) {
                 }})
                 .then(async res => {
                     console.log(res.data);
+                    let data = (res.data)
+                    setUserData(data);
                 })
                 .catch(err => console.log(err));
         }
@@ -67,6 +70,15 @@ function UserDashboard(props) {
         console.log('buttons updated and active button is:', displayList)
     },[displayList, activeListButton, soldListButton]);
 
+   const totalBalance = () =>{
+    if (userData) {
+        return userData.balance.map(i => i.price).reduce((prev, next)=> Math.round((prev + next)* 1e12)/ 1e12);
+    }else{
+        return 0
+    }
+   }
+
+
     return (
         <>
             <div className="user-dash">
@@ -75,7 +87,11 @@ function UserDashboard(props) {
                         <Element
                             class='dash-header' 
                             title={greeting()}
-                            subtitle='Timothy'
+                            subtitle={(
+                                <>
+                                {userData ? userData.name : null}
+                                </>
+                            )}
                             text={(
                                 <>
                                 <div>
@@ -94,11 +110,11 @@ function UserDashboard(props) {
                         <Element
                             class='dash-header' 
                             title='Consignments'
-                            subtitle='Total Items Listed'
+                            subtitle='Current Active Listings'
                             text={(
                                 <>
                                 <div className="dash-header-num">
-                                    53
+                                    {userData ? userData.activeitems.length : 0}
                                 </div>
                                 </>
                             )}
@@ -117,7 +133,7 @@ function UserDashboard(props) {
                             text={(
                                 <>
                                 <div className="dash-header-num">
-                                    35
+                                    {userData ? userData.solditems.length : 0}
                                 </div>
                                 </>
                             )}
@@ -137,7 +153,7 @@ function UserDashboard(props) {
                             text={(
                                 <>
                                 <div className="dash-header-num">
-                                    $ 1,235.50
+                                    $ {totalBalance()}
                                 </div>
                                 </>
                             )}

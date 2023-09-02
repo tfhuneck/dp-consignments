@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
         phone: {type: Number, default: 0},
         address: {type: String, default: null},
         avatar: { data: Buffer, contentType: String, default: avatar },
-        skucode: {type: String, default: null},
+        skucode: {type: String, default: 'assign_sku'},
         activeitems: [{
             itemid: {type: String, default: null}
         }],

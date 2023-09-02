@@ -1,9 +1,9 @@
 const express               = require('express');
 const router                = express.Router();
-const user                  = require('../controllers/getUser');
 const auth                  = require('../middleware/auth');
+const Redis                 = require('../services/redisCacheUser')
 
 router.route('/')
-    .get(auth, user)
+    .get(auth, Redis);
 
-module.exports=router;
+module.exports = router;

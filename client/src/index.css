@@ -319,7 +319,7 @@ a{
   margin: auto;
   z-index: -1;
   width: 350px;
-  height: 440px;
+  height: 460px;
   border-radius: 1rem;
   pointer-events: none;
   background: linear-gradient(-25deg, #DF1E36 0%, #2AB0E9 100% );
@@ -548,7 +548,7 @@ a{
 .profile{
   height: 4rem;
   width: 4rem;
-  border-radius: 50px;
+  border-radius: 50%;
 }
 .user-dash{
   margin-top: 4rem;
@@ -592,7 +592,7 @@ a{
   transition: all 1s;
 }
 .date{
-  font-weight: 300;
+  font-weight: 400;
   transition: all 1s;
 }
 .dash-header:hover >.card-body > .card-text > .date{
@@ -791,4 +791,10 @@ table tbody tr:last-child td:last-child {
   font-weight: 400;
   font-size: small;
 }
-
+.profile-page-img{
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+  margin-left: 2rem;
+  margin-top: 2rem;
+}

@@ -2,7 +2,7 @@ const User      = require('../model/User');
 
 const getUser = async (req, res) => {
     
-    const userId = req.query.userData.userid
+    const userId = req.userData.uid;
 
     try{
         const data = await User.findOne({userid: userId}).exec();

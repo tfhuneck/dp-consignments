@@ -1,5 +1,6 @@
+import axios from 'axios';
 import profile from '../images/New_Headshot.png'
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../App';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import authApp from '../config/firebase';
@@ -10,7 +11,21 @@ function UserPanel() {
     
     const navigate  = useNavigate();
     const auth      = getAuth(authApp);
-    const [ userAuth, setUserAuth ] = useContext(AuthContext);
+    const [ userAuth, setUserAuth ]         = useContext(AuthContext);
+    const [ userData, setUserData ]         = useState();
+    const serverUrl                         = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
+
+    useEffect(() => {
+
+        axios.get(serverUrl + '/getuser', {
+            params: {userAuth}
+        })
+        .then((res) =>{
+            console.log(res.data)
+            const data = res.data;
+            setUserData(data);
+        })
+    },[])
 
     const handleLogout = () => {
         signOut(auth).then(() => {
@@ -33,7 +48,7 @@ function UserPanel() {
                 <div className='row d-flex '>
                     <div className='col d-flex justify-content-center'>
                         <br />
-                        Username
+                        {userData && userData.name}
                     </div>
                 </div>
                 <div className='card-body d-flex flex-column justify-content-evenly'>
