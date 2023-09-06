@@ -27,7 +27,7 @@ const cacheUserData = async (req, res, next) => {
             const activeItems   = getUser.activeitems
             const filterListings  =  listingData.filter((i) => 
                    activeItems.some(n => n.itemid === i.itemid));
-            console.log(filterListings)
+            // console.log(filterListings)
 
             await redisClient.setex('listings', DEFAULT_EXPIRATION, JSON.stringify(filterListings))   
             console.log('Listings cached and sent');

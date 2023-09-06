@@ -78,7 +78,6 @@ function UserDashboard() {
     }
    }
 
-
     return (
         <>
             <div className="user-dash">
@@ -172,6 +171,7 @@ function UserDashboard() {
                             title={(
                                 <>
                                 <button id="dashListActive" className="dash-list" onClick={()=> setDisplayList('activeListings')}>Active Listings</button>
+                                <button id="dashListPending" className="dash-list" onClick={()=> setDisplayList('soldListings')}>Pending</button>
                                 <button id="dashListSold" className="dash-list" onClick={()=> setDisplayList('soldListings')}>Sold Items</button>
                                 </>
                             )}

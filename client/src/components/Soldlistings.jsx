@@ -73,7 +73,6 @@ function Sold() {
     }
 
     useEffect(() => {
-        
         async function getImages(url) {
             await axios.post( serverUrl + '/soldimage', {
               imageUrl: url
@@ -127,6 +126,32 @@ function Sold() {
     function listed(data) {
         let fixed = data.substring(0, 10);
         return fixed
+    }
+
+    const payout = (price) => {
+
+        let result = ''
+
+        if(price >= 5000){
+            let deduction = price - 3000
+            result = (deduction * 0.97).toFixed(2);
+        }
+        if(price >= 1000 && price <= 4999.99 ){
+            let deduction = price - 0.5
+            result = (deduction * 0.88).toFixed(2);
+        }
+        if(price >= 25 && price <= 999.999 ){
+            let deduction = price - 0.5
+            result = (deduction * 0.85).toFixed(2);
+        }
+        if(price >= 10 && price <= 24.999 ){
+            let deduction = price - 0.5
+            result = (deduction * 0.8).toFixed(2);
+        } 
+        if(price < 10 ){
+            result = price.toFixed(2);
+        }
+        return result;
     }
 
     if (currentRecords) {
@@ -237,7 +262,7 @@ function Sold() {
                                                                                 title='Total Payout:' 
                                                                                 subtitle={(
                                                                                     <>
-                                                                                        {data.price}
+                                                                                        {payout(data.price)}
                                                                                     </>
                                                                                 )}
                                                                             />
@@ -258,7 +283,7 @@ function Sold() {
                                     </td>
                                     <td>
                                         <span className='price'>
-                                            $ {data.price}
+                                            $ {payout(data.price)}
                                         </span>
                                     </td>
                                 </tr>

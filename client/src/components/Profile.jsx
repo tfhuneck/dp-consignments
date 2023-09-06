@@ -26,6 +26,11 @@ function Profile(props) {
     fetchData();
     },[]);
 
+    function listed(data) {
+        let fixed = data.substring(0, 10);
+        return fixed
+    }
+
     return (
         <>
             <div className="user-dash">
@@ -37,8 +42,46 @@ function Profile(props) {
                             subtitle=''
                             body={(
                                 <>
-                                    <div className='col d-flex'>
-                                         <img className='profile-page-img' src={profile} />
+                                    <br /><br />
+                                    <div className="container profile-info-container">
+                                        <div className="row">
+                                            <div className="col">
+                                                <img className='profile-page-img' src={profile} />
+                                                <div className="profile-name">
+                                                    {userData ? userData.name : null}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row d-flex justify-content-evenly">
+                                            <div className="col profile-info">
+                                                Email Address: &nbsp; &nbsp;
+                                                {userData ? userData.email : null}
+                                            </div>
+                                            <div className="col profile-info">
+                                                Current Active Listings: &nbsp; &nbsp;
+                                                {userData ? userData.activeitems.length : null}
+                                            </div>
+                                        </div>
+                                        <div className="row d-flex justify-content-evenly">
+                                            <div className="col profile-info">
+                                                Phone Number: &nbsp; &nbsp;
+                                                {userData ? userData.phone : null}
+                                            </div>
+                                            <div className="col profile-info">
+                                                Number of Sold Items: &nbsp; &nbsp;
+                                                {userData ? userData.solditems.length : null}
+                                            </div>
+                                        </div>
+                                        <div className="row d-flex justify-content-evenly">
+                                            <div className="col profile-info">
+                                                Address: &nbsp; &nbsp;
+                                                {userData ? userData.address : null}
+                                            </div>
+                                            <div className="col profile-info">
+                                                Account created on: &nbsp; &nbsp;
+                                                {userData ? listed(userData.createdAt) : null}
+                                            </div>
+                                        </div>
                                     </div>
                                 </>
                             )}

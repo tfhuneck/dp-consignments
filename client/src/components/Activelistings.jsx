@@ -154,13 +154,21 @@ function Listings(props) {
                                                             <div className='col'>
                                                                 <div className='row'>
                                                                     <div className='col d-flex justify-content-center'>
-                                                                        <Element
+                                                                        {/* <Element
                                                                             class='listing-details' 
                                                                         title= {<a href={data.itemurl} target="_blank">View in  <img src={ebayLogo} style={{height:"1.2rem", width:"auto"}} /> </a>}
-                                                                    />    
+                                                                        />     */}
+                                                                        <div className="card listing-box">
+                                                                            <div className="card-header listing-header">
+                                                                                View on
+                                                                            </div>
+                                                                            <div className="card-body listing-body">
+                                                                            <a href={data.itemurl} target="_blank"><img src={ebayLogo} style={{height:"1.5rem", width:"auto"}} /> </a>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div className='col d-flex justify-content-center'>
-                                                                        <Element
+                                                                        {/* <Element
                                                                             class='listing-details' 
                                                                             title='Listed on:'
                                                                             subtitle={( 
@@ -168,10 +176,18 @@ function Listings(props) {
                                                                                     {listed(data.starttime)}
                                                                                 </> 
                                                                             )}
-                                                                        />
+                                                                        /> */}
+                                                                        <div className="card listing-box">
+                                                                            <div className="card-header listing-header">
+                                                                                Listed on
+                                                                            </div>
+                                                                            <div className="card-body listing-body">
+                                                                                {listed(data.starttime)}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div className='col d-flex justify-content-center'>
-                                                                        <Element
+                                                                        {/* <Element
                                                                             class='listing-details' 
                                                                             title='Bids:'
                                                                             subtitle={( 
@@ -179,10 +195,18 @@ function Listings(props) {
                                                                                         {data.bidcount}
                                                                                     </>
                                                                                 )}
-                                                                        />
+                                                                        /> */}
+                                                                        <div className="card listing-box">
+                                                                            <div className="card-header listing-header">
+                                                                                Bids
+                                                                            </div>
+                                                                            <div className="card-body listing-body">
+                                                                                {data.bidcount}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div className='col d-flex justify-content-center'>
-                                                                        <Element
+                                                                        {/* <Element
                                                                             class='listing-details' 
                                                                             title='Watching:'
                                                                             subtitle={(  
@@ -190,10 +214,18 @@ function Listings(props) {
                                                                                     {data.watchcount}
                                                                                 </> 
                                                                                 )}
-                                                                        />
+                                                                        /> */}
+                                                                        <div className="card listing-box">
+                                                                            <div className="card-header listing-header">
+                                                                                Watching:
+                                                                            </div>
+                                                                            <div className="card-body listing-body">
+                                                                                {data.watchcount}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div className='col d-flex justify-content-center'>
-                                                                        <Element
+                                                                        {/* <Element
                                                                             class='listing-details' 
                                                                             title='Time Left:'
                                                                             subtitle={( 
@@ -203,10 +235,18 @@ function Listings(props) {
                                                                                         </span>
                                                                                     </>
                                                                             )}
-                                                                        />
+                                                                        /> */}
+                                                                        <div className="card listing-box">
+                                                                            <div className="card-header listing-header">
+                                                                                Time Left
+                                                                            </div>
+                                                                            <div className="card-body listing-body">
+                                                                                {time(data.timeleft)}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div className='col d-flex justify-content-center'>
-                                                                        <Element
+                                                                        {/* <Element
                                                                             class='listing-details'
                                                                             title='Current Price:' 
                                                                             subtitle={( 
@@ -216,7 +256,15 @@ function Listings(props) {
                                                                                     </span>
                                                                                 </>
                                                                             )}
-                                                                        />
+                                                                        /> */}
+                                                                        <div className="card listing-box">
+                                                                            <div className="card-header listing-header">
+                                                                                Current Price:
+                                                                            </div>
+                                                                            <div className="card-body listing-body">
+                                                                                $ {data.currentprice}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -234,7 +282,7 @@ function Listings(props) {
                                 </td>
                                 <td>
                                     <span className='price'>
-                                        ${data.currentprice}
+                                        $ {data.currentprice}
                                     </span>
                                 </td>
                             </tr>

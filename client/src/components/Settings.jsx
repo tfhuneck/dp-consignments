@@ -2,9 +2,6 @@ import Element from "./DashElement";
 
 function Settings(props) {
 
-    props.funcNav('usr');
-
-
     return (
         <>
             <div className="user-dash">

@@ -1,7 +1,8 @@
 body {
+  min-height: 100vh;
   margin: 0;
   background-color: #474F57;
-  background-image:linear-gradient( #5C6670, #474F57) ;
+  background-image:linear-gradient(to bottom, #66727D, #474F57) ;
   background-repeat: no-repeat;
   font-family: 'Montserrat', sans-serif;
   font-weight: 100;
@@ -33,7 +34,7 @@ a{
   margin-top: 2em;
   border-radius: 1em;
   height: 4em;
-  background-color: #9BACBD;
+  background-color: rgba(	155, 172, 189, 0.3);
   filter: drop-shadow(0 0 1rem #282c31);
 }
 .navbtn{
@@ -571,7 +572,7 @@ a{
   margin: auto;
   z-index: -1;
   width: 17vw;
-  height: 11.5rem;
+  height: 10.5rem;
   border-radius: 1rem;
   pointer-events: none;
   background: #2AB0E9;
@@ -579,7 +580,8 @@ a{
   transition: all 1s;
 }
 .dash-header:hover{
-  height: 11.5rem;
+  height: 10.5rem;
+  /* transform: scale(1.05); */
 }
 .dash-header:hover::before{
   opacity: 100%;
@@ -661,32 +663,35 @@ table tbody tr:last-child td:last-child {
 }
 .accordion-collapse{
   background-color:  #66727D;
+  /* background: linear-gradient(to bottom right, #5C6670, #9BACBD, #474F57); */
+  background-image: url('./images/listingbg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
   transition: all .75s ease;
   padding: 0;
 }
 .accordion-body{
   padding-left: 0 !important;
   padding-right: 0 !important;
+ 
 }
 .col-sm-6{
   max-width: 210px !important;
 }
 .listing-details{
+  background-color: rgba(255,255,255, 0.3);
   height: 5rem;
   width: 11rem;
   margin: 0.2rem;
   text-align: center;
 }
 .time-left{
-  font-weight: 400;
-  color: #DE1F38 !important;
+  font-weight: 500 !important;
+  color: #d50924 !important;
 }
 .price{
-  font-weight: 500;
-  color: green;
-}
-.listing-img{
-  width: fit-content;
+  font-weight: 500 !important;
+  color: rgb(2, 208, 2) !important;
 }
 .product-img{
   height: 14rem;
@@ -795,6 +800,107 @@ table tbody tr:last-child td:last-child {
   height: 10rem;
   width: 10rem;
   border-radius: 50%;
-  margin-left: 2rem;
-  margin-top: 2rem;
+}
+.profile-name{
+  font-weight: 300;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.profile-info-container{
+  margin-top: 0;
+}
+.profile-info{
+  color: #ffff;
+  padding: 1rem;
+  margin: 2px;
+  font-weight: 300;
+  box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
+  background-color: rgba(255,255,255, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  transition: all 1s;
+}
+.profile-info:hover{
+  background-color: rgba(255,255,255, 0.6);
+  transform: scale(1.02);
+}
+.listing-img{
+  margin-top: .2rem;
+  width: fit-content;
+  background-color: rgba(255,255,255, 0.3);
+  transition: all 1s;
+}
+.listing-img:hover{
+  background-color: rgba(255,255,255, 0.6);
+  transform: scale(1.05);
+}
+.listing-box{
+  box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
+  background-color: rgba(255,255,255, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  height: 6.7rem;
+  width: 12rem;
+  margin: 0.2rem;
+  transition: all 1s;
+}
+.listing-box:hover{
+  background-color: rgba(255,255,255, 0.5);
+  transform: scale(1.05);
+}
+.listing-header{
+  background-color: rgba(255,255,255, 0.1);
+  color: #d4e2ee;
+  font-size: 1.25em;
+  font-weight: 400;
+}
+.listing-body{
+  color: #ffffff;
+  font-weight: 300;
+  font-size: 1.3em;
+}
+.credit-box{
+  box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
+  background-color: rgba(255,255,255, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  height: 6.7rem;
+  width: inherit;
+  margin-top: 1rem;
+  transition: all 1s;
+}
+.credit-box:hover{
+  background-color: rgba(255,255,255, 0.5);
+  transform: scale(1.05);
+}
+.credit-header{
+  background-color: rgba(255,255,255, 0.1);
+  color: #d4e2ee;
+  font-size: 1.25em;
+  font-weight: 400;
+}
+.credit-body{
+  color: #ffffff;
+  font-weight: 300;
+  font-size: 1.3em;
+}
+.payout-box{
+  margin-top: 1rem;
+  height: 64vh;
+  overflow: scroll;
+}
+.payout-elements{
+  color: #ffff;
+  padding: 1rem;
+  margin: 2px;
+  font-weight: 300;
+  box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
+  background-color: rgba(255,255,255, 0.3);
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+.payout-elements:hover{
+  background-color: rgba(255,255,255, 0.5);
+  transform: scale(1.05);
 }
