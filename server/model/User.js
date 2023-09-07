@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
         userid: {type: String, default: null},
         name: {type: String, default: null},
         email: {type: String, default: null},
-        phone: {type: Number, default: 0},
+        phone: {type: Number, default: null},
         address: {type: String, default: null},
         avatar: { data: Buffer, contentType: String, default: avatar },
         skucode: {type: String, default: 'assign_sku'},

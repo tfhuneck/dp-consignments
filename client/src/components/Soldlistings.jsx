@@ -251,7 +251,7 @@ function Sold() {
                                                                                 title='Total Price:'
                                                                                 subtitle={(
                                                                                     <>
-                                                                                        {data.price}
+                                                                                        {data.price.toFixed(2)}
                                                                                     </>
                                                                                 )}
                                                                             />
@@ -278,7 +278,7 @@ function Sold() {
                                     </td>
                                     <td>
                                         <span className='time-left'>
-                                            $ {data.price}
+                                            $ {data.price.toFixed(2)}
                                         </span>
                                     </td>
                                     <td>

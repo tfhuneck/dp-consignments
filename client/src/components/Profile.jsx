@@ -3,11 +3,13 @@ import profile from '../images/New_Headshot.png'
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from '../App';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 
 function Profile(props) {
     const [ userAuth, setUserAuth ]         = useContext(AuthContext);
     const [ userData, setUserData ]         = useState();
+    const navigate                          = useNavigate();
     const serverUrl                         = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
 
     useEffect(() => {
@@ -31,6 +33,8 @@ function Profile(props) {
         return fixed
     }
 
+    const nav = (route) => navigate(route);
+
     return (
         <>
             <div className="user-dash">
@@ -53,34 +57,34 @@ function Profile(props) {
                                             </div>
                                         </div>
                                         <div className="row d-flex justify-content-evenly">
-                                            <div className="col profile-info">
+                                            <button className="col profile-info" onClick={() => nav('/usr/settings')} >
                                                 Email Address: &nbsp; &nbsp;
                                                 {userData ? userData.email : null}
-                                            </div>
-                                            <div className="col profile-info">
+                                            </button>
+                                            <button className="col profile-info" onClick={() => nav('/usr')} >
                                                 Current Active Listings: &nbsp; &nbsp;
                                                 {userData ? userData.activeitems.length : null}
-                                            </div>
+                                            </button>
                                         </div>
                                         <div className="row d-flex justify-content-evenly">
-                                            <div className="col profile-info">
+                                            <button className="col profile-info" onClick={() => nav('/usr/settings')} >
                                                 Phone Number: &nbsp; &nbsp;
                                                 {userData ? userData.phone : null}
-                                            </div>
-                                            <div className="col profile-info">
+                                            </button>
+                                            <button className="col profile-info" onClick={() => nav('/usr/')} >
                                                 Number of Sold Items: &nbsp; &nbsp;
                                                 {userData ? userData.solditems.length : null}
-                                            </div>
+                                            </button>
                                         </div>
                                         <div className="row d-flex justify-content-evenly">
-                                            <div className="col profile-info">
+                                            <button className="col profile-info" onClick={() => nav('/usr/settings')} >
                                                 Address: &nbsp; &nbsp;
                                                 {userData ? userData.address : null}
-                                            </div>
-                                            <div className="col profile-info">
+                                            </button>
+                                            <button className="col profile-info"  >
                                                 Account created on: &nbsp; &nbsp;
                                                 {userData ? listed(userData.createdAt) : null}
-                                            </div>
+                                            </button>
                                         </div>
                                     </div>
                                 </>

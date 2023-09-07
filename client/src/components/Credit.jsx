@@ -60,6 +60,14 @@ function Credit(props) {
         return result;
     }
 
+    const totalPayout = () => {
+        if(userData){
+            return userData.balance.map(i => Number(payout(i.price))).reduce((prev, next)=> (prev + next));
+        } else {
+            return 0
+        }
+    }
+
     return (
         <>
             <div className="user-dash">
@@ -121,8 +129,8 @@ function Credit(props) {
                     <div className="col">
                         <Element
                             class='dash-element' 
-                            title='Total Credit'
-                            subtitle='Available Credit'
+                            title='Total Balance'
+                            subtitle='Available Balance'
                             body={(
                                 <>
                                 <div className="container">
@@ -133,7 +141,7 @@ function Credit(props) {
                                                     Total Balance
                                                 </div>
                                                 <div className="card-body credit-body">
-                                                    $ {totalBalance()}
+                                                    $ {totalPayout()}
                                                 </div>
                                             </div>
                                             <div className="card credit-box">
@@ -141,7 +149,7 @@ function Credit(props) {
                                                     Total Payouts
                                                 </div>
                                                 <div className="card-body credit-body">
-                                                    $ {totalBalance()}
+                                                    $ {totalPayout()}
                                                 </div>
                                             </div>
                                             <div className="card credit-box">
@@ -181,7 +189,14 @@ function Credit(props) {
                                                     <>
                                                     <div className="container payout-elements">
                                                         <div className="row">
-                                                            &nbsp; Sales Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Payout 
+                                                            <div className="col">
+                                                                Sales Price
+                                                            </div>
+                                                            <div className="col">
+                                                                Payout 
+                                                            </div>
+                                                        </div>
+                                                        <div className="row">
                                                             <div className="col">
                                                                 $ {i.price.toFixed(2)}
                                                             </div>
@@ -203,7 +218,7 @@ function Credit(props) {
                     <div className="col">
                         <Element
                             class='dash-element' 
-                            title='Credit History'
+                            title='Balance History'
                             subtitle='Payout and Cashout transactions'
                             text={(
                                 <>

@@ -235,6 +235,18 @@ a{
   border-radius: 1rem;
   transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
 }
+.info-cards{
+  text-align: center;
+  font-weight: 300;
+  opacity: .8;
+  transition: all 1s;
+}
+.info-cards:hover{
+  transform: scale(1.2);
+  color: #DE1F38;
+  opacity: 1;
+  transition: all 1s;
+}
 .content {
   display: flex;
   flex-direction: column;
@@ -490,6 +502,7 @@ a{
   width: 10rem;
   height: 80vh;
   padding-top: 2rem;
+  overflow-y: auto;
   /* background-color: #21ACE7; */
 }
 .usr-nav::before,
@@ -545,6 +558,7 @@ a{
   width: 10rem;
   height: 80vh;
   padding-top: 2rem;
+  overflow-y: auto;
 }
 .profile{
   height: 4rem;
@@ -642,6 +656,7 @@ table tbody tr:last-child td:last-child {
 .dash-element{
   height: 80vh;
   background-color: #1d2c39;
+  overflow: auto;
 }
 .accordion{
   max-width: 49vw !important;
@@ -815,11 +830,12 @@ table tbody tr:last-child td:last-child {
   padding: 1rem;
   margin: 2px;
   font-weight: 300;
-  box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
-  background-color: rgba(255,255,255, 0.3);
+  /* box-shadow: 2px 7px 15px -2px rgb(8, 19, 30); */
+  background-color: rgba(255,255,255, 0);
   border-radius: 10px;
   text-align: center;
   transition: all 1s;
+  border: none;
 }
 .profile-info:hover{
   background-color: rgba(255,255,255, 0.6);
@@ -886,8 +902,11 @@ table tbody tr:last-child td:last-child {
   font-size: 1.3em;
 }
 .payout-box{
-  margin-top: 1rem;
-  height: 64vh;
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  top: 5rem;
+  bottom: 2rem;
   overflow: scroll;
 }
 .payout-elements{
@@ -903,4 +922,15 @@ table tbody tr:last-child td:last-child {
 .payout-elements:hover{
   background-color: rgba(255,255,255, 0.5);
   transform: scale(1.05);
+}
+.settings{
+  margin-top: 4rem;
+  padding: 1rem;
+}
+.settings-input{
+  padding: 1rem;
+  opacity: 0.9;
+}
+.settings-submit{
+  margin-left: 1rem;
 }

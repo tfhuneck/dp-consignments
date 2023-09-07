@@ -1,5 +1,5 @@
 import logo from '../images/logo.png'
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function UserNav() {
 
@@ -59,7 +59,7 @@ function UserNav() {
                                 </svg>
                             </div>
                             <div className='col nav-txt'>
-                                Credit
+                                Balance
                             </div>
                         </Link>
                     </div>
