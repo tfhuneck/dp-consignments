@@ -34,7 +34,7 @@ app.use('/getuser', require('./routes/getUserRoute'));
 app.use('/user', require('./routes/redisCacheUserRoute'));
 app.use('/user/listings', require('./routes/redisCacheListingsRoute'));
 app.use('/user/sold', require('./routes/redisCacheSoldRoute'));
-app.use('/update/user', require('./routes/UpdateUserProfileRoute'));
+// app.use('/update/user', require('./routes/UpdateUserProfileRoute'));
 
 // propably not required anymore 
 app.use('/collectall', require('./routes/collectAllRoute'))

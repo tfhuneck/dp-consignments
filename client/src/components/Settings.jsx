@@ -1,13 +1,20 @@
 import Element from "./DashElement";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from '../App';
-import profile from '../images/New_Headshot.png'
+import avatar from '../images/avatar.png'
+import Popup from './Popup';
 import axios from 'axios'
 
 function Settings(props) {
     const [ userAuth, setUserAuth ]         = useContext(AuthContext);
     const [ userData, setUserData ]         = useState();
     const serverUrl                         = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
+    const [modalIsOpen, setIsOpen]          = useState(false);
+    
+    function openModal() {
+        setIsOpen(true);
+        console.log('modal set to true')
+      }
 
     useEffect(() => {
             async function fetchData(){
@@ -55,25 +62,29 @@ function Settings(props) {
                         <>
                             <form >
                                 <div className="container settings">
-                                        <img className='profile-page-img' src={profile} />
+                                        <img className='profile-settings-img' src={avatar} />
+                                        <Popup openModal={openModal}/>
+                                        {/* <div className="edit-avatar" onClick={openModal} >
+                                                    edit
+                                        </div> */}
                                     <div className="row">
                                         <div className="col settings-input">
-                                            <label for="name" class="form-label">Name</label>
-                                            <input type="text" class="form-control" id="name" placeholder={userData ? userData.name : null} />
+                                            <label htmlFor="name" className="form-label">Name</label>
+                                            <input type="text" className="form-control" id="name" placeholder={userData ? userData.name : null} />
                                         </div>  
                                         <div className="col settings-input">
-                                            <label for="email" class="form-label">Email address</label>
-                                            <input type="email" class="form-control" id="email" placeholder={userData ? userData.email : null} />
+                                            <label htmlFor="email" className="form-label">Email address</label>
+                                            <input type="email" className="form-control" id="email" placeholder={userData ? userData.email : null} />
                                         </div>  
                                     </div>
                                     <div className="row">
                                         <div className="col settings-input">
-                                            <label for="address" class="form-label">Address</label>
-                                            <input type="text" class="form-control" id="address" placeholder={userData ? userData.address : null} />
+                                            <label htmlFor="address" className="form-label">Address</label>
+                                            <input type="text" className="form-control" id="address" placeholder={userData ? userData.address : null} />
                                         </div>  
                                         <div className="col settings-input">
-                                            <label for="phone" class="form-label">Phone Number</label>
-                                            <input type="phone" class="form-control" id="phone" placeholder={userData ? userData.phone : null} />
+                                            <label htmlFor="phone" className="form-label">Phone Number</label>
+                                            <input type="phone" className="form-control" id="phone" placeholder={userData ? userData.phone : null} />
                                         </div>  
                                     </div>
                                     <div className="row">

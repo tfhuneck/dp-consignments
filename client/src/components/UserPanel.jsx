@@ -1,5 +1,6 @@
 import axios from 'axios';
 import profile from '../images/New_Headshot.png'
+import avatar from '../images/avatar.png'
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../App';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
@@ -42,7 +43,7 @@ function UserPanel() {
             <div className='card usr container-fluid'>
                 <div className='row d-flex '>
                     <div className='col d-flex justify-content-center'>
-                        <img className='profile' src={profile} />
+                        <img className='profile' src={ avatar} />
                     </div>
                 </div>
                 <div className='row d-flex '>

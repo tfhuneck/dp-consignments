@@ -1,9 +1,9 @@
 import Element from "./DashElement";
-import profile from '../images/New_Headshot.png'
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from '../App';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import avatar from '../images/avatar.png'
 
 
 function Profile(props) {
@@ -50,7 +50,7 @@ function Profile(props) {
                                     <div className="container profile-info-container">
                                         <div className="row">
                                             <div className="col">
-                                                <img className='profile-page-img' src={profile} />
+                                                <img className='profile-page-img' src={avatar} />
                                                 <div className="profile-name">
                                                     {userData ? userData.name : null}
                                                 </div>

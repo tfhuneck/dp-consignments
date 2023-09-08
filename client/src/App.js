@@ -20,8 +20,11 @@ import Profile from './components/Profile';
 import Settings from './components/Settings';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import authApp from './config/firebase';
+import Modal from 'react-modal';
 
 export const AuthContext = createContext();
+
+Modal.setAppElement(document.getElementById('root'));
 
 function App() {
   const auth                      = getAuth(authApp);

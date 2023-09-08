@@ -1,6 +1,4 @@
 const mongoose  = require('mongoose');
-const fs        = require('fs');
-const avatar    = fs.readFileSync('./src/avatar.png');
 
 const userSchema = new mongoose.Schema({
         userid: {type: String, default: null},
@@ -8,7 +6,7 @@ const userSchema = new mongoose.Schema({
         email: {type: String, default: null},
         phone: {type: Number, default: null},
         address: {type: String, default: null},
-        avatar: { data: Buffer, contentType: String, default: avatar },
+        avatar: { data: Buffer, contentType: String},
         skucode: {type: String, default: 'assign_sku'},
         activeitems: [{
             itemid: {type: String, default: null}
