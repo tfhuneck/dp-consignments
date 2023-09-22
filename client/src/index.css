@@ -440,7 +440,6 @@ a{
   border-color: #CFE6FC;
   text-transform: uppercase;
 }
-
 .signup-link {
   margin-top: 0.5em;
   font-weight: 300;
@@ -449,12 +448,10 @@ a{
   line-height: 1.25rem;
   text-align: center;
 }
-
 .signup-link a {
   text-decoration: underline;
   color: #DF1E36;
 }
-
 .details{
   font-weight: 200;
   transition: all 0.5s;
@@ -475,7 +472,6 @@ a{
   border-radius: 1rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
-
 .contact::before{
   content: '';
   top: -0.25em;
@@ -502,7 +498,7 @@ a{
   width: 10rem;
   height: 80vh;
   padding-top: 2rem;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   /* background-color: #21ACE7; */
 }
 .usr-nav::before,
@@ -558,7 +554,7 @@ a{
   width: 10rem;
   height: 80vh;
   padding-top: 2rem;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 .profile{
   height: 4rem;

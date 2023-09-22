@@ -1,6 +1,7 @@
 import Element from "./DashElement";
 import Listings from './Activelistings';
 import Sold from "./Soldlistings";
+import Pending from './Pendinglistings'
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from '../App';
 import axios from 'axios'
@@ -10,6 +11,7 @@ function UserDashboard() {
 
     const [ displayList, setDisplayList ]   = useState('');
     const activeListButton                  = document.getElementById('dashListActive');
+    const pendingListButton                 = document.getElementById('dashListPending');
     const soldListButton                    = document.getElementById('dashListSold');
     const [ userAuth, setUserAuth ]         = useContext(AuthContext);
     const [ userData, setUserData ]         = useState();
@@ -57,13 +59,20 @@ function UserDashboard() {
     }, [])
 
     useEffect(()=> {
-        if(activeListButton && soldListButton){
+        if(activeListButton && soldListButton && pendingListButton){
             if(displayList === 'activeListings'){
                 activeListButton.className = 'dash-list btn-active';
+                pendingListButton.className = 'dash-list';
+                soldListButton.className = 'dash-list';
+            }
+            if(displayList === 'pendingListings'){
+                activeListButton.className = 'dash-list';
+                pendingListButton.className = 'dash-list btn-active';
                 soldListButton.className = 'dash-list';
             }
             if(displayList === 'soldListings'){
                 activeListButton.className = 'dash-list';
+                pendingListButton.className = 'dash-list';
                 soldListButton.className = 'dash-list btn-active';
             } 
         };
@@ -171,7 +180,7 @@ function UserDashboard() {
                             title={(
                                 <>
                                 <button id="dashListActive" className="dash-list" onClick={()=> setDisplayList('activeListings')}>Active Listings</button>
-                                <button id="dashListPending" className="dash-list" onClick={()=> setDisplayList('soldListings')}>Pending</button>
+                                <button id="dashListPending" className="dash-list" onClick={()=> setDisplayList('pendingListings')}>Pending</button>
                                 <button id="dashListSold" className="dash-list" onClick={()=> setDisplayList('soldListings')}>Sold Items</button>
                                 </>
                             )}
@@ -179,6 +188,7 @@ function UserDashboard() {
                             body={
                                 <>
                                     { displayList === 'activeListings' && <Listings/> }
+                                    { displayList === 'pendingListings' && <Pending/>  }
                                     { displayList === 'soldListings' && <Sold/>  }
                                 </>
                             }

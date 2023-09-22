@@ -1,8 +1,9 @@
 const express               = require('express');
 const router                = express.Router();
+const update                = require('../controllers/updateUserSettings')
 
 
 router.route('/')
-    .post()
+    .post(update)
 
 module.exports=router;

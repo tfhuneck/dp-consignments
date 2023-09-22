@@ -27,6 +27,7 @@ app.use(jsonParser);
 // =====routes===== 
 app.use('/listings', require('./routes/activeListingsRoute'));
 app.use('/sold', require('./routes/soldRoute'));
+app.use('/pending', require('./routes/pendingRoute'));
 app.use('/soldimage', require('./routes/soldImageRoute'));
 app.use('/create', require('./routes/createNewUserRoute'));
 app.use('/updateuser', require('./routes/updateUserRoute'));
@@ -34,7 +35,9 @@ app.use('/getuser', require('./routes/getUserRoute'));
 app.use('/user', require('./routes/redisCacheUserRoute'));
 app.use('/user/listings', require('./routes/redisCacheListingsRoute'));
 app.use('/user/sold', require('./routes/redisCacheSoldRoute'));
-// app.use('/update/user', require('./routes/UpdateUserProfileRoute'));
+app.use('/user/pending', require('./routes/redisCachePendingRoute'));
+app.use('/update/user', require('./routes/UpdateUserSettingsRoute'));
+// app.use('/user/update/image', require('./routes/UserUpdateImageRoute'));
 
 // propably not required anymore 
 app.use('/collectall', require('./routes/collectAllRoute'))

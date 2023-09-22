@@ -1,7 +1,7 @@
 const axios                 = require('axios');
 const Redis                 = require('redis');
 const User                  = require('../model/User');
-const SoldItem              = require('../model/Solditem');
+const PendingItem           = require('../model/Pendingitem');
 const redisClient           = Redis.createClient({legacyMode: true});
 const DEFAULT_EXPIRATION    = 3600
 const serverUrl             = 'http://localhost:8080';
@@ -12,13 +12,13 @@ const cacheUserData = async (req, res, next) => {
     
     await redisClient.connect()
 
-    redisClient.get('sold', async (error, sold) => {
+    redisClient.get('pending', async (error, pending) => {
         if (error) console.log(error)
-        if (sold != null) {
+        if (pending != null) {
             console.log('Cache Hit')
-            console.log('Sold Items Data sent')
+            console.log('Pending Items Data sent')
             await redisClient.disconnect();
-            return res.json(JSON.parse(sold))
+            return res.json(JSON.parse(pending))
         } else{
             console.log('Cache Miss')
             await axios
@@ -27,18 +27,17 @@ const cacheUserData = async (req, res, next) => {
                 })
    
             const getUser       = await User.findOne({userid: userId}).exec(); 
-            const soldData      = await SoldItem.find();
-            const soldItems     = getUser.solditems;
-            const filterSold    =  soldData.filter((i) => 
-                soldItems.some(n => n.itemid === i.itemid));
+            const pendingData      = await PendingItem.find();
+            const pendingItems     = getUser.pendingitems;
+            const filterPending    =  pendingData.filter((i) => 
+                pendingItems.some(n => n.itemid === i.itemid));
 
-            await redisClient.setex('sold', DEFAULT_EXPIRATION, JSON.stringify(filterSold))   
-            console.log('Sold Items cached and sent');
+            await redisClient.setex('pending', DEFAULT_EXPIRATION, JSON.stringify(filterPending))   
+            console.log('Pending Items cached and sent');
             setTimeout(() => redisClient.disconnect(),50)
-            res.json(filterSold);
+            res.json(filterPending);
         }
     })
 }
 
 module.exports = cacheUserData;
-

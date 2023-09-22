@@ -1,14 +1,17 @@
 import Modal from 'react-modal';
 import { useState } from 'react';
-import avatar from '../images/avatar.png'
-import axios from 'axios'
+import avatar from '../images/avatar.png';
+import axios from 'axios';
+import FormData from 'form-data';
 
-const Popup = ({openModal}) => {
+const Popup = ({openModal, id}) => {
 
     const [ modalIsOpen, setIsOpen ]    = useState(false);
     const [ image, setImage ]           = useState('');
     const serverUrl                     = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
-    
+    const userid                        = id;
+    const imageData                     = new FormData();
+
     function openModal() {
         setIsOpen(true);
         console.log('popup triggered')
@@ -21,16 +24,23 @@ const Popup = ({openModal}) => {
     const handleImageUpload = (e) => {
         console.log(e.target.files);
         setImage(e.target.files[0])  
+
     }
     
     const handleSubmit = async () => {
-        await axios.post(serverUrl + '/user/upload/image', {
-            'avatar': image
-        })
-        .then(async res => {
-            console.log('New accounte created');
-        })
-        .catch(err => console.log(err));
+        imageData.append('avatar', image)        
+        // await axios.post(serverUrl + '/user/update/image', 
+        //     imageData,
+        //     {
+        //         headers: {
+        //           'userid': userid,
+        //           'Content-Type': `multipart/form-data;`,
+        //         }
+        //       })
+        // .then(async res => {
+        //     console.log(res);
+        // })
+        // .catch(err => console.log(err));
     }
 
     return(

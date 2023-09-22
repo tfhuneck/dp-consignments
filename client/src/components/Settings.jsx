@@ -24,7 +24,9 @@ function Settings(props) {
                     }})
                     .then(async res => {
                         console.log(res.data);
+                        // console.log(userAuth)
                         let data = (res.data)
+                        console.log(data)
                         setUserData(data);
                     })
                     .catch(err => console.log(err));
@@ -33,17 +35,23 @@ function Settings(props) {
         },[]);
 
     const handleUpdate = async () => {
-        const name      = document.getElementById('name').value;
-        const email     = document.getElementById('email').value;
-        const address   = document.getElementById('address').value;
-        const phone     = document.getElementById('phone').value;
+        const name      = document.getElementById('name');
+        const email     = document.getElementById('email');
+        const address   = document.getElementById('address');
+        const phone     = document.getElementById('phone');
 
-        await axios.post(serverUrl + 'update/user', 
+        name.value = name.value === '' ? name.placeholder : name.value;
+        email.value = email.value === '' ? email.placeholder : email.value;
+        address.value = address.value === '' ? address.placeholder : address.value;
+        phone.value = phone.value === '' ? phone.placeholder : phone.value;
+
+        await axios.post(serverUrl + '/update/user', 
             {
-                'name': name,
-                'email': email,
-                'address': address,
-                'phone': phone,
+                'userid': userAuth.userid,
+                'name': name.value,
+                'email': email.value,
+                'address': address.value,
+                'phone': phone.value,
             })
             .then(async res => {
                 console.log('User updated');
@@ -63,7 +71,10 @@ function Settings(props) {
                             <form >
                                 <div className="container settings">
                                         <img className='profile-settings-img' src={avatar} />
-                                        <Popup openModal={openModal}/>
+                                        <Popup 
+                                            openModal={openModal}
+                                            id={userAuth.userid}
+                                        />
                                         {/* <div className="edit-avatar" onClick={openModal} >
                                                     edit
                                         </div> */}
@@ -88,7 +99,7 @@ function Settings(props) {
                                         </div>  
                                     </div>
                                     <div className="row">
-                                        <button type="button" className="dash-list settings-submit" >Update</button>
+                                        <button type="button" className="dash-list settings-submit" onClick={handleUpdate} >Update</button>
                                     </div>
                                 </div>
                             </form>

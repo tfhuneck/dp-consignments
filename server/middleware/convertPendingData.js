@@ -43,12 +43,11 @@ const convertData = async (req, res, next) => {
             })
         })
 
-    const soldFiltered = postDataArray.filter((i) => i.paymentstatus === 'MarkedAsPaid');
+    const pendingFiltered = postDataArray.filter((i) => i.paymentstatus === 'NotPaid');
     
-    req.convertedData = soldFiltered;
+    req.convertedData = pendingFiltered;
 
     next()
 }
 
 module.exports = convertData;
-
