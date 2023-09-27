@@ -1,19 +1,59 @@
 import Element from "./DashElement";
 import axios from 'axios';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useReducer } from 'react';
 import ebayLogo from '../images/ebay-logo.png'
 import Loading from './Loading';
 import Pagination from "./Pagination";
 import { AuthContext } from '../App';
+import Sort from "./Sort";
 
 const serverUrl = 'http://localhost:8080'
 
+const ACTION = {
+    SORTNAME: 'sortName',
+    SORTPRICE: 'sortPrice',
+    SORTPAY: 'sortPay',
+}
+
+function reducer(state, action) {
+    switch (action.type) {
+        case ACTION.SORTNAME:
+            return {
+                sortPrice: 'default', 
+                sortPay: 'default',
+                sortName: action.value,
+                sorted: action.filter
+            }
+        case ACTION.SORTPRICE:
+            return {
+                sortName: 'default', 
+                sortPay: 'default',
+                sortPrice: action.value,
+                sorted: action.filter
+            }
+        case ACTION.SORTPAY:
+            return {
+                sortName: 'default', 
+                sortPrice: 'default',
+                sortPay: action.value,
+                sorted: action.filter
+            }
+        default:
+            return state
+    }
+  }
+
 function Pending() {
     
+    // States to store user auth Data and fetched user Data
     const [ userAuth, setUserAuth ]             = useContext(AuthContext);
     const [ userData, setUserData ]             = useState();
+
+     // Search table 
     const [ searchValue, setSearchValue ]       = useState('');
     const [ filteredData, setFilteredData ]     = useState(userData);
+
+    // Pagination 
     const [ currentRecords, setCurrentRecords]  = useState();
     const [ currentPage, setCurrentPage ]       = useState(1); 
     const [ nPages, setNPages ]                 = useState();  
@@ -22,6 +62,62 @@ function Pending() {
     const [ image, setImage ]                   = useState();
     const indexOfLastRecord                     = currentPage * recordsPerPage;
     const indexOfFirstRecord                    = indexOfLastRecord - recordsPerPage;  
+
+    // sort Table 
+    const [ state, dispatch ]                   = useReducer(reducer, { sorted: [], sortName: 'default', sortPrice: 'default', sortPay: 'default'});
+
+    const handleSortName = () =>{
+        if(state.sortName === 'default'){
+            let sorted = filteredData.sort((a,b) => (a.title > b.title ? 1: -1));
+            dispatch({ type: ACTION.SORTNAME, value:'ascend', filter: sorted });
+        }
+        if(state.sortName === 'ascend'){
+            let sorted = filteredData.sort((a,b) => (a.title < b.title ? 1: -1));
+            dispatch({ type: ACTION.SORTNAME, value:'descend', filter: sorted  });
+        }
+        if(state.sortName === 'descend'){
+            let sorted = filteredData.sort((a,b) => (a.title > b.title ? 1: -1));
+            dispatch({ type: ACTION.SORTNAME, value:'ascend', filter: sorted  });
+        }
+    }
+    const handleSortPrice = () =>{
+        if(state.sortPrice === 'default'){
+            let sorted = filteredData.sort((a,b) => (a.price > b.price ? 1: -1));
+            dispatch({ type: ACTION.SORTPRICE, value:'ascend', filter: sorted });
+        }
+        if(state.sortPrice === 'ascend'){
+            let sorted = filteredData.sort((a,b) => (a.price < b.price ? 1: -1));
+            dispatch({ type: ACTION.SORTPRICE, value:'descend', filter: sorted  });
+        }
+        if(state.sortPrice === 'descend'){
+            let sorted = filteredData.sort((a,b) => (a.price > b.price ? 1: -1));
+            dispatch({ type: ACTION.SORTPRICE, value:'ascend', filter: sorted  });
+        }
+    }
+    const handleSortPay = () =>{
+        if(state.sortPay === 'default'){
+            let sorted = filteredData.sort((a,b) => (a.price > b.price ? 1: -1));
+            dispatch({ type: ACTION.SORTPAY, value:'ascend', filter: sorted });
+        }
+        if(state.sortPay === 'ascend'){
+            let sorted = filteredData.sort((a,b) => (a.price < b.price ? 1: -1));
+            dispatch({ type: ACTION.SORTPAY, value:'descend', filter: sorted  });
+        }
+        if(state.sortPay === 'descend'){
+            let sorted = filteredData.sort((a,b) => (a.price > b.price ? 1: -1));
+            dispatch({ type: ACTION.SORTPAY, value:'ascend', filter: sorted  });
+        }
+    }
+    
+    useEffect(() => {
+        if(state.sorted){
+            let sortedData = state.sorted
+            const currentRecord = sortedData.slice(indexOfFirstRecord, indexOfLastRecord); 
+            setCurrentRecords(currentRecord) 
+            const Page = Math.ceil(sortedData.length / recordsPerPage);
+            setNPages(Page)
+        }
+    }, [state, state.sorted])
 
     useEffect(() => {
         async function fetchData(){
@@ -152,9 +248,24 @@ function Pending() {
                 <table className='table table-dark table-striped table-hover'>
                     <thead>
                         <tr>
-                            <th scope='col'>Item</th>
-                            <th scope='col'>Price Sold</th>
-                            <th scope='col'>Payout</th>
+                            <th className="list-header" scope='col'>
+                                Item
+                                <span onClick={handleSortName} >
+                                    <Sort sort={state.sortName}/>
+                                </span>
+                            </th>
+                            <th className="list-header" scope='col'>
+                                Price Sold
+                                <span onClick={handleSortPrice} >
+                                    <Sort sort={state.sortPrice}/>
+                                </span>
+                            </th>
+                            <th className="list-header" scope='col'>
+                                Payout
+                                <span onClick={handleSortPay} >
+                                    <Sort sort={state.sortPay} />
+                                </span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -278,7 +389,13 @@ function Pending() {
                         })} 
                     </tbody>
                 </table>
-                <Pagination nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                <div className="container">
+                    <div className="row">
+                        <div className="col d-flex justify-content-center">
+                            <Pagination nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                        </div>
+                    </div>
+                </div>
             </>
         )
     } else {

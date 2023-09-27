@@ -1,25 +1,121 @@
 import Element from "./DashElement";
 import axios from 'axios';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useReducer } from 'react';
 import ebayLogo from '../images/ebay-logo.png'
 import Loading from './Loading';
 import Pagination from "./Pagination";
 import { AuthContext } from '../App';
+import Sort from "./Sort";
 
 const serverUrl = 'http://localhost:8080'
 
+const ACTION = {
+    SORTNAME: 'sortName',
+    SORTPRICE: 'sortPrice',
+    SORTTIME: 'sortTime',
+}
+
+function reducer(state, action) {
+    switch (action.type) {
+        case ACTION.SORTNAME:
+            return {
+                sortPrice: 'default', 
+                sortTime: 'default',
+                sortName: action.value,
+                sorted: action.filter
+            }
+        case ACTION.SORTPRICE:
+            return {
+                sortName: 'default', 
+                sortTime: 'default',
+                sortPrice: action.value,
+                sorted: action.filter
+            }
+        case ACTION.SORTTIME:
+            return {
+                sortName: 'default', 
+                sortPrice: 'default',
+                sortTime: action.value,
+                sorted: action.filter
+            }
+        default:
+            return state
+    }
+  }
+
 function Listings(props) {
     
+    // States to store user auth Data and fetched user Data
     const [ userAuth, setUserAuth ]             = useContext(AuthContext);
     const [ userData, setUserData ]             = useState();
+
+     // Search table 
     const [ searchValue, setSearchValue ]       = useState('');
     const [ filteredData, setFilteredData ]     = useState(userData);
+
+     // Pagination 
     const [ currentRecords, setCurrentRecords]  = useState();
     const [ currentPage, setCurrentPage ]       = useState(1); 
     const [ nPages, setNPages ]                 = useState();  
     const [ recordsPerPage ]                    = useState(10);
     const indexOfLastRecord                     = currentPage * recordsPerPage;
     const indexOfFirstRecord                    = indexOfLastRecord - recordsPerPage;  
+
+    // sort Table 
+    const [ state, dispatch ]                   = useReducer(reducer, { sorted: [], sortName: 'default', sortPrice: 'default', sortTime: 'default'});
+
+    const handleSortName = () =>{
+        if(state.sortName === 'default'){
+            let sorted = filteredData.sort((a,b) => (a.title > b.title ? 1: -1));
+            dispatch({ type: ACTION.SORTNAME, value:'ascend', filter: sorted });
+        }
+        if(state.sortName === 'ascend'){
+            let sorted = filteredData.sort((a,b) => (a.title < b.title ? 1: -1));
+            dispatch({ type: ACTION.SORTNAME, value:'descend', filter: sorted  });
+        }
+        if(state.sortName === 'descend'){
+            let sorted = filteredData.sort((a,b) => (a.title > b.title ? 1: -1));
+            dispatch({ type: ACTION.SORTNAME, value:'ascend', filter: sorted  });
+        }
+    }
+    const handleSortPrice = () =>{
+        if(state.sortPrice === 'default'){
+            let sorted = filteredData.sort((a,b) => (a.currentprice > b.currentprice ? 1: -1));
+            dispatch({ type: ACTION.SORTPRICE, value:'ascend', filter: sorted });
+        }
+        if(state.sortPrice === 'ascend'){
+            let sorted = filteredData.sort((a,b) => (a.currentprice < b.currentprice ? 1: -1));
+            dispatch({ type: ACTION.SORTPRICE, value:'descend', filter: sorted  });
+        }
+        if(state.sortPrice === 'descend'){
+            let sorted = filteredData.sort((a,b) => (a.currentprice > b.currentprice ? 1: -1));
+            dispatch({ type: ACTION.SORTPRICE, value:'ascend', filter: sorted  });
+        }
+    }
+    const handleSortTime = () =>{
+        if(state.sortTime === 'default'){
+            let sorted = filteredData.sort((a,b) => (a.timeleft > b.timeleft ? 1: -1));
+            dispatch({ type: ACTION.SORTTIME, value:'ascend', filter: sorted });
+        }
+        if(state.sortTime === 'ascend'){
+            let sorted = filteredData.sort((a,b) => (a.timeleft < b.timeleft ? 1: -1));
+            dispatch({ type: ACTION.SORTTIME, value:'descend', filter: sorted  });
+        }
+        if(state.sortTime === 'descend'){
+            let sorted = filteredData.sort((a,b) => (a.timeleft > b.timeleft ? 1: -1));
+            dispatch({ type: ACTION.SORTTIME, value:'ascend', filter: sorted  });
+        }
+    }
+    
+    useEffect(() => {
+        if(state.sorted){
+            let sortedData = state.sorted
+            const currentRecord = sortedData.slice(indexOfFirstRecord, indexOfLastRecord); 
+            setCurrentRecords(currentRecord) 
+            const Page = Math.ceil(sortedData.length / recordsPerPage);
+            setNPages(Page)
+        }
+    }, [state, state.sorted])
 
     useEffect(() => {
         async function fetchData(){
@@ -112,9 +208,24 @@ function Listings(props) {
                 <table className='table table-dark table-striped table-hover'>
                 <thead>
                     <tr>
-                        <th scope='col'>Listing</th>
-                        <th scope='col'>Time Left</th>
-                        <th scope='col'>Price</th>
+                        <th className="list-header" scope='col'>
+                            Listing
+                            <span onClick={handleSortName} >
+                                <Sort sort={state.sortName}/>
+                            </span>
+                        </th>
+                        <th className="list-header" scope='col'>
+                            Time Left
+                            <span onClick={handleSortTime} >
+                                <Sort sort={state.sortTime}/>
+                            </span>
+                        </th>
+                        <th className="list-header" scope='col'>
+                            Price
+                            <span onClick={handleSortPrice} >
+                                <Sort sort={state.sortPrice} />
+                            </span>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -290,7 +401,13 @@ function Listings(props) {
                     })} 
                 </tbody>
             </table>
-            <Pagination nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+            <div className="container">
+                    <div className="row">
+                        <div className="col d-flex justify-content-center">
+                            <Pagination nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                        </div>
+                    </div>
+                </div>
         </>
         )
     } else {

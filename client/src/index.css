@@ -654,6 +654,9 @@ table tbody tr:last-child td:last-child {
   background-color: #1d2c39;
   overflow: auto;
 }
+.list-header{
+  min-width: 8.5rem;
+}
 .accordion{
   max-width: 49vw !important;
   margin-right: 0 !important;
@@ -853,7 +856,7 @@ table tbody tr:last-child td:last-child {
   border-radius: 10px;
   text-align: center;
   height: 6.7rem;
-  width: 12rem;
+  width: 11rem;
   margin: 0.2rem;
   transition: all 1s;
 }
@@ -1018,5 +1021,14 @@ input::file-selector-button:hover {
 input::file-selector-button:active {
   transform: scale(0.98);
   background-color: #2AB0E9;
+  cursor: pointer;
+}
+.sort-btn{
+  background: none;
+  border: none;
+}
+.sort{
+  height: 1.5rem;
+  margin-left: 0.5rem;
   cursor: pointer;
 }

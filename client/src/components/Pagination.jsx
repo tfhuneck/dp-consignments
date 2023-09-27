@@ -1,17 +1,44 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
+
 
 const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
+    
+    // const pageNumbers = [...Array(nPages).keys()].slice(1)
+    const [ pageNumber, setPageNumber ] = useState()
+    
+    useEffect(() =>{
+        let max = 5 
+        const half = Math.floor(max / 2);
+        let to = max;
+        if(currentPage + half >= nPages) {
+            to = nPages;
+        } else if(currentPage > half) {
+            to = currentPage + half ;
+        }
+        let from = Math.max(to - max, 0);
+        let number= Array.from({length: Math.min(nPages, max)}, (_, i) => (i + 1) + from);
+        setPageNumber(number)
 
-    const pageNumbers = [...Array(nPages + 1).keys()].slice(1)
-
+    }, [nPages, currentPage])
+   
     const nextPage = () => {
             if(currentPage !== nPages) setCurrentPage(currentPage + 1)
     }
     const prevPage = () => {
         if(currentPage !== 1) setCurrentPage(currentPage - 1)
     }
-    return (
+
+    if(pageNumber){
+        return (
             <ul className='pagination'>
+                <li className="page-item">
+                    <a className="btn btn-dark" 
+                        onClick={() => setCurrentPage(1)} 
+                    >
+                        First
+                    </a>
+                </li>
                 <li className="page-item">
                     <a className="btn btn-dark" 
                         onClick={prevPage} 
@@ -19,7 +46,7 @@ const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
                         &laquo;
                     </a>
                 </li>
-                {pageNumbers.map(pgNumber => (
+                {pageNumber.map(pgNumber => (
                     <li key={pgNumber} 
                         className= 'page-item' >
                         <a onClick={() => setCurrentPage(pgNumber)}  
@@ -36,8 +63,16 @@ const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
                         &raquo;
                     </a>
                 </li>
+                <li className="page-item">
+                    <a className="btn btn-dark" 
+                        onClick={() => setCurrentPage(nPages)}
+                    >
+                        Last
+                    </a>
+                </li>
             </ul>
-    )
+        )
+    }
 }
 
 export default Pagination
