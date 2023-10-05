@@ -5,7 +5,6 @@ function UserNav() {
 
     return (
         <>
-
             <div className='card usr-nav container-fluid'>
                 <div className='row d-flex '>
                     <div className='col d-flex justify-content-center'>
@@ -153,7 +152,6 @@ function UserNav() {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

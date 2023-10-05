@@ -1,39 +1,18 @@
 import Element from "./DashElement";
-import { useState, useEffect, useContext } from "react";
-import { AuthContext } from '../App';
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { useFetchUserData } from "./hooks/useFetchUserData";
 import avatar from '../images/avatar.png'
+import listed from "./hooks/listed";
 
 
 function Profile(props) {
-    const [ userAuth, setUserAuth ]         = useContext(AuthContext);
-    const [ userData, setUserData ]         = useState();
-    const navigate                          = useNavigate();
-    const serverUrl                         = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
 
-    useEffect(() => {
-        async function fetchData(){
-            await axios.get(serverUrl + '/user',
-                {params:{
-                        userAuth
-                }})
-                .then(async res => {
-                    console.log(res.data);
-                    let data = (res.data)
-                    setUserData(data);
-                })
-                .catch(err => console.log(err));
-        }
-    fetchData();
-    },[]);
+    // Fetch User Data Hook
+    const { userData }  = useFetchUserData();
 
-    function listed(data) {
-        let fixed = data.substring(0, 10);
-        return fixed
-    }
-
-    const nav = (route) => navigate(route);
+    // Custom navigation hooks
+    const navigate      = useNavigate();
+    const nav           = (route) => navigate(route);
 
     return (
         <>

@@ -28,7 +28,7 @@ function Credit(props) {
     console.log(userData)
 
     const totalBalance = () =>{
-        if (userData) {
+        if (userData && userData.balance.length > 0) {
             return userData.balance.map(i => i.price).reduce((prev, next)=> (prev + next)).toFixed(2);
         }else{
             return 0
@@ -61,7 +61,7 @@ function Credit(props) {
     }
 
     const totalPayout = () => {
-        if(userData){
+        if(userData && userData.balance.length > 0){
             return userData.balance.map(i => Number(payout(i.price))).reduce((prev, next)=> (prev + next));
         } else {
             return 0
