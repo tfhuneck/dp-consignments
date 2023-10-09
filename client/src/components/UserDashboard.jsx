@@ -4,13 +4,13 @@ import Sold from "./Soldlistings";
 import Pending from './Pendinglistings'
 import { today, greeting, weekDay} from './hooks/date';
 import totalBalance from "./hooks/totalBalance";
-import { useFetchUserData } from "./hooks/useFetchUserData";
+import { useFetchData } from "./hooks/useFetchData";
 import { useDisplayList } from "./hooks/useDisplayList";
 
 function UserDashboard() {
 
     // Fetch User Data Hook
-    const { userData } = useFetchUserData();
+    const { userData } = useFetchData('/user');
 
     // Set Button active and display correct List hook
     const { displayList, setDisplayList } = useDisplayList();

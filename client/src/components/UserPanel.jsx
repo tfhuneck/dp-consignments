@@ -6,27 +6,17 @@ import { AuthContext } from '../App';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import authApp from '../config/firebase';
 import { getAuth, signOut } from "firebase/auth";
+import { useFetchData } from './hooks/useFetchData';
 
 
 function UserPanel() {
+
+    // Fetch User Data Hook
+    const { userData } = useFetchData('/getuser');
     
     const navigate  = useNavigate();
     const auth      = getAuth(authApp);
     const [ userAuth, setUserAuth ]         = useContext(AuthContext);
-    const [ userData, setUserData ]         = useState();
-    const serverUrl                         = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
-
-    useEffect(() => {
-
-        axios.get(serverUrl + '/getuser', {
-            params: {userAuth}
-        })
-        .then((res) =>{
-            console.log(res.data)
-            const data = res.data;
-            setUserData(data);
-        })
-    },[])
 
     const handleLogout = () => {
         signOut(auth).then(() => {

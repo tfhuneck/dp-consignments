@@ -1,6 +1,6 @@
 import Element from "./DashElement";
 import { useNavigate } from 'react-router-dom';
-import { useFetchUserData } from "./hooks/useFetchUserData";
+import { useFetchData } from "./hooks/useFetchData";
 import avatar from '../images/avatar.png'
 import listed from "./hooks/listed";
 
@@ -8,7 +8,7 @@ import listed from "./hooks/listed";
 function Profile(props) {
 
     // Fetch User Data Hook
-    const { userData }  = useFetchUserData();
+    const { userData }  = useFetchData('/user');
 
     // Custom navigation hooks
     const navigate      = useNavigate();

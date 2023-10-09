@@ -1,17 +1,12 @@
-import Element from "./DashElement";
-import axios from 'axios';
-import { useState, useEffect, useContext, useReducer } from 'react';
-import ebayLogo from '../images/ebay-logo.png'
 import Loading from './Loading';
 import Pagination from "./Pagination";
-import { AuthContext } from '../App';
 import Search from "./Search";
 import Sort from "./Sort";
 import SoldTable from './SoldTable';
 import { useSortPay } from "./hooks/useSortPay";
 import { useSearch } from "./hooks/useSearch";
 import { usePagination } from "./hooks/usePagination";
-import { useFetchUserDataSold } from './hooks/useFetchUserDataSold';
+import { useFetchData } from './hooks/useFetchData';
 
 const serverUrl = 'http://localhost:8080'
 
@@ -19,7 +14,7 @@ const serverUrl = 'http://localhost:8080'
 function Sold() {
 
     // fetch User Data hook
-    const {userData} = useFetchUserDataSold();
+    const {userData} = useFetchData('/user/sold');
 
     // Custom Search hook 
     const { searchValue, filteredData, clearSearch, handleSearch } = useSearch(userData);

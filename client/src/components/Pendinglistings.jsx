@@ -6,12 +6,12 @@ import PendingTable from "./PendingTable";
 import { useSortPay } from "./hooks/useSortPay";
 import { useSearch } from "./hooks/useSearch";
 import { usePagination } from "./hooks/usePagination";
-import { useFetchUserDataPending } from "./hooks/useFetchUserDataPending";
+import { useFetchData } from './hooks/useFetchData';
 
 function Pending() {
 
     // fetch User Data hook
-    const {userData} = useFetchUserDataPending();
+    const {userData} = useFetchData('/user/pending');
 
     // Custom Search hook 
     const { searchValue, filteredData, clearSearch, handleSearch } = useSearch(userData);

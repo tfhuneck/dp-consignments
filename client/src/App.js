@@ -31,7 +31,6 @@ function App() {
   const [ userAuth, setUserAuth ] = useState(null);
   // var userData = {};
 
-
   useEffect (() => {
     onAuthStateChanged(auth, async (user) => {
       var token = ''

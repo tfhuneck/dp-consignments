@@ -3,36 +3,23 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from '../App';
 import avatar from '../images/avatar.png'
 import Popup from './Popup';
-import axios from 'axios'
+import axios from 'axios';
+import { useFetchData } from "./hooks/useFetchData";
 
 function Settings(props) {
     const [ userAuth, setUserAuth ]         = useContext(AuthContext);
-    const [ userData, setUserData ]         = useState();
+
+    // Fetch User Data Hook
+    const { userData }                      = useFetchData('/user');
+
     const serverUrl                         = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
+
     const [modalIsOpen, setIsOpen]          = useState(false);
     
     function openModal() {
         setIsOpen(true);
         console.log('modal set to true')
       }
-
-    useEffect(() => {
-            async function fetchData(){
-                await axios.get(serverUrl + '/user',
-                    {params:{
-                            userAuth
-                    }})
-                    .then(async res => {
-                        console.log(res.data);
-                        // console.log(userAuth)
-                        let data = (res.data)
-                        console.log(data)
-                        setUserData(data);
-                    })
-                    .catch(err => console.log(err));
-            }
-        fetchData();
-        },[]);
 
     const handleUpdate = async () => {
         const name      = document.getElementById('name');
