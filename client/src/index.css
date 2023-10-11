@@ -830,7 +830,7 @@ table tbody tr:last-child td:last-child {
   margin: 2px;
   font-weight: 300;
   /* box-shadow: 2px 7px 15px -2px rgb(8, 19, 30); */
-  background-color: rgba(255,255,255, 0);
+  background-color: rgba(255,255,255, 0.1);
   border-radius: 10px;
   text-align: left;
   transition: all 1s;
@@ -921,6 +921,20 @@ table tbody tr:last-child td:last-child {
 .payout-elements:hover{
   background-color: rgba(255,255,255, 0.5);
   transform: scale(1.05);
+}
+.payout-title{
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden !important;
+  /* margin-bottom: 0.5rem; */
+}
+.payout-sale{
+  font-weight: 500;
+  color: #DF1E36;
+}
+.payout-final{
+  font-weight: 500;
+  color: rgb(2, 208, 2) !important;
 }
 .settings{
   margin-top: 4rem;

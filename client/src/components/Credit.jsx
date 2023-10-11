@@ -1,7 +1,8 @@
 import Element from "./DashElement";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from '../App';
-import axios from 'axios'
+import axios from 'axios';
+import listed from "./hooks/listed";
 
 function Credit(props) {
 
@@ -138,7 +139,7 @@ function Credit(props) {
                                         <div className='col justify-content-center'>
                                             <div className="card credit-box">
                                                 <div className="card-header credit-header">
-                                                    Total Balance
+                                                    Current Balance
                                                 </div>
                                                 <div className="card-body credit-body">
                                                     $ {totalPayout()}
@@ -189,6 +190,19 @@ function Credit(props) {
                                                     <>
                                                     <div className="container payout-elements">
                                                         <div className="row">
+                                                            <div className="col payout-title">
+                                                                {i.title}
+                                                            </div>
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col payout-title">
+                                                                Date: 
+                                                            </div>
+                                                            <div className="col payout-title">
+                                                                {listed(i.date)}
+                                                            </div>
+                                                        </div>
+                                                        <div className="row">
                                                             <div className="col">
                                                                 Sales Price
                                                             </div>
@@ -197,15 +211,14 @@ function Credit(props) {
                                                             </div>
                                                         </div>
                                                         <div className="row">
-                                                            <div className="col">
+                                                            <div className="col payout-sale">
                                                                 $ {i.price.toFixed(2)}
                                                             </div>
-                                                            <div className="col">
+                                                            <div className="col payout-final">
                                                                 $ {payout(i.price)}
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                        
+                                                    </div>     
                                                     </>
                                                 )
                                             })}
@@ -218,7 +231,7 @@ function Credit(props) {
                     <div className="col">
                         <Element
                             class='dash-element' 
-                            title='Balance History'
+                            title='Transaction History'
                             subtitle='Payout and Cashout transactions'
                             text={(
                                 <>

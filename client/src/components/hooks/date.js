@@ -5,6 +5,7 @@ var day                                 = date.getDate();
 var hours                               = date.getHours();
 var ampm                                = hours >= 12 ? 'pm' : 'am';
 
+
 const today = () => {
     const result = month + " - " + day + " - " + year;
     return result;

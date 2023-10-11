@@ -5,7 +5,7 @@ const Listing       = require ('../model/Activelisting');
 
 const updateUser = async (req, res, next) => {
     
-    // console.log(req.query)
+    // const userId            = req.query.userData.userid
     const userId            = req.query.userData.uid
     const getUser           = await User.findOne({userid: userId}).exec();
     const soldItemSub       = getUser.solditems;
@@ -50,7 +50,8 @@ const updateUser = async (req, res, next) => {
     const balanceItems = filterSold.map((i) => {
         return {
             title : i.title,
-            price: i.price
+            price: i.price,
+            date: i.endtime
         };
     })
 

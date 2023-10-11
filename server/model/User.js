@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
         address: {type: String, default: null},
         avatar: { type: String, default: null},
         skucode: {type: String, default: 'assign_sku'},
+        currentbalance: {type: Number, default: 0},
         activeitems: [{
             itemid: {type: String, default: null}
         }],
@@ -19,7 +20,14 @@ const userSchema = new mongoose.Schema({
         }],
         balance: [{
             title: {type: String, default: null},
-            price: {type: Number, default: 0}
+            price: {type: Number, default: 0}, 
+            payouts: {type: Number, default: 0}, 
+            date: {type: String, default: null}
+        }],
+        cashouts :[{
+            amount: {type: Number, default: 0}, 
+            date: {type: String, default: null},
+            type: {type: String, default: null}
         }]
     },
     { timestamps: true }
