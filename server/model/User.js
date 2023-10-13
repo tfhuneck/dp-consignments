@@ -21,10 +21,10 @@ const userSchema = new mongoose.Schema({
         balance: [{
             title: {type: String, default: null},
             price: {type: Number, default: 0}, 
-            payouts: {type: Number, default: 0}, 
+            payout: {type: Number, default: 0}, 
             date: {type: String, default: null}
         }],
-        cashouts :[{
+        cashouts:[{
             amount: {type: Number, default: 0}, 
             date: {type: String, default: null},
             type: {type: String, default: null}

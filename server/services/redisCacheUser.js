@@ -8,10 +8,7 @@ const serverUrl             = 'http://localhost:8080';
 const cacheUserData = async (req, res, next) => {
     const userData      = req.userData
     const userId        =  userData.uid
-    
-    // req.userdata = userData;
-    // console.log(userData);
-    
+        
     await redisClient.connect()
 
     redisClient.get('user', async (error, user) => {
@@ -32,19 +29,6 @@ const cacheUserData = async (req, res, next) => {
             console.log('Userinfo cached and sent');
             setTimeout(() => redisClient.disconnect(),50)
             res.json(getUser);
-
-                // .then((res1) => {
-                //     // console.log(res);
-                //     return axios.get(serverUrl + '/collectall', {
-                //         params: { userData }
-                //     })
-                //     .then(async (res2) =>{
-                //         await redisClient.setex('user', DEFAULT_EXPIRATION, JSON.stringify(res2.data))   
-                //         console.log('Userinfo cached and sent');
-                //         setTimeout(() => redisClient.disconnect(),50)
-                //         return res.json(res2.data)
-                //     })
-                // })
         }
     })
 }

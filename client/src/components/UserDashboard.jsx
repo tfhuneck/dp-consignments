@@ -89,7 +89,7 @@ function UserDashboard() {
                             text={(
                                 <>
                                     <div className="dash-header-num">
-                                        $ {totalBalance(userData)}
+                                        $ {userData ? userData.currentbalance : 0}
                                     </div>
                                 </>
                             )}

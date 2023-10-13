@@ -633,6 +633,9 @@ a{
   min-height: 50vh;
   background-color: #1d2c39;
 }
+table{
+  width: inherit;
+}
 table tbody td{
   overflow-y:auto;
   border: none;
@@ -653,6 +656,10 @@ table tbody tr:last-child td:last-child {
   height: 80vh;
   background-color: #1d2c39;
   overflow: auto;
+  margin-bottom: 2rem;
+}
+.credit-element{
+  white-space: nowrap;
 }
 .list-header{
   min-width: 8.5rem;
@@ -719,7 +726,7 @@ table tbody tr:last-child td:last-child {
   background: none;
   border: none;
   outline: none;
-  max-width: 190px;
+  max-width: 400px;
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 9999px;
@@ -892,8 +899,9 @@ table tbody tr:last-child td:last-child {
 .credit-header{
   background-color: rgba(255,255,255, 0.1);
   color: #d4e2ee;
-  font-size: 1.25em;
+  font-size: 1.1em;
   font-weight: 400;
+  white-space: nowrap;
 }
 .credit-body{
   color: #ffffff;
@@ -917,6 +925,7 @@ table tbody tr:last-child td:last-child {
   background-color: rgba(255,255,255, 0.3);
   border-radius: 10px;
   transition: all 0.5s;
+  white-space: nowrap;
 }
 .payout-elements:hover{
   background-color: rgba(255,255,255, 0.5);

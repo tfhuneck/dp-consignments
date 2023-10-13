@@ -2,6 +2,9 @@ const User          = require('../model/User');
 const SoldItem      = require('../model/Solditem');
 const PendingItem   = require('../model/Pendingitem');
 const Listing       = require ('../model/Activelisting');
+const payoutCalc    = require('../modules/payout');
+const totalBalance  = require('../modules/totalBalance');
+const totalCashouts = require('../modules/totalCashouts')
 
 const updateUser = async (req, res, next) => {
     
@@ -13,9 +16,17 @@ const updateUser = async (req, res, next) => {
     const activeItemSub     = getUser.activeitems;
     const balanceSub        = getUser.balance;
     const sku               = getUser.skucode;
+    const currentBalance    = getUser.currentbalance;
     const soldData          = await SoldItem.find();
     const pendingData       = await PendingItem.find();
     const listingData       = await Listing.find();
+
+    const updateBalance = () => {
+        let payoutTotal     = totalBalance(getUser);
+        let cashoutTotal    = totalCashouts(getUser);
+        let result = payoutTotal - cashoutTotal;
+        return result;
+    }
 
     const filterSold =  soldData.filter((items) => {
             if(items.sku) {
@@ -51,7 +62,8 @@ const updateUser = async (req, res, next) => {
         return {
             title : i.title,
             price: i.price,
-            date: i.endtime
+            date: i.endtime,
+            payout: payoutCalc(i.price)
         };
     })
 
@@ -97,6 +109,16 @@ const updateUser = async (req, res, next) => {
     }   catch (error) {
         console.log(error) 
     }
+
+    try{
+       const newBalance = updateBalance(); 
+       await getUser.set({currentbalance: newBalance});
+       await getUser.save();
+       console.log(getUser.name + 'current balance updated');
+    } catch (error) {
+        console.log(error) 
+    }
+    
     return res.send('user updated')
 }
 

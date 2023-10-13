@@ -9,6 +9,7 @@ const connectDB         = require('./config/dbConn');
 const ListingsModel     = require('./model/Activelisting');
 const SoldModel         = require('./model/Solditem');
 const UserModel         = require('./model/User');
+const RequestModel      = require('./model/Cashoutrequests')
 const auth              = require('./middleware/auth');
 
 // Config

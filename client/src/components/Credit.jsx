@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { AuthContext } from '../App';
 import axios from 'axios';
 import listed from "./hooks/listed";
+import payout from './hooks/payout'
 
 function Credit(props) {
 
@@ -36,31 +37,6 @@ function Credit(props) {
         }
        }
 
-    const payout = (price) => {
-        let result = ''
-
-        if(price >= 5000){
-            let deduction = price - 3000
-            result = (deduction * 0.97).toFixed(2);
-        }
-        if(price >= 1000 && price <= 4999.99 ){
-            let deduction = price - 0.5
-            result = (deduction * 0.88).toFixed(2);
-        }
-        if(price >= 25 && price <= 999.999 ){
-            let deduction = price - 0.5
-            result = (deduction * 0.85).toFixed(2);
-        }
-        if(price >= 10 && price <= 24.999 ){
-            let deduction = price - 0.5
-            result = (deduction * 0.8).toFixed(2);
-        } 
-        if(price < 10 ){
-            result = price.toFixed(2);
-        }
-        return result;
-    }
-
     const totalPayout = () => {
         if(userData && userData.balance.length > 0){
             return userData.balance.map(i => Number(payout(i.price))).reduce((prev, next)=> (prev + next));
@@ -72,64 +48,10 @@ function Credit(props) {
     return (
         <>
             <div className="user-dash">
-                {/* <div className="row">
-                    <div className="col">
-                        <Element
-                                class='dash-header' 
-                                title='Consignments'
-                                subtitle='Current Active Listings'
-                                text={(
-                                    <>
-                                    <div className="dash-header-num">
-                                    </div>
-                                    </>
-                                )}
-                            />
-                    </div>
-                    <div className="col">
-                        <Element
-                                class='dash-header' 
-                                title='Consignments'
-                                subtitle='Current Active Listings'
-                                text={(
-                                    <>
-                                    <div className="dash-header-num">
-                                    </div>
-                                    </>
-                                )}
-                            />
-                    </div>
-                    <div className="col">
-                        <Element
-                                class='dash-header' 
-                                title='Consignments'
-                                subtitle='Current Active Listings'
-                                text={(
-                                    <>
-                                    <div className="dash-header-num">
-                                    </div>
-                                    </>
-                                )}
-                            />
-                    </div>
-                    <div className="col">
-                        <Element
-                                    class='dash-header' 
-                                    title='Consignments'
-                                    subtitle='Current Active Listings'
-                                    text={(
-                                        <>
-                                        <div className="dash-header-num">
-                                        </div>
-                                        </>
-                                    )}
-                                />
-                    </div>
-                </div> */}
                 <div className="row">
                     <div className="col">
                         <Element
-                            class='dash-element' 
+                            class='dash-element credit-element' 
                             title='Total Balance'
                             subtitle='Available Balance'
                             body={(
@@ -147,7 +69,7 @@ function Credit(props) {
                                             </div>
                                             <div className="card credit-box">
                                                 <div className="card-header credit-header">
-                                                    Total Payouts
+                                                    Total Sales Payouts
                                                 </div>
                                                 <div className="card-body credit-body">
                                                     $ {totalPayout()}
@@ -158,12 +80,12 @@ function Credit(props) {
                                                     Total Cashouts
                                                 </div>
                                                 <div className="card-body credit-body">
-                                                    $ {totalBalance()}
+                                                    $ 
                                                 </div>
                                             </div>
                                             <div className="card credit-box">
                                                 <div className="card-header credit-header">
-                                                    Total Sold
+                                                    Total Sales Prices
                                                 </div>
                                                 <div className="card-body credit-body">
                                                     $ {totalBalance()}
@@ -178,7 +100,7 @@ function Credit(props) {
                     </div>
                     <div className="col">
                         <Element
-                            class='dash-element' 
+                            class='dash-element credit-element' 
                             title='Consignments Payouts'
                             subtitle='Sale Price & Payout Breakdown'
                             body={(
@@ -230,18 +152,19 @@ function Credit(props) {
                     </div>
                     <div className="col">
                         <Element
-                            class='dash-element' 
-                            title='Transaction History'
-                            subtitle='Payout and Cashout transactions'
+                            class='dash-element credit-element' 
+                            title='Cashouts'
+                            subtitle='Cashout transactions'
                             text={(
-                                <>
+                                <>  
                                     <div className="card payout-box">
                                         <div className="card-body">
-                                            { userData && userData.balance.map((i) => {
+                                            { userData && userData.cashouts.map((i) => {
                                                 return(
                                                     <>
                                                         <div className="payout-elements">
-                                                            $ {payout(i.price)}
+                                                            {i.type}
+                                                            $ {i.amount.toFixed(2)} - {listed(i.date)}
                                                         </div>
                                                     </>
                                                 )
