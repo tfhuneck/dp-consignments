@@ -27,7 +27,8 @@ const userSchema = new mongoose.Schema({
         cashouts:[{
             amount: {type: Number, default: 0}, 
             date: {type: String, default: null},
-            type: {type: String, default: null}
+            type: {type: String, default: null},
+            comment: {type: String, default: null}
         }]
     },
     { timestamps: true }

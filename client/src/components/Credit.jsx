@@ -4,6 +4,7 @@ import { AuthContext } from '../App';
 import axios from 'axios';
 import listed from "./hooks/listed";
 import payout from './hooks/payout'
+import totalCashouts from "./hooks/totalCashouts";
 
 function Credit(props) {
 
@@ -64,7 +65,7 @@ function Credit(props) {
                                                     Current Balance
                                                 </div>
                                                 <div className="card-body credit-body">
-                                                    $ {totalPayout()}
+                                                    $ {userData && userData.currentbalance}
                                                 </div>
                                             </div>
                                             <div className="card credit-box">
@@ -80,12 +81,12 @@ function Credit(props) {
                                                     Total Cashouts
                                                 </div>
                                                 <div className="card-body credit-body">
-                                                    $ 
+                                                    $ {totalCashouts(userData).toFixed(2)}
                                                 </div>
                                             </div>
                                             <div className="card credit-box">
                                                 <div className="card-header credit-header">
-                                                    Total Sales Prices
+                                                    Total Sales
                                                 </div>
                                                 <div className="card-body credit-body">
                                                     $ {totalBalance()}
@@ -163,8 +164,40 @@ function Credit(props) {
                                                 return(
                                                     <>
                                                         <div className="payout-elements">
-                                                            {i.type}
-                                                            $ {i.amount.toFixed(2)} - {listed(i.date)}
+                                                        <div className="row">
+                                                            <div className="col">
+                                                                Type:
+                                                            </div>
+                                                            <div className="col">
+                                                                {i.type}
+                                                            </div>
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col">
+                                                                Date: 
+                                                            </div>
+                                                            <div className="col">
+                                                                {i.date}
+                                                            </div>
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col">
+                                                                Amount
+                                                            </div>
+                                                            <div className="col payout-final">
+                                                                $ {i.amount}
+                                                            </div>
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col payout-title">
+                                                                {i.comment &&  'Comment:'}
+                                                            </div>
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col comment">
+                                                               {i.comment}
+                                                            </div>
+                                                        </div>
                                                         </div>
                                                     </>
                                                 )

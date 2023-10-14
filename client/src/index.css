@@ -1055,3 +1055,6 @@ input::file-selector-button:active {
   margin-left: 0.5rem;
   cursor: pointer;
 }
+.comment{
+  white-space: wrap;
+}
