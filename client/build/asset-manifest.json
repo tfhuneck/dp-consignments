@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7ebae46f.css",
+    "main.js": "/static/js/main.c93d28bc.js",
+    "static/media/New_Headshot.png": "/static/media/New_Headshot.20da593e3e98798dfc4f.png",
+    "static/media/listingbg.png": "/static/media/listingbg.219c29c2390af26e7b31.png",
+    "static/media/logo.png": "/static/media/logo.fc29387dbfe4c5cc589f.png",
+    "static/media/ebay-logo.png": "/static/media/ebay-logo.af44c630802215481485.png",
+    "static/media/avatar.png": "/static/media/avatar.b7da60725a517b7382f6.png",
+    "static/media/instagram.svg": "/static/media/instagram.ca82e8212bb0c16a8f594b293435c9ae.svg",
+    "static/media/facebook.svg": "/static/media/facebook.b9097f52c61ad5edaf4f6bec76802b5e.svg",
+    "index.html": "/index.html",
+    "static/media/youtube.svg": "/static/media/youtube.11b008ab1d78b70a52e1b46d04144df9.svg",
+    "main.7ebae46f.css.map": "/static/css/main.7ebae46f.css.map",
+    "main.c93d28bc.js.map": "/static/js/main.c93d28bc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7ebae46f.css",
+    "static/js/main.c93d28bc.js"
+  ]
+}
