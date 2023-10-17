@@ -12,9 +12,6 @@ jobs:
         working-directory: ./server
     steps:
 
-      - name: Install modules
-        run: npm install
-
       - name: Checkout
         uses: actions/checkout@v3
       - name: Configure AWS Credentials
@@ -24,5 +21,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-1
 
+      - name: Install modules
+        run: npm install
+
       - name: Deploy to S3
-        run: aws s3 sync s3://${{ secrets.BUCKET_ID }}
+        run: aws s3 sync s3://${{ secrets.AWS_S3_BUCKET }}
