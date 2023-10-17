@@ -1,12 +1,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDHg2X7OPNb9scfrc7mKl0HRI0R3XxyoqM",
-  authDomain: "dp-consignment.firebaseapp.com",
-  projectId: "dp-consignment",
-  storageBucket: "dp-consignment.appspot.com",
-  messagingSenderId: "453077400502",
-  appId: "1:453077400502:web:43c7bf4ca52ef246381f17"
+  apiKey: "AIzaSyAlpHfLixUS94ufuOwu1_i5jyHiifKW2l4",
+  authDomain: "dandpconsignments-9e9c2.firebaseapp.com",
+  projectId: "dandpconsignments-9e9c2",
+  storageBucket: "dandpconsignments-9e9c2.appspot.com",
+  messagingSenderId: "314567179622",
+  appId: "1:314567179622:web:e8ae83a12c939c15cd5ca7"
 };
 
 // Initialize Firebase
