@@ -7,11 +7,12 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with: 
-            sparse-checkout: '/server'
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
