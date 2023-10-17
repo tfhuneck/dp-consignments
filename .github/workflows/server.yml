@@ -25,4 +25,4 @@ jobs:
         run: npm install
 
       - name: Deploy to S3
-        run: aws s3 sync s3://${{ secrets.AWS_S3_BUCKET }}
+        run: aws s3 sync s3://${{ secrets.AWS_S3_BUCKET }} localdir
