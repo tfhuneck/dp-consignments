@@ -11,6 +11,7 @@ function Credit(props) {
     const [ userAuth, setUserAuth ]         = useContext(AuthContext);
     const [ userData, setUserData ]         = useState();
     const serverUrl                         = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
+   
 
     useEffect(() => {
         async function fetchData(){

@@ -3,8 +3,9 @@ import { AuthContext } from '../../App';
 import axios from 'axios'
 
 export const useFetchData = (url) => {
-    
+
     const serverUrl                         = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
+    
     const [ userAuth, setUserAuth ]         = useContext(AuthContext);
     const [ userData, setUserData ]         = useState();
 
