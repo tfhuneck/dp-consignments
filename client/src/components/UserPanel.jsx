@@ -1,5 +1,4 @@
 import axios from 'axios';
-import profile from '../images/New_Headshot.png'
 import avatar from '../images/avatar.png'
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../App';

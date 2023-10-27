@@ -4,7 +4,10 @@ const User                  = require('../model/User');
 const Listing               = require ('../model/Activelisting');
 const redisClient           = Redis.createClient({legacyMode: true});
 const DEFAULT_EXPIRATION    = 3600
-const serverUrl             = 'http://localhost:8080';
+require('dotenv').config();
+
+const PORT = process.env.PORT || 8080;
+// const serverUrl             = 'http://localhost:8080';
 
 const cacheUserData = async (req, res, next) => {
     const userData      = req.userData

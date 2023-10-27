@@ -9,6 +9,7 @@ const Popup = ({openModal, id}) => {
     const [ modalIsOpen, setIsOpen ]    = useState(false);
     const [ image, setImage ]           = useState('');
     const serverUrl                     = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
+
     const userid                        = id;
     const imageData                     = new FormData();
 

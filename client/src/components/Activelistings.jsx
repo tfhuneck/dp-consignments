@@ -7,6 +7,7 @@ import { useSort } from "./hooks/useSort";
 import { useSearch } from "./hooks/useSearch";
 import { usePagination } from "./hooks/usePagination";
 import { useFetchData } from './hooks/useFetchData';
+import { useEffect } from 'react';
 
 function Listings(props) {
     
@@ -22,7 +23,7 @@ function Listings(props) {
     // Pagination Hook that also handles rerenders on search and Sorting table
     const { currentRecords, currentPage, setCurrentPage, nPages } = usePagination(state, userData, filteredData);
 
-    if (currentRecords) {
+    if (currentRecords && currentRecords.length >= 1) {
         
         return (
             <>

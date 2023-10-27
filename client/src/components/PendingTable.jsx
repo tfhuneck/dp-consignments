@@ -4,32 +4,33 @@ import Element from "./DashElement";
 import ebayLogo from '../images/ebay-logo.png';
 import payout from './hooks/payout';
 import listed from './hooks/listed';
+import placeholder from '../images/placeholder.png'
 
 const PendingTable = ({currentRecords}) => {
 
-    const serverUrl = 'http://localhost:8080';
+    const serverUrl                         = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
 
     // ============NEEDS REVISION==============
     // fetch images
     const [ load, setLoad ]                     = useState(null);
     const [ image, setImage ]                   = useState();
     useEffect(() => {
-        async function getImages(url) {
-            await axios.post( serverUrl + '/soldimage', {
-            imageUrl: url
-            })
-            .then(function(res) {
-                console.log(res.data)
-                setImage(res.data)
-                console.log(image);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        }
-        if(load) {
-            getImages(load);
-        }
+        // async function getImages(url) {
+        //     await axios.post( serverUrl + '/soldimage', {
+        //     imageUrl: url
+        //     })
+        //     .then(function(res) {
+        //         console.log(res.data)
+        //         setImage(res.data)
+        //         console.log(image);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+        // }
+        // if(load) {
+        //     getImages(load);
+        // }
     }, [load, setLoad, image, setImage])
     // ========================================
 
@@ -63,7 +64,7 @@ const PendingTable = ({currentRecords}) => {
                                                             class='listing-img' 
                                                             body={(
                                                                 <>
-                                                                    <img src={image} className='product-img' />
+                                                                    <img src={placeholder} className='product-img' />
                                                                 </>
                                                             )}
                                                         />    
@@ -71,65 +72,64 @@ const PendingTable = ({currentRecords}) => {
                                                     <div className='col'>
                                                         <div className='row'>
                                                             <div className='col d-flex justify-content-center'>
-                                                                <Element
-                                                                    class='listing-details' 
-                                                                title= {<a href={data.itemurl} target="_blank">View in  <img src={ebayLogo} style={{height:"1.2rem", width:"auto"}} /> </a>}
-                                                            />    
+                                                                <div className="card listing-box">
+                                                                    <div className="card-header listing-header">
+                                                                        View on
+                                                                    </div>
+                                                                    <div className="card-body listing-body">
+                                                                    <a href={data.itemurl} target="_blank"><img src={ebayLogo} style={{height:"1.5rem", width:"auto"}} /> </a>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                <Element
-                                                                    class='listing-details' 
-                                                                    title='Listed on:'
-                                                                    subtitle={(
-                                                                        <>
-                                                                            {listed(data.starttime)}
-                                                                        </>
-                                                                    )}
-                                                                />
+                                                                <div className="card listing-box">
+                                                                    <div className="card-header listing-header">
+                                                                        Listed on
+                                                                    </div>
+                                                                    <div className="card-body listing-body">
+                                                                        {listed(data.starttime)}
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                <Element
-                                                                    class='listing-details' 
-                                                                    title='Sold on:'
-                                                                    subtitle={(
-                                                                        <>
-                                                                            {listed(data.endtime)}
-                                                                        </>
-                                                                    )}
-                                                                />
+                                                                <div className="card listing-box">
+                                                                    <div className="card-header listing-header">
+                                                                        Sold on:
+                                                                    </div>
+                                                                    <div className="card-body listing-body">
+                                                                        {listed(data.endtime)}
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                <Element
-                                                                    class='listing-details' 
-                                                                    title='Status:'
-                                                                    subtitle={(
-                                                                        <>
-                                                                            {data.paymentstatus}
-                                                                        </>
-                                                                    )}
-                                                                />
+                                                                <div className="card listing-box">
+                                                                    <div className="card-header listing-header">
+                                                                        Status:
+                                                                    </div>
+                                                                    <div className="card-body listing-body">
+                                                                        {data.paymentstatus}
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                <Element
-                                                                    class='listing-details' 
-                                                                    title='Total Price:'
-                                                                    subtitle={(
-                                                                        <>
-                                                                            {data.price.toFixed(2)}
-                                                                        </>
-                                                                    )}
-                                                                />
+                                                                <div className="card listing-box">
+                                                                    <div className="card-header listing-header">
+                                                                        Total Price:
+                                                                    </div>
+                                                                    <div className="card-body listing-body">
+                                                                        {data.price.toFixed(2)}
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                <Element
-                                                                    class='listing-details'
-                                                                    title='Total Payout:' 
-                                                                    subtitle={(
-                                                                        <>
-                                                                            {payout(data.price)}
-                                                                        </>
-                                                                    )}
-                                                                />
+                                                                <div className="card listing-box">
+                                                                    <div className="card-header listing-header">
+                                                                        Total Payout:
+                                                                    </div>
+                                                                    <div className="card-body listing-body">
+                                                                        {payout(data.price)}
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

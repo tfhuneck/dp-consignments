@@ -26,7 +26,7 @@ function Sold() {
     const { currentRecords, currentPage, setCurrentPage, nPages } = usePagination(state, userData, filteredData);
 
     // Condition to load table with products
-    if (currentRecords) {
+    if (currentRecords && currentRecords.length >= 1) {
         
         return (
             <>

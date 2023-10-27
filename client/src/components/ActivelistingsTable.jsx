@@ -2,6 +2,8 @@ import Element from "./DashElement";
 import ebayLogo from '../images/ebay-logo.png';
 import listed from './hooks/listed';
 import time from './hooks/time'
+import placeholder from '../images/placeholder.png'
+import Loading from './Loading';
 
 const Table = ({currentRecords}) => {
 
@@ -46,7 +48,7 @@ const Table = ({currentRecords}) => {
                                                             class='listing-img' 
                                                             body={(
                                                                 <>
-                                                                    <img src='https://i.ebayimg.com/images/g/6-IAAOSwOolkrJ8b/s-l1600.jpg' className='product-img' />
+                                                                    <img src={placeholder} className='product-img' />
                                                                     {/* <img src={getImages(data.ListingDetails.ViewItemURL._text)} className='product-img' /> */}
                                                                 </>
                                                             )}
@@ -55,10 +57,6 @@ const Table = ({currentRecords}) => {
                                                     <div className='col'>
                                                         <div className='row'>
                                                             <div className='col d-flex justify-content-center'>
-                                                                {/* <Element
-                                                                    class='listing-details' 
-                                                                title= {<a href={data.itemurl} target="_blank">View in  <img src={ebayLogo} style={{height:"1.2rem", width:"auto"}} /> </a>}
-                                                                />     */}
                                                                 <div className="card listing-box">
                                                                     <div className="card-header listing-header">
                                                                         View on
@@ -69,15 +67,6 @@ const Table = ({currentRecords}) => {
                                                                 </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                {/* <Element
-                                                                    class='listing-details' 
-                                                                    title='Listed on:'
-                                                                    subtitle={( 
-                                                                        <>
-                                                                            {listed(data.starttime)}
-                                                                        </> 
-                                                                    )}
-                                                                /> */}
                                                                 <div className="card listing-box">
                                                                     <div className="card-header listing-header">
                                                                         Listed on
@@ -88,15 +77,6 @@ const Table = ({currentRecords}) => {
                                                                 </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                {/* <Element
-                                                                    class='listing-details' 
-                                                                    title='Bids:'
-                                                                    subtitle={( 
-                                                                            <>
-                                                                                {data.bidcount}
-                                                                            </>
-                                                                        )}
-                                                                /> */}
                                                                 <div className="card listing-box">
                                                                     <div className="card-header listing-header">
                                                                         Bids
@@ -107,15 +87,6 @@ const Table = ({currentRecords}) => {
                                                                 </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                {/* <Element
-                                                                    class='listing-details' 
-                                                                    title='Watching:'
-                                                                    subtitle={(  
-                                                                        <>
-                                                                            {data.watchcount}
-                                                                        </> 
-                                                                        )}
-                                                                /> */}
                                                                 <div className="card listing-box">
                                                                     <div className="card-header listing-header">
                                                                         Watching:
@@ -126,17 +97,6 @@ const Table = ({currentRecords}) => {
                                                                 </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                {/* <Element
-                                                                    class='listing-details' 
-                                                                    title='Time Left:'
-                                                                    subtitle={( 
-                                                                            <>
-                                                                                <span className='time-left'>
-                                                                                    {time(data.timeleft)}
-                                                                                </span>
-                                                                            </>
-                                                                    )}
-                                                                /> */}
                                                                 <div className="card listing-box">
                                                                     <div className="card-header listing-header">
                                                                         Time Left
@@ -147,17 +107,6 @@ const Table = ({currentRecords}) => {
                                                                 </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                {/* <Element
-                                                                    class='listing-details'
-                                                                    title='Current Price:' 
-                                                                    subtitle={( 
-                                                                        <>
-                                                                            <span className='price'>
-                                                                                ${data.currentprice}
-                                                                            </span>
-                                                                        </>
-                                                                    )}
-                                                                /> */}
                                                                 <div className="card listing-box">
                                                                     <div className="card-header listing-header">
                                                                         Current Price:
@@ -190,7 +139,7 @@ const Table = ({currentRecords}) => {
                 )
             })} 
         </>
-    )
+    ) 
 }
 
 export default Table;

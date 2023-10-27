@@ -8,6 +8,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 function Register() {
     const auth          = getAuth(authApp);
     const serverUrl     = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
+
     const navigate      = useNavigate();
 
     const handleRegister = async () => {

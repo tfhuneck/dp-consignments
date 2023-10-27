@@ -23,7 +23,7 @@ function Pending() {
     const { currentRecords, currentPage, setCurrentPage, nPages } = usePagination(state, userData, filteredData);
     
 
-    if (currentRecords) {
+    if (currentRecords && currentRecords.length >= 1) {
         
         return (
             <>
