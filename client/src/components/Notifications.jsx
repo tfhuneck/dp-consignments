@@ -2,9 +2,6 @@ import Element from "./DashElement";
 
 function Notifications(props) {
 
-
-
-
     return (
         <>
             <div className="user-dash">

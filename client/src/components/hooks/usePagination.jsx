@@ -10,7 +10,6 @@ export const usePagination = (state, userData, filteredData) => {
      const indexOfLastRecord                     = currentPage * recordsPerPage;
      const indexOfFirstRecord                    = indexOfLastRecord - recordsPerPage; 
 
-
     useEffect(() => {
         if(state.sorted){
             let sortedData = state.sorted

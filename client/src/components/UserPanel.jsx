@@ -75,10 +75,10 @@ function UserPanel() {
                             </div>
                         </Link>
                     </div>
-                    <div className='row justify-content-center'>
+                    {/* <div className='row justify-content-center'>
                         <Link className='user-nav-link' to='/usr/notifications'>
                             <div className='col'>
-                                {/* <svg 
+                                 <svg 
                                     className='user-nav-icn'
                                     // stroke="currentColor"
                                     xmlns="http://www.w3.org/2000/svg" 
@@ -95,7 +95,7 @@ function UserPanel() {
                                         fill="currentColor" 
                                         d="M19.167,29.1h-6.333c-0.497,0-0.9,0.403-0.9,0.9s0.403,0.9,0.9,0.9h6.333c0.497,0,0.9-0.403,0.9-0.9   S19.664,29.1,19.167,29.1z"
                                     />
-                                </svg> */}
+                                </svg> 
                                 <svg 
                                     className='user-nav-icn'
                                     // stroke="currentColor"
@@ -123,7 +123,7 @@ function UserPanel() {
                                Alerts
                             </div>
                         </Link>
-                    </div>
+                    </div> */}
                     <div className='row justify-content-center'>
                         <Link className='user-nav-link' to='/usr/settings'>
                             <div className='col'>

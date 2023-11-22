@@ -112,7 +112,7 @@ const Table = ({currentRecords}) => {
                                                                         Current Price:
                                                                     </div>
                                                                     <div className="card-body listing-body">
-                                                                        $ {data.currentprice}
+                                                                        $ {data.currentprice.toFixed(2)}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -132,7 +132,7 @@ const Table = ({currentRecords}) => {
                         </td>
                         <td>
                             <span className='price'>
-                                $ {data.currentprice}
+                                $ {data.currentprice.toFixed(2)}
                             </span>
                         </td>
                     </tr>

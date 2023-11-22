@@ -15,7 +15,9 @@ function Credit(props) {
 
     useEffect(() => {
         async function fetchData(){
-            await axios.get(serverUrl + '/user',
+            await axios.get(
+                serverUrl +
+                '/user',
                 {params:{
                         userAuth
                 }})
@@ -74,7 +76,7 @@ function Credit(props) {
                                                     Total Sales Payouts
                                                 </div>
                                                 <div className="card-body credit-body">
-                                                    $ {totalPayout()}
+                                                    $ {totalPayout().toFixed(2)}
                                                 </div>
                                             </div>
                                             <div className="card credit-box">

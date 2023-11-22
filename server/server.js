@@ -38,6 +38,10 @@ app.use('/create', require('./routes/createNewUserRoute'));
 app.use('/updateuser', require('./routes/updateUserRoute'));
 app.use('/getuser', require('./routes/getUserRoute'));
 app.use('/update/user', require('./routes/UpdateUserSettingsRoute'));
+app.use('/request', require('./routes/requestRoute'));
+
+// ebay notification challenge code route
+app.use('/ebaynotification', require('./routes/ebayNotificationRoute'))
 
 // app.use('/user', require('./routes/redisCacheUserRoute'));
 app.use('/user', require('./routes/getUserRoute')); // Route to get userData for user without Redis cache
@@ -48,6 +52,9 @@ app.use('/user/sold', require('./routes/getUserSoldListingsRoute')); // Route to
 // app.use('/user/pending', require('./routes/redisCachePendingRoute'));
 app.use('/user/pending', require('./routes/getUserPendingListingsRoute'));  // Route to get user pending listings without redis cache
 // app.use('/user/update/image', require('./routes/UserUpdateImageRoute'));
+
+//  ebay OAuth authorization code grant flow
+app.use('/ebayauth', require('./routes/ebayAuthRoute'));
 
 
 //===========Getting ebay images for listings=========
@@ -85,6 +92,6 @@ app.get(['/', '/info', '/login', '/contact','/about', '/register', '/usr','/usr/
 // =========Setting up Server om port 8080============
 app.listen(PORT, () => {
     console.log('🔥🔥🔥🔥🔥Running on port 8080! - http://localhost:8080🔥🔥🔥🔥🔥');
-    mongoose.connection.once('open', () => console.log('🌱🌱🌱🌱🌱MongoDB ConnectDb ran Successfully🌱🌱🌱🌱🌱'));
+    // mongoose.connection.once('open', () => console.log('🌱🌱🌱🌱🌱MongoDB ConnectDb ran Successfully🌱🌱🌱🌱🌱'));
     // mongoose.connect(connection).then(()=> console.log('MongoDB connected'));
 });

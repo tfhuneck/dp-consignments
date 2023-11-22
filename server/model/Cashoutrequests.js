@@ -6,7 +6,8 @@ const requestSchema = new mongoose.Schema({
     skucode: {type: String, default: 'assign_sku'},
     amount: {type: Number, default: 0}, 
     date: {type: String, default: null},
-    type: {type: String, default: null}
+    type: {type: String, default: null},
+    comment: {type: String, default: null}
     },
     { timestamps: true }
 );
