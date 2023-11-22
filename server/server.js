@@ -56,31 +56,6 @@ app.use('/user/pending', require('./routes/getUserPendingListingsRoute'));  // R
 //  ebay OAuth authorization code grant flow
 app.use('/ebayauth', require('./routes/ebayAuthRoute'));
 
-
-//===========Getting ebay images for listings=========
-// app.post('/getimage', jsonParser, (req, res) => {
-//     const url = req.body.imageUrl
-//     console.log(url)
-//     async function getImage(){
-//         await axios.get(url , {
-//             headers: {
-//               'Content-Type': null,
-//               'Access-Control-Allow-Origin' : '*',
-//               'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-//               'Access-Control-Allow-Credentials':true,
-//             }
-//         })
-//         .then((response) => {
-//             const data = response.data;
-//             const $ = cheerio.load(data);
-//             const image = $('.ux-image-magnify__image--original').attr('src');
-//             console.log(image)
-//             res.send(image);
-//         })
-//     }
-//     getImage();
-// })
-
 // Route to serve static
 app.use('/static', express.static(path.join(__dirname, 'build' , 'static')));
 
@@ -92,6 +67,6 @@ app.get(['/', '/info', '/login', '/contact','/about', '/register', '/usr','/usr/
 // =========Setting up Server om port 8080============
 app.listen(PORT, () => {
     console.log('🔥🔥🔥🔥🔥Running on port 8080! - http://localhost:8080🔥🔥🔥🔥🔥');
-    // mongoose.connection.once('open', () => console.log('🌱🌱🌱🌱🌱MongoDB ConnectDb ran Successfully🌱🌱🌱🌱🌱'));
+    mongoose.connection.once('open', () => console.log('🌱🌱🌱🌱🌱MongoDB ConnectDb ran Successfully🌱🌱🌱🌱🌱'));
     // mongoose.connect(connection).then(()=> console.log('MongoDB connected'));
 });
