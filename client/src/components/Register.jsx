@@ -30,7 +30,7 @@ function Register() {
                 .then(async (userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
-                    await axios.post(serverUrl + `/create`, {
+                    await axios.post(`/create`, {
                         'userid': user.uid,
                         'name': name,
                         'email': email,

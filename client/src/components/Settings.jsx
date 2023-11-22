@@ -32,7 +32,9 @@ function Settings(props) {
         address.value = address.value === '' ? address.placeholder : address.value;
         phone.value = phone.value === '' ? phone.placeholder : phone.value;
 
-        await axios.post(serverUrl + '/update/user', 
+        await axios.post(
+            serverUrl + 
+            '/update/user', 
             {
                 'userid': userAuth.userid,
                 'name': name.value,

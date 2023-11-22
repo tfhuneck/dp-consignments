@@ -109,7 +109,7 @@ function UserNav() {
                             </div>
                         </Link>
                     </div>
-                    <div className='row justify-content-center'>
+                    {/* <div className='row justify-content-center'>
                         <Link className='user-nav-link' to='/usr/message'>
                             <div className='col'>
                                 <svg
@@ -149,7 +149,7 @@ function UserNav() {
                                 Messages
                             </div>
                         </Link>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>

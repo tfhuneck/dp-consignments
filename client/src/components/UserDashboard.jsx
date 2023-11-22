@@ -89,7 +89,7 @@ function UserDashboard() {
                             text={(
                                 <>
                                     <div className="dash-header-num">
-                                        $ {userData ? userData.currentbalance : 0}
+                                        $ {userData ? userData.currentbalance.toFixed(2) : 0}
                                     </div>
                                 </>
                             )}
