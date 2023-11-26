@@ -4,6 +4,7 @@ const ACTION = {
     SORTNAME: 'sortName',
     SORTPRICE: 'sortPrice',
     SORTTIME: 'sortTime',
+    SORTDATE: 'sortDate' 
 }
 
 function reducer(state, action) {
@@ -12,6 +13,7 @@ function reducer(state, action) {
             return {
                 sortPrice: 'default', 
                 sortPay: 'default',
+                sortDate: 'default',
                 sortName: action.value,
                 sorted: action.filter
             }
@@ -19,6 +21,7 @@ function reducer(state, action) {
             return {
                 sortName: 'default', 
                 sortPay: 'default',
+                sortDate: 'default',
                 sortPrice: action.value,
                 sorted: action.filter
             }
@@ -26,7 +29,16 @@ function reducer(state, action) {
             return {
                 sortName: 'default', 
                 sortPrice: 'default',
+                sortDate: 'default',
                 sortPay: action.value,
+                sorted: action.filter
+            }
+        case ACTION.SORTDATE:
+            return{
+                sortName: 'default', 
+                sortPrice: 'default',
+                sortPay: 'default',
+                sortDate: action.value,
                 sorted: action.filter
             }
         default:
@@ -36,7 +48,7 @@ function reducer(state, action) {
 
 export const useSortPay = (data) => {
     
-     const [ state, dispatch ]                   = useReducer(reducer, { sorted: [], sortName: 'default', sortPrice: 'default', sortPay: 'default'});
+     const [ state, dispatch ] = useReducer(reducer, { sorted: [], sortName: 'default', sortPrice: 'default', sortPay: 'default', sortDate: 'default'});
 
      const handleSortName = () =>{
         if(state.sortName === 'default'){
@@ -80,6 +92,20 @@ export const useSortPay = (data) => {
             dispatch({ type: ACTION.SORTPAY, value:'ascend', filter: sorted  });
         }
     }
+    const handleSortDate = () =>{
+        if(state.sortDate === 'default'){
+            let sorted = data.sort((a,b) => (a.endtime > b.endtime ? 1: -1));
+            dispatch({ type: ACTION.SORTDATE, value:'ascend', filter: sorted });
+        }
+        if(state.sortDate === 'ascend'){
+            let sorted = data.sort((a,b) => (a.endtime < b.endtime ? 1: -1));
+            dispatch({ type: ACTION.SORTDATE, value:'descend', filter: sorted  });
+        }
+        if(state.sortDate === 'descend'){
+            let sorted = data.sort((a,b) => (a.endtime > b.endtime ? 1: -1));
+            dispatch({ type: ACTION.SORTDATE, value:'ascend', filter: sorted  });
+        }
+    }
      
-    return {state, handleSortName, handleSortPrice, handleSortPay} 
+    return {state, handleSortName, handleSortPrice, handleSortPay, handleSortDate} 
 }

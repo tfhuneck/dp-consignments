@@ -8,38 +8,42 @@ import placeholder from '../images/placeholder.png'
 
 const PendingTable = ({currentRecords}) => {
 
-    const serverUrl                         = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
+    const handleCollapse = async (id) => {
+       
+        const expandBox = await document.getElementById(`main-td-${id}`);
+        const sideTds = await document.getElementsByClassName(`side-td-${id}`);
 
-    // ============NEEDS REVISION==============
-    // fetch images
-    const [ load, setLoad ]                     = useState(null);
-    const [ image, setImage ]                   = useState();
-    useEffect(() => {
-        // async function getImages(url) {
-        //     await axios.post( serverUrl + '/soldimage', {
-        //     imageUrl: url
-        //     })
-        //     .then(function(res) {
-        //         console.log(res.data)
-        //         setImage(res.data)
-        //         console.log(image);
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
-        // }
-        // if(load) {
-        //     getImages(load);
-        // }
-    }, [load, setLoad, image, setImage])
-    // ========================================
+            if(expandBox.getAttribute('colspan')){
+                setTimeout(() => {
+                    expandBox.removeAttribute('colspan')   
+                    try {
+                        for (var i in sideTds) {
+                              sideTds[i].classList.remove('td-hidden');
+                          }
+                    } catch(err){
+                        console.log(err)
+                    }
+                }, 300)
+    
+            } else{
+                // setTimeout(() =>, 300)
+                expandBox.setAttribute('colspan', '5')
+                try {
+                    for (var i in sideTds) {
+                          sideTds[i].classList.add('td-hidden');
+                      }
+                } catch(err){
+                    console.log(err)
+                }
+            }
+    }
 
     return (
         <>
             {currentRecords.map((data, key) => {
                 return(
                     <tr key={key}>
-                        <td>
+                        <td id={`main-td-${key}`}>
                             <div className="accordion">
                                 <div className="accordion-item">
                                     <h2 className="accordion-header">
@@ -50,7 +54,7 @@ const PendingTable = ({currentRecords}) => {
                                             data-bs-target={`#flush-collapse${key}`} 
                                             aria-expanded="false" 
                                             aria-controls="flush-collapseOne"
-                                            // onClick={() => setLoad(data.itemurl)}
+                                            onClick={() => handleCollapse(key)}
                                         >
                                             {data.title}
                                         </button>
@@ -117,7 +121,7 @@ const PendingTable = ({currentRecords}) => {
                                                                         Total Price:
                                                                     </div>
                                                                     <div className="card-body listing-body">
-                                                                        {data.price.toFixed(2)}
+                                                                        $ {data.price.toFixed(2)}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -127,7 +131,7 @@ const PendingTable = ({currentRecords}) => {
                                                                         Total Payout:
                                                                     </div>
                                                                     <div className="card-body listing-body">
-                                                                        {payout(data.price)}
+                                                                        $ {payout(data.price)}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -140,12 +144,22 @@ const PendingTable = ({currentRecords}) => {
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td className={`side-td-${key}`}>
+                            <span>
+                                {listed(data.endtime)}
+                            </span>
+                        </td>
+                        <td className={`side-td-${key}`}>
                             <span className='time-left'>
                                 $ {data.price.toFixed(2)}
                             </span>
                         </td>
-                        <td>
+                        <td className={`side-td-${key}`}>
+                            <span>
+                                $ {(data.price - payout(data.price)).toFixed(2)}
+                            </span>
+                        </td>
+                        <td className={`side-td-${key}`}>
                             <span className='price'>
                                 $ {payout(data.price)}
                             </span>

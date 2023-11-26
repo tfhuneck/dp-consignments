@@ -20,7 +20,7 @@ function Sold() {
     const { searchValue, filteredData, clearSearch, handleSearch } = useSearch(userData);
 
     // Sorting Table hook
-    const {state, handleSortName, handleSortPrice, handleSortPay}  = useSortPay(filteredData);
+    const {state, handleSortName, handleSortPrice, handleSortPay, handleSortDate}  = useSortPay(filteredData);
 
     // Pagination Hook that also handles rerenders on search and Sorting table
     const { currentRecords, currentPage, setCurrentPage, nPages } = usePagination(state, userData, filteredData);
@@ -41,10 +41,19 @@ function Sold() {
                                 </span>
                             </th>
                             <th className="list-header" scope='col'>
+                                Date
+                                <span onClick={handleSortDate} >
+                                    <Sort sort={state.sortDate}/>
+                                </span>
+                            </th>
+                            <th className="list-header" scope='col'>
                                 Price Sold
                                 <span onClick={handleSortPrice} >
                                     <Sort sort={state.sortPrice}/>
                                 </span>
+                            </th>
+                            <th className="list-header" scope='col'>
+                                Fees
                             </th>
                             <th className="list-header" scope='col'>
                                 Payout

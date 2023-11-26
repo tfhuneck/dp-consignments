@@ -2,16 +2,19 @@ import Loading from './Loading';
 import Pagination from "./Pagination";
 import Search from "./Search";
 import Sort from "./Sort";
-import PendingTable from "./PendingTable";
+import UnsoldTable from './UnsoldTable';
 import { useSortPay } from "./hooks/useSortPay";
 import { useSearch } from "./hooks/useSearch";
 import { usePagination } from "./hooks/usePagination";
 import { useFetchData } from './hooks/useFetchData';
 
-function Pending() {
+const serverUrl = 'http://localhost:8080'
+
+// Sold Elements Component
+function Unsold() {
 
     // fetch User Data hook
-    const {userData} = useFetchData('/user/pending');
+    const {userData} = useFetchData('/user/unsold');
 
     // Custom Search hook 
     const { searchValue, filteredData, clearSearch, handleSearch } = useSearch(userData);
@@ -21,15 +24,12 @@ function Pending() {
 
     // Pagination Hook that also handles rerenders on search and Sorting table
     const { currentRecords, currentPage, setCurrentPage, nPages } = usePagination(state, userData, filteredData);
-    
 
+    // Condition to load table with products
     if (currentRecords && currentRecords.length >= 1) {
         
         return (
-            <>  
-                <span className='payout-sale'>
-                    Pending Items awaiting Payments!
-                </span>
+            <>
                 <Search clearSearch={clearSearch} handleSearch={handleSearch} searchValue={searchValue} />
                 <table className='table table-dark table-striped table-hover'>
                     <thead>
@@ -46,25 +46,10 @@ function Pending() {
                                     <Sort sort={state.sortDate}/>
                                 </span>
                             </th>
-                            <th className="list-header" scope='col'>
-                                Price Sold
-                                <span onClick={handleSortPrice} >
-                                    <Sort sort={state.sortPrice}/>
-                                </span>
-                            </th>
-                            <th className="list-header" scope='col'>
-                                Fees
-                            </th>
-                            <th className="list-header" scope='col'>
-                                Payout
-                                <span onClick={handleSortPay} >
-                                    <Sort sort={state.sortPay} />
-                                </span>
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <PendingTable currentRecords={currentRecords} />
+                        <UnsoldTable currentRecords={currentRecords} />
                     </tbody>
                 </table>
                 <div className="container">
@@ -85,4 +70,4 @@ function Pending() {
     }
 }
 
-export default Pending;
+export default Unsold;

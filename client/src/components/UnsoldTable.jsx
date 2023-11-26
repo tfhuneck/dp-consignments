@@ -1,12 +1,10 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 import Element from "./DashElement";
 import ebayLogo from '../images/ebay-logo.png';
 import payout from './hooks/payout';
 import listed from './hooks/listed';
 import placeholder from '../images/placeholder.png'
 
-const SoldTable = ({currentRecords}) => {
+const UnsoldTable = ({currentRecords}) => {
 
     const handleCollapse = async (id) => {
        
@@ -98,40 +96,10 @@ const SoldTable = ({currentRecords}) => {
                                                             <div className='col d-flex justify-content-center'>
                                                                 <div className="card listing-box">
                                                                     <div className="card-header listing-header">
-                                                                        Sold on:
+                                                                        Ended on:
                                                                     </div>
                                                                     <div className="card-body listing-body">
                                                                         {listed(data.endtime)}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box">
-                                                                    <div className="card-header listing-header">
-                                                                        Status:
-                                                                    </div>
-                                                                    <div className="card-body listing-body">
-                                                                        {data.paymentstatus}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box">
-                                                                    <div className="card-header listing-header">
-                                                                        Total Price:
-                                                                    </div>
-                                                                    <div className="card-body listing-body">
-                                                                        $ {data.price.toFixed(2)}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box">
-                                                                    <div className="card-header listing-header">
-                                                                        Total Payout:
-                                                                    </div>
-                                                                    <div className="card-body listing-body">
-                                                                        $ {payout(data.price)}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -149,21 +117,6 @@ const SoldTable = ({currentRecords}) => {
                                 {listed(data.endtime)}
                             </span>
                         </td>
-                        <td className={`side-td-${key}`}>
-                            <span className='time-left'>
-                                $ {data.price.toFixed(2)}
-                            </span>
-                        </td>
-                        <td className={`side-td-${key}`}>
-                            <span>
-                                $ {(data.price - payout(data.price)).toFixed(2)}
-                            </span>
-                        </td>
-                        <td className={`side-td-${key}`}>
-                            <span className='price'>
-                                $ {payout(data.price)}
-                            </span>
-                        </td>
                     </tr>
                 )
             })} 
@@ -171,4 +124,4 @@ const SoldTable = ({currentRecords}) => {
     )
 };
 
-export default SoldTable;
+export default UnsoldTable;

@@ -1,8 +1,9 @@
 import { Container } from "react-bootstrap";
 import axios from "axios";
 import authApp from '../config/firebase';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useState, useEffect } from "react";
 
 
 function Register() {
@@ -10,6 +11,8 @@ function Register() {
     const serverUrl     = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
 
     const navigate      = useNavigate();
+
+    const [ valid, setValid ] = useState(false)
 
     const handleRegister = async () => {
         const name          = document.getElementById('name').value;
@@ -20,9 +23,11 @@ function Register() {
 
         if(password !== password2) {
             error.innerHTML = 'Error: passwords must match'
+            return
         } 
         if(password.length < 6 ){
             error.innerHTML = 'Error: passwords must be at least 6 characters'
+            return
         }
         
         else{
@@ -149,10 +154,15 @@ function Register() {
                                     </svg>
                                 </span>
                             </div>
-                            <br />
+                            <div className="tos-check">
+                                <input id='tos' type="checkbox" onClick={() => setValid(!valid)}/> &nbsp;
+                                <label htmlFor="tos">I have read and agree to the</label>
+                                <p>
+                                    <Link className='link' target="_blank" rel="noopener noreferrer" to={'/tos'}>Terms of Service</Link>
+                                </p>
+                            </div>
                             <div id="error"></div>
-                            <br />
-                            <button className="submit btn btn-outline-danger" id='register' type="button" onClick={handleRegister}>
+                            <button className="submit btn btn-outline-danger" id='register' type="button" onClick={handleRegister} disabled={!valid}>
                                 Create Account
                             </button>
                             <p className="signup-link">

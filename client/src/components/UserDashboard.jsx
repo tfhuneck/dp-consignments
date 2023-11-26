@@ -2,6 +2,7 @@ import Element from "./DashElement";
 import Listings from './Activelistings';
 import Sold from "./Soldlistings";
 import Pending from './Pendinglistings'
+import Unsold from "./Unsoldlistings";
 import { today, greeting, weekDay} from './hooks/date';
 import totalBalance from "./hooks/totalBalance";
 import { useFetchData } from "./hooks/useFetchData";
@@ -59,12 +60,13 @@ function UserDashboard() {
                                     view more
                                 </>
                             )}
+                            onClick={()=> setDisplayList('activeListings')}
                         />
                     </div>
                     <div className="col">
                         <Element
                             class='dash-header' 
-                            title='Sold'
+                            title='Completed'
                             subtitle='Total Items Sold'
                             text={(
                                 <>
@@ -78,7 +80,7 @@ function UserDashboard() {
                                     view more
                                 </>
                             )}
-                            to=''
+                            onClick={()=> setDisplayList('soldListings')}
                         />
                     </div>
                     <div className="col">
@@ -98,6 +100,7 @@ function UserDashboard() {
                                     view more
                                 </>
                             )}
+                            to='/usr/credit'
                         />
                     </div>
                 </div>
@@ -107,9 +110,10 @@ function UserDashboard() {
                             class='dash-main' 
                             title={(
                                 <>
-                                    <button id="dashListActive" className="dash-list" onClick={()=> setDisplayList('activeListings')}>Active Listings</button>
+                                    <button id="dashListActive" className="dash-list" onClick={()=> setDisplayList('activeListings')}>Active</button>
                                     <button id="dashListPending" className="dash-list" onClick={()=> setDisplayList('pendingListings')}>Pending</button>
-                                    <button id="dashListSold" className="dash-list" onClick={()=> setDisplayList('soldListings')}>Sold Items</button>
+                                    <button id="dashListSold" className="dash-list" onClick={()=> setDisplayList('soldListings')}>Completed</button>
+                                    <button id="dashListUnsold" className="dash-list" onClick={()=> setDisplayList('unsoldListings')}>Unsold</button>
                                 </>
                             )}
                             text=''
@@ -118,6 +122,7 @@ function UserDashboard() {
                                     { displayList === 'activeListings' && <Listings/> }
                                     { displayList === 'pendingListings' && <Pending/>  }
                                     { displayList === 'soldListings' && <Sold/>  }
+                                    { displayList === 'unsoldListings' && <Unsold/>  }
                                 </>
                             }
                         /> 

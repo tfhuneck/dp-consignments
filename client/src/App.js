@@ -21,6 +21,7 @@ import Settings from './components/Settings';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import authApp from './config/firebase';
 import Modal from 'react-modal';
+import Tos from './components/Tos';
 
 export const AuthContext = createContext();
 
@@ -75,6 +76,7 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/about' element={<About />} />
+              <Route path='/tos' element={<Tos />} />
               <Route path='/register' element={<Register />} />
                 {userAuth && <Route path='/usr' element={<UserDashboard />} />}
                 {userAuth && <Route path='/usr/credit' element={<Credit />} />}
