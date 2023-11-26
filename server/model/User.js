@@ -15,6 +15,9 @@ const userSchema = new mongoose.Schema({
         solditems: [{
             itemid: {type: String, default: null}
         }],
+        unsolditems: [{
+            itemid: {type: String, default: null}
+        }],
         pendingitems: [{
             itemid: {type: String, default: null}
         }],

@@ -16,7 +16,7 @@ function Credit(props) {
     useEffect(() => {
         async function fetchData(){
             await axios.get(
-                // serverUrl +
+                serverUrl +
                 '/user',
                 {params:{
                         userAuth
@@ -63,17 +63,17 @@ function Credit(props) {
                                 <div className="container">
                                     <div className="row">
                                         <div className='col justify-content-center'>
-                                            <div className="card credit-box">
+                                        <div className="card credit-box">
                                                 <div className="card-header credit-header">
-                                                    Current Balance
+                                                    Sales Total Before Fees
                                                 </div>
                                                 <div className="card-body credit-body">
-                                                    $ {userData && userData.currentbalance}
+                                                    $ {totalBalance()}
                                                 </div>
                                             </div>
                                             <div className="card credit-box">
                                                 <div className="card-header credit-header">
-                                                    Total Sales Payouts
+                                                    Sales Total After Fees
                                                 </div>
                                                 <div className="card-body credit-body">
                                                     $ {totalPayout().toFixed(2)}
@@ -81,7 +81,7 @@ function Credit(props) {
                                             </div>
                                             <div className="card credit-box">
                                                 <div className="card-header credit-header">
-                                                    Total Cashouts
+                                                    Total Cashouts Withdrawn
                                                 </div>
                                                 <div className="card-body credit-body">
                                                     $ {totalCashouts(userData).toFixed(2)}
@@ -89,10 +89,10 @@ function Credit(props) {
                                             </div>
                                             <div className="card credit-box">
                                                 <div className="card-header credit-header">
-                                                    Total Sales
+                                                    Current Balance
                                                 </div>
                                                 <div className="card-body credit-body">
-                                                    $ {totalBalance()}
+                                                    $ {userData && userData.currentbalance}
                                                 </div>
                                             </div>
                                         </div>

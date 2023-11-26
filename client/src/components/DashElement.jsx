@@ -12,7 +12,7 @@ function Element(props) {
                 {props.title && (<h5 className="card-title">{props.title}</h5>)}
                 {props.subtitle && (<h6 className="card-subtitle mb-2 text-body-secondary">{props.subtitle}</h6>) }
                 {props.text && (<div className="card-text">{props.text}</div>)}
-                {props.link && (<Link to={props.to} className="card-link">{props.link}</Link>)}
+                {props.link && (<Link to={props.to} onClick={props.onClick} className="card-link">{props.link}</Link>)}
                 {props.body}
             </div>
         </div>

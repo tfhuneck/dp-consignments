@@ -18,7 +18,7 @@ function Cashout(props) {
 
     async function fetchData(){
         await axios.get(
-            // serverUrl +
+            serverUrl +
             '/user',
             {params:{
                     userAuth
@@ -33,7 +33,7 @@ function Cashout(props) {
     
     const fetchrequests = async() => {    
         await axios.get(
-            // serverUrl +
+            serverUrl +
             '/request',
             {params:{
               userAuth  
@@ -47,7 +47,7 @@ function Cashout(props) {
 
     const cancelRequest = async (requestId) => {
         axios.put(
-            // serverUrl +
+            serverUrl +
             '/request',
             {params:{
                 requestId
@@ -60,7 +60,7 @@ function Cashout(props) {
     }
 
     useEffect(() => {
-        if(userData && comment > userData.currentbalance){
+        if(userData && amount > userData.currentbalance){
             setValid(false);
         }else {setValid(true)};
     },[amount, setAmount]);
@@ -124,7 +124,7 @@ function Cashout(props) {
                                         <select type="form-select drop-form" name="type" id="type" className="form-select" onChange={(e) => setType(e.target.value)}>
                                             <option value={'break credit'}>Break Credit</option>
                                             <option value={'paypal'}>Paypal</option>
-                                            <option value={'zelle'}>Zelle</option>
+                                            <option value={'ach transfer'}>ACH Transfer</option>
                                             <option value={'venmo'}>Venmo</option>
                                             <option value={'check'}>Check</option>
                                         </select>

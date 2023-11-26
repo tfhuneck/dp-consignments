@@ -1,4 +1,5 @@
 import Container from 'react-bootstrap/Container';
+import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
 function Info() {
@@ -11,50 +12,57 @@ function Info() {
                         <div className="card-info">
                             <div className="content">
                                 <p className="heading">Consignment Rates
-                                </p><p className="para">
-                                    <table className='rates'>
-                                        <tr>
-                                            <th>
-                                                Sale Price 
-                                            </th>
-                                            <th>
-                                                Payout Rate
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                $5,000 +
-                                            </td>
-                                            <td>
-                                                97 % of Sale &nbsp; – $300
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                $1,000 - $4,999
-                                            </td>
-                                            <td>
-                                                88 % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; – &nbsp;&nbsp; 50¢
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                $25  - $999.99
-                                            </td>
-                                            <td>
-                                                85 % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; – &nbsp;&nbsp; 50¢
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                $10 - $24.99
-                                            </td>
-                                            <td>
-                                                80 % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; – &nbsp; 50¢
-                                            </td>
-                                        </tr>
-                                    </table>
                                 </p>
+                                <table className='rates'>
+                                    <tr>
+                                        <th>
+                                            Sale Price 
+                                        </th>
+                                        <th>
+                                            Payout Rate
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            $5,000 +
+                                        </td>
+                                        <td>
+                                            97 % of Sale &nbsp; – $300
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            $1,000 - $4,999
+                                        </td>
+                                        <td>
+                                            88 % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; – &nbsp;&nbsp; 50¢
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            $25  - $999.99
+                                        </td>
+                                        <td>
+                                            85 % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; – &nbsp;&nbsp; 50¢
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            $10 - $24.99
+                                        </td>
+                                        <td>
+                                            80 % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; – &nbsp; 50¢
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            under $10 
+                                        </td>
+                                        <td>
+                                            80 % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; – &nbsp; 75¢
+                                        </td>
+                                    </tr>
+                                </table>
                                 <a href='#details'>
                                     <button className="btn">Read more</button>
                                 </a>
@@ -153,19 +161,23 @@ function Info() {
                 </div>
                 <br />
                 <div className='row'> 
-                    If your card sells between $10 and $24.99 we charge a 20% consignment fee plus 50¢ listing fee.
+                    If your card sells under $10, we charge a 20% consignment fee plus 75¢ listing fee.
                 </div>
                 <br />
                 <div className='row'> 
-                    If your card sells between $25 and $999.99 we charge a 15% consignment fee plus 50¢ listing fee.
+                    If your card sells between $10 and $24.99, we charge a 20% consignment fee plus 50¢ listing fee.
                 </div>
                 <br />
                 <div className='row'> 
-                    If your card sells between $1,000 and $4,999 we charge a 12% consignment fee plus 50¢ listing fee.
+                    If your card sells between $25 and $999.99, we charge a 15% consignment fee plus 50¢ listing fee.
                 </div>
                 <br />
                 <div className='row'> 
-                    If your card sells for more than $5,000 we only charge you 3% plus $300 consignment fee. 
+                    If your card sells between $1,000 and $4,999, we charge a 12% consignment fee plus 50¢ listing fee.
+                </div>
+                <br />
+                <div className='row'> 
+                    If your card sells for more than $5,000, we only charge you 3% plus $300 consignment fee. 
                 </div>
                 <br /><br /><br />
                 <div className='row'> 
@@ -209,6 +221,15 @@ function Info() {
                         </a>
                     </div>
                 </div>
+                <br />
+                    <div className='row'>
+                        <div className='col d-flex justify-content-center home-text'>
+                            <p>
+                                <Link className='link' to={'/tos'}>Terms of Service</Link>
+                            </p>
+                        </div>
+
+                    </div>
             </Container>
         </>
     )

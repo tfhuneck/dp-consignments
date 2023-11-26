@@ -667,11 +667,13 @@ table tbody tr:last-child td:last-child {
   min-width: 8.5rem;
 }
 .accordion{
-  max-width: 49vw !important;
+  width: inherit;
+  /* max-width: 49vw !important; */
   margin-right: 0 !important;
 }
 .open{
-  max-width: 49vw !important;
+  width: inherit;
+  /* max-width: 49vw !important; */
 }
 .accordion-button{
   /* background-color: #16222c; */
@@ -747,7 +749,8 @@ table tbody tr:last-child td:last-child {
 }
 .dash-list {
   margin: 0.5rem;
-  width: 15rem;
+  min-width: 11rem;
+  max-width: 13rem;
   padding-left: 33px;
   padding-right: 33px;
   padding-bottom: 16px;
@@ -818,6 +821,7 @@ table tbody tr:last-child td:last-child {
   color: #DF1E36;
   font-weight: 400;
   font-size: small;
+  margin: 0.5rem 0 0.5rem 0;
 }
 .profile-page-img{
   height: 10rem;
@@ -1111,4 +1115,18 @@ input::file-selector-button:active {
 .error{
   font-weight: 300;
   color:#d50924;
+}
+.td-hidden{
+  transition: all 1s;
+  display: none;
+}
+td{
+  transition: all 1s;
+}
+.tos{
+  font-weight: 300 !important;
+}
+.tos-check{
+  margin-left: 1rem;
+  color: #d4e2ee;
 }

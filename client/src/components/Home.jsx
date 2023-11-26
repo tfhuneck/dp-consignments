@@ -95,6 +95,15 @@ function Home() {
                             </a>
                         </div>
                     </div>
+                    <br />
+                    <div className='row'>
+                        <div className='col d-flex justify-content-center home-text'>
+                            <p>
+                                <Link className='link' to={'/tos'}>Terms of Service</Link>
+                            </p>
+                        </div>
+
+                    </div>
                 </Container>
             </>
         )
