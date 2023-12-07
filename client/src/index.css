@@ -324,6 +324,17 @@ a{
   border-radius: 1rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+.reset {
+  position: relative;
+  font-weight: 200;
+  background-color: #474F57;
+  display: block;
+  padding: 1rem;
+  max-width: 350px;
+  margin-bottom: 4em;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
 .login::before{
   content: '';
   top: -0.25em;
@@ -332,7 +343,7 @@ a{
   margin: auto;
   z-index: -1;
   width: 350px;
-  height: 350px;
+  height: 370px;
   border-radius: 1rem;
   pointer-events: none;
   background: linear-gradient(-25deg, #DF1E36 0%, #2AB0E9 100% );
@@ -964,8 +975,80 @@ table tbody tr:last-child td:last-child {
   font-weight: 500;
   color: rgb(2, 208, 2) !important;
 }
+.btn-settings{
+  margin: 0.25rem;
+  border: none;
+  box-shadow: none;
+  background: none;
+  color: #CFE6FC;
+  outline: solid 1px #CFE6FC;
+  border-radius: 0.5rem;
+  height: 2.5rem;
+  width: 15rem;
+  text-decoration: none;
+}
+.btn-settings:hover{
+  background: #CFE6FC !important;
+  color: #474F57 !important;
+}
+.btn-settings:active{
+  border: none;
+  box-shadow: none;
+  background: #CFE6FC !important;
+  color: #474F57 !important;
+  outline: solid 1px #CFE6FC;
+  border-radius: 0.75rem;
+  height: 2.5rem;
+  width: 15rem;
+}
+.btn-settings:focus{
+  border: none;
+  box-shadow: none;
+  background: #CFE6FC !important;
+  color: #474F57 !important;
+  outline: solid 1px #CFE6FC;
+  border-radius: 0.75rem;
+  height: 2.5rem;
+  width: 15rem;
+}
+.btn-delete{
+  margin: 0.25rem;
+  border: none;
+  box-shadow: none;
+  background: none;
+  color: #d50924;
+  outline: solid 1px #d50924;
+  border-radius: 0.5rem;
+  height: 2.5rem;
+  width: 15rem;
+  text-decoration: none;
+}
+.btn-delete:hover{
+  background: #d50924 !important;
+  color: #d4e2ee !important;
+}
+.btn-delete:active{
+  border: none;
+  box-shadow: none;
+  background: #d50924 !important;
+  color: #d4e2ee !important;
+  outline: solid 1px #d50924;
+  border-radius: 0.75rem;
+  height: 2.5rem;
+  width: 15rem;
+}
+.btn-delete:focus{
+  border: none;
+  box-shadow: none;
+  background: #d50924 !important;
+  color: #474F57 !important;
+  outline: solid 1px #d50924;
+  border-radius: 0.75rem;
+  height: 2.5rem;
+  width: 15rem;
+}
 .settings{
-  margin-top: 4rem;
+  margin-top: 1rem;
   padding: 1rem;
 }
 .settings-input{
@@ -984,7 +1067,7 @@ table tbody tr:last-child td:last-child {
 .edit-avatar{
   position: absolute;
   margin-left: 3.5rem;
-  top: 16.5rem;
+  top: 13.5rem;
   font-weight: 300;
   font-size: 1.5rem;
   opacity: 0;
@@ -998,6 +1081,7 @@ table tbody tr:last-child td:last-child {
   height: 10rem;
   width: 10rem;
   border-radius: 50%;
+  margin-bottom: 1rem;
 }
 .profile-settings-img:hover{
   cursor: pointer;
@@ -1007,6 +1091,7 @@ table tbody tr:last-child td:last-child {
   opacity: 1;
 }
 .popup{
+  color: #d4e2ee;
   position: relative;
   height: 28rem;
   width: 50vw;
@@ -1083,7 +1168,7 @@ input::file-selector-button:active {
   background: none;
   color: #CFE6FC;
   outline: solid 1px #CFE6FC;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   height: 2.5rem;
   width: inherit;
   text-decoration: none;
@@ -1129,4 +1214,16 @@ td{
 .tos-check{
   margin-left: 1rem;
   color: #d4e2ee;
+}
+.popup-input{
+  margin: 1rem 0 1rem 0;
+  width: 20rem;
+}
+.hidden{
+  display: none !important;
+}
+.verify{
+  cursor: pointer;
+  text-decoration: underline;
+  color: #2AB0E9;
 }

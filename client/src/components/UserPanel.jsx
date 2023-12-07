@@ -11,11 +11,18 @@ import { useFetchData } from './hooks/useFetchData';
 function UserPanel() {
 
     // Fetch User Data Hook
-    const { userData } = useFetchData('/getuser');
-    
-    const navigate  = useNavigate();
-    const auth      = getAuth(authApp);
+    const { userData }                      = useFetchData('/getuser');
+
+    const navigate                          = useNavigate();
+    const auth                              = getAuth(authApp);
     const [ userAuth, setUserAuth ]         = useContext(AuthContext);
+    const [ profile, setProfile ]           = useState(avatar);
+
+    useEffect(() => {
+        if(userData && userData.avatar != null){
+            setProfile(userData.avatar)
+        }
+    }, [userData]);
 
     const handleLogout = () => {
         signOut(auth).then(() => {
@@ -32,7 +39,7 @@ function UserPanel() {
             <div className='card usr container-fluid'>
                 <div className='row d-flex '>
                     <div className='col d-flex justify-content-center'>
-                        <img className='profile' src={ avatar} />
+                        <img className='profile' src={profile} />
                     </div>
                 </div>
                 <div className='row d-flex '>
