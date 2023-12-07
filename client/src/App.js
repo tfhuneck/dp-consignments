@@ -6,6 +6,7 @@ import logo from './images/logo.png'
 import Home from './components/Home';
 import Info from './components/Info';
 import Login from './components/Login';
+import Reset from './components/ResetPassword'
 import Contact from './components/Contact';
 import About from './components/About';
 import Register from './components/Register';
@@ -36,6 +37,7 @@ function App() {
     onAuthStateChanged(auth, async (user) => {
       var token = ''
       if (user) {
+        // console.log(user)
         await user.getIdToken(/* forceRefresh */ true).then(function(idToken) {
           // Send token to your backend via HTTPS
           token = idToken
@@ -43,9 +45,13 @@ function App() {
           // Handle error
         });
         const userid = user.uid;
+        const email = user.email;
+        const verified = user.emailVerified;
         const userData = {
           idToken : token,
-          userid : userid
+          userid : userid,
+          email: email,
+          verified: verified
         }
         setUserAuth(userData);
       } else {
@@ -78,6 +84,7 @@ function App() {
               <Route path='/about' element={<About />} />
               <Route path='/tos' element={<Tos />} />
               <Route path='/register' element={<Register />} />
+              <Route path='/reset' element={<Reset />} />
                 {userAuth && <Route path='/usr' element={<UserDashboard />} />}
                 {userAuth && <Route path='/usr/credit' element={<Credit />} />}
                 {userAuth && <Route path='/usr/cashout' element={<Cashout />} />}

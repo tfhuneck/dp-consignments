@@ -13,7 +13,7 @@ const UserModel         = require('./model/User');
 const RequestModel      = require('./model/Cashoutrequests')
 const auth              = require('./middleware/auth');
 
-// Config
+// Environment Config
 require('dotenv').config();
 
 // Enviroment Port
@@ -37,6 +37,8 @@ app.use('/updateuser', require('./routes/updateUserRoute'));
 app.use('/getuser', require('./routes/getUserRoute'));
 app.use('/update/user', require('./routes/UpdateUserSettingsRoute'));
 app.use('/request', require('./routes/requestRoute'));
+app.use('/delete', require('./routes/deleteUserRoute'));
+app.use('/avatar', require('./routes/avatarRoute'));
 
 // app.use('/user', require('./routes/redisCacheUserRoute'));
 app.use('/user', require('./routes/getUserRoute')); // Route to get userData for user without Redis cache
@@ -52,7 +54,7 @@ app.use('/user/unsold', require('./routes/getUserUnsoldListingsRoute')); // Rout
 
 
 // Route to index file
-app.get(['/', '/info', '/login', '/contact','/about', '/register', '/usr','/usr/credit', '/usr/cashout', '/usr/message', '/usr/notifications', '/usr/profile', '/usr/settings' ], (req, res) => {
+app.get(['/', '/info', '/login', '/tos', '/contact','/about', '/register', '/usr','/usr/credit', '/usr/cashout', '/usr/message', '/usr/notifications', '/usr/profile', '/usr/settings' ], (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
 

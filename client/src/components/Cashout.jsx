@@ -18,7 +18,7 @@ function Cashout(props) {
 
     async function fetchData(){
         await axios.get(
-            serverUrl +
+            // serverUrl +
             '/user',
             {params:{
                     userAuth
@@ -33,7 +33,7 @@ function Cashout(props) {
     
     const fetchrequests = async() => {    
         await axios.get(
-            serverUrl +
+            // serverUrl +
             '/request',
             {params:{
               userAuth  
@@ -47,7 +47,7 @@ function Cashout(props) {
 
     const cancelRequest = async (requestId) => {
         axios.put(
-            serverUrl +
+            // serverUrl +
             '/request',
             {params:{
                 requestId
@@ -89,7 +89,7 @@ function Cashout(props) {
     const submitRequest = async () => {
 
         axios.post(
-            serverUrl + 
+            // serverUrl + 
             '/request',
             {
                 userData,

@@ -25,7 +25,6 @@ function Login() {
         const password                  = document.getElementById('password').value;
         const error                     = document.getElementById('error');
 
-
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
@@ -150,6 +149,9 @@ function Login() {
                             <p className="signup-link">
                                 No account? &nbsp;
                                 <a href="/register">Create Account</a>
+                            </p>
+                            <p className="signup-link">
+                                <a href="/reset">Forgot Password</a>
                             </p>
                         </form>
                     </div>

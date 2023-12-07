@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 import axios from "axios";
 import authApp from '../config/firebase';
 import { useNavigate, Link} from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { useState, useEffect } from "react";
 
 
@@ -35,7 +35,15 @@ function Register() {
                 .then(async (userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
-                    await axios.post(`/create`, {
+                    
+                    await sendEmailVerification(auth.currentUser)
+                            .then(() => {
+                                console.log('email verification sent!')
+                            });
+
+                    await axios.post(
+                        serverUrl + 
+                        `/create`, {
                         'userid': user.uid,
                         'name': name,
                         'email': email,

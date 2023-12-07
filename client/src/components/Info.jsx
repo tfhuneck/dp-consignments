@@ -112,7 +112,7 @@ function Info() {
                     <div className='col'>
                         <div className="card info-cards">
                             <div className="card-header ">
-                                List you Products
+                                List your Products
                             </div>
                             <div className="card-body y">
                                 Ship or brings us your products.

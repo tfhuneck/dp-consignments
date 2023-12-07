@@ -1,4 +1,5 @@
 import Element from "./DashElement";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useFetchData } from "./hooks/useFetchData";
 import avatar from '../images/avatar.png'
@@ -8,11 +9,19 @@ import listed from "./hooks/listed";
 function Profile(props) {
 
     // Fetch User Data Hook
-    const { userData }  = useFetchData('/user');
+    const { userData }              = useFetchData('/user');
+    const [ profile, setProfile ]   = useState(avatar);
 
     // Custom navigation hooks
-    const navigate      = useNavigate();
-    const nav           = (route) => navigate(route);
+    const navigate                  = useNavigate();
+    const nav                       = (route) => navigate(route);
+
+    useEffect(() => {
+        if(userData && userData.avatar != null){
+            setProfile(userData.avatar)
+        }
+}, [userData])
+
 
     return (
         <>
@@ -29,7 +38,7 @@ function Profile(props) {
                                     <div className="container profile-info-container">
                                         <div className="row">
                                             <div className="col">
-                                                <img className='profile-page-img' src={avatar} />
+                                                <img className='profile-page-img' src={profile} />
                                                 <div className="profile-name">
                                                     {userData ? userData.name : null}
                                                 </div>
