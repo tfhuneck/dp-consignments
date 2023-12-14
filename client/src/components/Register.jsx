@@ -42,7 +42,7 @@ function Register() {
                             });
 
                     await axios.post(
-                        serverUrl + 
+                        // serverUrl + 
                         `/create`, {
                         'userid': user.uid,
                         'name': name,

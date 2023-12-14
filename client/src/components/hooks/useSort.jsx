@@ -4,6 +4,7 @@ const ACTION = {
     SORTNAME: 'sortName',
     SORTPRICE: 'sortPrice',
     SORTTIME: 'sortTime',
+    SORTBIDS: 'sortBids'
 }
 
 function reducer(state, action) {
@@ -12,6 +13,7 @@ function reducer(state, action) {
             return {
                 sortPrice: 'default', 
                 sortTime: 'default',
+                sortBids: 'default',
                 sortName: action.value,
                 sorted: action.filter
             }
@@ -19,6 +21,7 @@ function reducer(state, action) {
             return {
                 sortName: 'default', 
                 sortTime: 'default',
+                sortBids: 'default',
                 sortPrice: action.value,
                 sorted: action.filter
             }
@@ -26,7 +29,16 @@ function reducer(state, action) {
             return {
                 sortName: 'default', 
                 sortPrice: 'default',
+                sortBids: 'default',
                 sortTime: action.value,
+                sorted: action.filter
+            }
+        case ACTION.SORTBIDS:
+            return {
+                sortName: 'default', 
+                sortPrice: 'default',
+                sortTime: 'default',
+                sortBids: action.value,
                 sorted: action.filter
             }
         default:
@@ -36,7 +48,7 @@ function reducer(state, action) {
 
 export const useSort = (data) => {
     
-     const [ state, dispatch ]                   = useReducer(reducer, { sorted: [], sortName: 'default', sortPrice: 'default', sortTime: 'default'});
+     const [ state, dispatch ]                   = useReducer(reducer, { sorted: [], sortName: 'default', sortPrice: 'default', sortTime: 'default', sortBids: 'default'});
 
      const handleSortName = () =>{
          if(state.sortName === 'default'){
@@ -80,6 +92,20 @@ export const useSort = (data) => {
              dispatch({ type: ACTION.SORTTIME, value:'ascend', filter: sorted  });
          }
      }
+     const handleSortBids = () =>{
+         if(state.sortBids === 'default'){
+             let sorted = data.sort((a,b) => (a.bidcount > b.bidcount ? 1: -1));
+             dispatch({ type: ACTION.SORTBIDS, value:'ascend', filter: sorted });
+         }
+         if(state.sortBids === 'ascend'){
+             let sorted = data.sort((a,b) => (a.bidcount < b.bidcount ? 1: -1));
+             dispatch({ type: ACTION.SORTBIDS, value:'descend', filter: sorted  });
+         }
+         if(state.sortBids === 'descend'){
+             let sorted = data.sort((a,b) => (a.bidcount > b.bidcount ? 1: -1));
+             dispatch({ type: ACTION.SORTBIDS, value:'ascend', filter: sorted  });
+         }
+     }
      
-    return {state, handleSortName, handleSortPrice, handleSortTime} 
+    return {state, handleSortName, handleSortPrice, handleSortTime, handleSortBids} 
 }

@@ -4,9 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { useFetchData } from "./hooks/useFetchData";
 import avatar from '../images/avatar.png'
 import listed from "./hooks/listed";
-
+import totalCashouts from "./hooks/totalCashouts";
+import { useRules } from './hooks/useRules';
 
 function Profile(props) {
+    
+    // Check for Rules agreement
+    useRules();
 
     // Fetch User Data Hook
     const { userData }              = useFetchData('/user');
@@ -22,19 +26,17 @@ function Profile(props) {
         }
 }, [userData])
 
-
     return (
         <>
             <div className="user-dash">
                 <div className="row">
                     <div className="col">
                         <Element
-                            class='dash-element' 
+                            class='profile-element' 
                             title='Profile'
                             subtitle=''
                             body={(
                                 <>
-                                    <br /><br />
                                     <div className="container profile-info-container">
                                         <div className="row">
                                             <div className="col">
@@ -44,35 +46,79 @@ function Profile(props) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="row d-flex justify-content-evenly">
-                                            <button className="col profile-info" onClick={() => nav('/usr/settings')} >
-                                                Email Address: &nbsp; &nbsp;
-                                                {userData ? userData.email : null}
-                                            </button>
-                                            <button className="col profile-info" onClick={() => nav('/usr')} >
-                                                Current Active Listings: &nbsp; &nbsp;
-                                                {userData ? userData.activeitems.length : null}
-                                            </button>
-                                        </div>
-                                        <div className="row d-flex justify-content-evenly">
-                                            <button className="col profile-info" onClick={() => nav('/usr/settings')} >
-                                                Phone Number: &nbsp; &nbsp;
-                                                {userData ? userData.phone : null}
-                                            </button>
-                                            <button className="col profile-info" onClick={() => nav('/usr/')} >
-                                                Number of Sold Items: &nbsp; &nbsp;
-                                                {userData ? userData.solditems.length : null}
-                                            </button>
-                                        </div>
-                                        <div className="row d-flex justify-content-evenly">
-                                            <button className="col profile-info" onClick={() => nav('/usr/settings')} >
-                                                Address: &nbsp; &nbsp;
-                                                {userData ? userData.address : null}
-                                            </button>
-                                            <button className="col profile-info"  >
-                                                Account created on: &nbsp; &nbsp;
-                                                {userData ? listed(userData.createdAt) : null}
-                                            </button>
+                                        <div className="profile-info-box">
+                                            <div className="row">
+                                                <div className="col">
+                                                    <h6>
+                                                        Contact Info
+                                                    </h6>
+                                                </div>
+                                                <div className="col">
+                                                    <h6>
+                                                        Consignments
+                                                    </h6>
+                                                </div>
+                                                <div className="col">
+                                                    <h6>
+                                                        Balance
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div className="row d-flex justify-content-evenly">
+                                                <div className="col profile-info">
+                                                    Email Address: <br /> 
+                                                    {userData ? userData.email : null}
+                                                </div>
+                                                <div className="col profile-info">
+                                                    Active Listings: &nbsp; 
+                                                    {userData ? userData.activeitems.length : null}
+                                                </div>
+                                                <div className="col profile-info">
+                                                    Current Balance: &nbsp; 
+                                                    {userData ? '$ '+ userData.currentbalance : null}
+                                                </div>
+                                            </div>
+                                            <div className="row d-flex justify-content-evenly">
+                                                <div className="col profile-info">
+                                                    Phone Number: <br /> 
+                                                    {userData ? userData.phone : null}
+                                                </div>
+                                              
+                                                <div className="col profile-info">
+                                                    Sold Items: &nbsp; 
+                                                    {userData ? userData.solditems.length : null}
+                                                </div>
+                                                <div className="col profile-info">
+                                                    Cashouts: &nbsp; 
+                                                    {userData ? userData.cashouts.length : null}
+                                                </div>
+                                            </div>
+                                            <div className="row d-flex justify-content-evenly">
+                                                <div className="col profile-info">
+                                                    Address: <br /> 
+                                                    {userData ? userData.address : null}
+                                                </div>
+                                                <div className="col profile-info">
+                                                    Pending Items: &nbsp; 
+                                                    {userData ? userData.pendingitems.length : null}
+                                                </div>
+                                                <div className="col profile-info">
+                                                    Cashouts Total:  &nbsp; 
+                                                    {userData ? '$ '+ totalCashouts(userData).toFixed(2) : null}
+                                                </div>
+                                            </div>
+                                            <div className="row d-flex justify-content-evenly">
+                                                <div className="col profile-info">
+                                                    Accounted created on: <br />
+                                                    {userData ? listed(userData.createdAt) : null}
+                                                </div>
+                                                <div className="col profile-info">
+                                                    Unsold Items: &nbsp; 
+                                                    {userData ? userData.unsolditems.length : null}
+                                                </div>
+                                                <div className="col profile-info">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </>

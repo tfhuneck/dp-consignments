@@ -5,9 +5,12 @@ import axios from 'axios';
 import listed from "./hooks/listed";
 import payout from './hooks/payout'
 import totalCashouts from "./hooks/totalCashouts";
+import { useRules } from './hooks/useRules';
 
 function Credit(props) {
-
+    
+    // Check for Rules agreement
+    useRules();
     const [ userAuth, setUserAuth ]         = useContext(AuthContext);
     const [ userData, setUserData ]         = useState();
     const serverUrl                         = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;

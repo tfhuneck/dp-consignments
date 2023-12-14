@@ -11,8 +11,7 @@ function Info() {
                     <div className='col d-flex justify-content-center'> 
                         <div className="card-info">
                             <div className="content">
-                                <p className="heading">Consignment Rates
-                                </p>
+                                <p className="heading">Consignment Rates</p>
                                 <table className='rates'>
                                     <tr>
                                         <th>
@@ -32,7 +31,7 @@ function Info() {
                                     </tr>
                                     <tr>
                                         <td>
-                                            $1,000 - $4,999
+                                            $1,000 - $4,999 &nbsp;&nbsp;
                                         </td>
                                         <td>
                                             88 % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; – &nbsp;&nbsp; 50¢
@@ -82,7 +81,7 @@ function Info() {
                 <br /><br />
                 <div className='row'>
                     <div className='col d-flex justify-content-center home-text'>
-                        <h5 className='home-header'>
+                        <h5 className='home-header info-header'>
                             We are a brick and mortar hobby shop located in the heart of Sacramento. 
                             We are very experienced in listing and auctioning sports and trading cards 
                             effectively, to achieve high sale prices. If you are looking to move a large quantity of 
@@ -100,34 +99,40 @@ function Info() {
                 <br />
                 <div className='row'> 
                     <div className='col'>
-                        <div className="card info-cards">
-                            <div className="card-header ">
-                                Sign up 
+                        <a href="/register">
+                            <div className="card info-cards">
+                                <div className="card-header ">
+                                    Sign up 
+                                </div>
+                                <div className="card-body">
+                                    Make a profile in less than 1 minute.
+                                </div>
                             </div>
-                            <div className="card-body">
-                                Make a profile in less than 1 minute.
-                            </div>
-                        </div>
+                        </a>
                     </div>
                     <div className='col'>
-                        <div className="card info-cards">
-                            <div className="card-header ">
-                                List your Products
+                        <a href="/register">
+                            <div className="card info-cards">
+                                <div className="card-header ">
+                                    List your Products
+                                </div>
+                                <div className="card-body y">
+                                    Ship or brings us your products.
+                                </div>
                             </div>
-                            <div className="card-body y">
-                                Ship or brings us your products.
-                            </div>
-                        </div>
+                        </a>
                     </div>
                     <div className='col'>
-                        <div className="card info-cards">
-                            <div className="card-header ">
-                                Cashout
+                        <a href="/register"> 
+                            <div className="card info-cards">
+                                <div className="card-header ">
+                                    Cashout
+                                </div>
+                                <div className="card-body ">
+                                    Track your listings, and get paid.
+                                </div>
                             </div>
-                            <div className="card-body ">
-                                Watch your listings, and get paid.
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <br />
@@ -192,8 +197,9 @@ function Info() {
                     </h4>
                 </div>
                 <div className='row'> 
-                    We allow absolutetly no bidding on your own listings, by you or any friends or associates. Any violations of this 
-                    policy will result in a ban of all consignment services. 
+                We value the integrity of our customers and the card community, 
+                therefore we will not condone in shill bidding of your own or anyone’s items. 
+                Anyone found doing so, will result in a Ban from consigning with us.  
                 </div>
                 <br />
                 <div className='row'> 
@@ -202,7 +208,7 @@ function Info() {
                     </h4>
                 </div>
                 <div className='row'> 
-                    Any listings that ends with 0 bids, will be returned at your cost or is otherwise forfeited to the shop.....
+                    Any listings that ends with 0 bids, will be released to D&P Sports Cards.
                 </div>
                 <br />
                 <div className='row'> 
@@ -214,10 +220,20 @@ function Info() {
                     Any Listing that has concluded in a sale, requires a 2 week period for the sale to finalize and the payment from the buyer to be processed.
                     Once the payment has been recieved and the card has been sent to the buyer succesfully, the payout balance will be available to you.
                 </div>
+                <br />
+                <div className='row'> 
+                    <h4>
+                        Canceled Sales
+                    </h4>
+                </div>
+                <div className='row'> 
+                    In case a listing has concluded in a sale, but the buyer cancels the sale or fails to pay for the item within the required timeframe, 
+                    the sale will count as unsold. In this case the item will be relisted for a second consignment.
+                </div>
                 <div className='row'>
                     <div className='col d-flex justify-content-center '>
                         <a href="/register">
-                            <Button className='info-btn' variant="danger">Register Now</Button>
+                            <Button className='info-btn mobile-btn-info' variant="danger">Register Now</Button>
                         </a>
                     </div>
                 </div>

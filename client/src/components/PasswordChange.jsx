@@ -16,7 +16,6 @@ const PasswordChange = ({id}) => {
     const [ repeatPassword, setRepeatPassword]  = useState();
     const auth                                  = getAuth(authApp);
     const user                                  = auth.currentUser;
-    const serverUrl                             = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
     const errors = {
         error1 : 'error: old password is incorrect',
         error2 : 'error: new password must be at least 6 characters',

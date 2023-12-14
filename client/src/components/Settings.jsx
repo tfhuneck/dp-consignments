@@ -10,8 +10,12 @@ import authApp from '../config/firebase';
 import PasswordChange from "./PasswordChange";
 import UpdateLogin from "./UpdateLogin";
 import DeleteUser from "./DeleteUser";
+import { useRules } from './hooks/useRules';
 
 function Settings(props) {
+    
+    // Check for Rules agreement
+    useRules();
 
     const [ userAuth, setUserAuth ]         = useContext(AuthContext);
     const [ profile, setProfile ]           = useState(avatar);
@@ -41,7 +45,7 @@ function Settings(props) {
         phone.value = phone.value === '' ? phone.placeholder : phone.value;
 
         await axios.post(
-            serverUrl + 
+            // serverUrl + 
             '/update/user', 
             {
                 'userid': userAuth.userid,

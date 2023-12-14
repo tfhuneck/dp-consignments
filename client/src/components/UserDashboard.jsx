@@ -3,18 +3,38 @@ import Listings from './Activelistings';
 import Sold from "./Soldlistings";
 import Pending from './Pendinglistings'
 import Unsold from "./Unsoldlistings";
-import { today, greeting, weekDay} from './hooks/date';
 import totalBalance from "./hooks/totalBalance";
 import { useFetchData } from "./hooks/useFetchData";
+import { useActiveTotal } from './hooks/useActiveTotal'
+import { usePendingTotal } from "./hooks/usePendingTotal";
+
 import { useDisplayList } from "./hooks/useDisplayList";
+import { useRules } from './hooks/useRules';
 
 function UserDashboard() {
+
+    // Check for Rules agreement
+    useRules();
 
     // Fetch User Data Hook
     const { userData } = useFetchData('/user');
 
+    // Fetch Active totals Payouts
+    const { activeTotal } = useActiveTotal();
+
+    // Fetch Pending totals Payouts
+    const { pendingTotal } = usePendingTotal();
+
     // Set Button active and display correct List hook
     const { displayList, setDisplayList } = useDisplayList();
+
+    const totalSold = () => {
+        if(userData && userData.balance.length > 0){
+            return userData.balance.map(i => i.payout).reduce((prev, next)=> (prev + next)).toFixed(2);
+        } else {
+            return 0
+        }
+    }
 
     return (
         <>
@@ -23,21 +43,28 @@ function UserDashboard() {
                     <div className="col">
                         <Element
                             class='dash-header' 
-                            title={greeting()}
-                            subtitle={(
-                                <>
-                                    {userData ? userData.name : null}
-                                </>
-                            )}
+                            title='Active'
+                            subtitle='Consignments'
                             text={(
                                 <>
-                                    <div>
-                                        <b>
-                                            {weekDay()}
-                                        </b>   
-                                    </div>
-                                    <div className='date'>
-                                        {today()}
+                                    <div className="dash-header-content container">
+                                        <div className="row">
+                                            <div className="col dash-header-txt">
+                                                Listings:
+                                            </div> 
+                                            <div className=" col dash-header-num num ">
+                                                &nbsp;
+                                                {userData ? userData.activeitems.length : 0} 
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                        <div className="col dash-header-txt">
+                                               Payout:
+                                            </div> 
+                                            <div className="col dash-header-num total">
+                                                {activeTotal ? `$${activeTotal}` : `$ 0.00`}
+                                            </div>
+                                        </div>
                                     </div>
                                 </>
                             )}
@@ -46,61 +73,77 @@ function UserDashboard() {
                     <div className="col">
                         <Element
                             class='dash-header' 
-                            title='Consignments'
-                            subtitle='Current Active Listings'
+                            title='Pending'
+                            subtitle='Sold Consignments'
                             text={(
                                 <>
-                                    <div className="dash-header-num">
-                                        {userData ? userData.activeitems.length : 0}
+                                <div className="dash-header-content container">
+                                    <div className="row">
+                                        <div className="col dash-header-txt">
+                                            Listings:
+                                        </div> 
+                                        <div className=" col dash-header-num num ">
+                                            &nbsp;
+                                            {userData ? userData.pendingitems.length : 0} 
+                                        </div>
                                     </div>
-                                </>
+                                    <div className="row">
+                                    <div className="col dash-header-txt">
+                                            Payout:
+                                        </div> 
+                                        <div className="col dash-header-num total">
+                                            {pendingTotal ? `$${pendingTotal}` : `$ 0.00`}
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
                             )}
-                            link={(
-                                <>
-                                    view more
-                                </>
-                            )}
-                            onClick={()=> setDisplayList('activeListings')}
                         />
                     </div>
                     <div className="col">
                         <Element
                             class='dash-header' 
                             title='Completed'
-                            subtitle='Total Items Sold'
+                            subtitle='Sold Consignments'
                             text={(
                                 <>
-                                    <div className="dash-header-num">
-                                        {userData ? userData.solditems.length : 0}
+                                    <div className="dash-header-content container">
+                                        <div className="row">
+                                            <div className="col dash-header-txt">
+                                                Listings:
+                                            </div> 
+                                            <div className=" col dash-header-num num ">
+                                                &nbsp;
+                                                {userData ? userData.solditems.length : 0}
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                        <div className="col dash-header-txt">
+                                               Payout:
+                                            </div> 
+                                            <div className="col dash-header-num total">
+                                                {totalSold ? `$${totalSold()}` : `$ 0.00`}
+                                            </div>
+                                        </div>
                                     </div>
                                 </>
                             )}
-                            link={(
-                                <>
-                                    view more
-                                </>
-                            )}
-                            onClick={()=> setDisplayList('soldListings')}
                         />
                     </div>
                     <div className="col">
                         <Element
                             class='dash-header' 
-                            title='Credit'
-                            subtitle='Balance'
+                            title='Wallet'
+                            subtitle='Account Balance'
                             text={(
                                 <>
-                                    <div className="dash-header-num">
+                                 <div className="dash-header-content">
+                                        <div className="total-balance">
                                         $ {userData ? userData.currentbalance.toFixed(2) : 0}
+                                        </div>
                                     </div>
                                 </>
                             )}
-                            link={(
-                                <>
-                                    view more
-                                </>
-                            )}
-                            to='/usr/credit'
                         />
                     </div>
                 </div>

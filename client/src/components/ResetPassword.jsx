@@ -10,7 +10,6 @@ function Reset() {
     const auth                      = getAuth(authApp);
     const provider                  = new GoogleAuthProvider();
     const navigate                  = useNavigate();
-    const serverUrl                 = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
 
     useEffect(()=> {
         if(userAuth){

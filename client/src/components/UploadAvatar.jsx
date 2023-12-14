@@ -31,7 +31,7 @@ const Popup = ({id}) => {
         const error     = document.getElementById('error');
         error.innerHTML = 'Uploading Image ...'
         const res = await axios.get(
-            serverUrl + 
+            // serverUrl + 
             '/avatar')
         const url = res.data;
         console.log(url);
@@ -46,15 +46,17 @@ const Popup = ({id}) => {
             console.log(imageUrl)
             
             await axios.post(
-                serverUrl +
+                // serverUrl +
                 '/avatar',
                 {
                     'userid' : userid,
                     'avatar': imageUrl
                 }
             )
-                .then(res => console.log(res.data));
-                window.location.reload(false);
+                .then(res => {
+                    console.log(res.data);
+                    window.location.reload(false);
+                });
         })
         .catch((err) =>{ 
             console.log(err);
@@ -86,7 +88,7 @@ const Popup = ({id}) => {
                         </div>
                         <br /><br />
                         <div className='row d-flex justify-content-center'>
-                                <button className='dash-list settings-submit' onClick={handleSubmit}>Submit</button>
+                                <button className="btn-settings settings-submit"  onClick={handleSubmit}>Submit</button>
                         </div>
                     </div>
             </Modal>

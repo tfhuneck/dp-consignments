@@ -9,6 +9,8 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { ReactComponent as Instagram } from '../images/instagram.svg';
 import { ReactComponent as Facebook } from '../images/facebook.svg'
 import { ReactComponent as Youtube } from '../images/youtube.svg'
+import { ReactComponent as Tiktok } from '../images/tiktok.svg'
+import { ReactComponent as Whatnot } from '../images/whatnot.svg'
 
 
 function Home() {
@@ -93,13 +95,19 @@ function Home() {
                             <a className='link' href="https://www.youtube.com/channel/UCncAlcBPo_DijZvtnPu0tiA" target="_blank">
                                 <Youtube className='socials' />
                             </a>
+                            <a className='link' href="https://www.tiktok.com/@dandpsportscards?lang=en" target="_blank">
+                                <Tiktok className='socials' />
+                            </a>
+                            <a className='link' href="https://www.whatnot.com/user/dandpcards" target="_blank">
+                                <Whatnot className='socials' />
+                            </a>
                         </div>
                     </div>
                     <br />
                     <div className='row'>
                         <div className='col d-flex justify-content-center home-text'>
                             <p>
-                                <Link className='link' to={'/tos'}>Terms of Service</Link>
+                                <Link className='link' to={'/tos'}  target="_blank">Terms of Service</Link>
                             </p>
                         </div>
 
