@@ -10,32 +10,60 @@ const PendingTable = ({currentRecords}) => {
 
     const handleCollapse = async (id) => {
        
-        const expandBox = await document.getElementById(`main-td-${id}`);
-        const sideTds = await document.getElementsByClassName(`side-td-${id}`);
+        const expandBox         = await document.getElementById(`main-td-${id}`);
+        const expandAccordion   = await document.getElementById(`accordion-${id}`);
+        const sideTds           = await document.getElementsByClassName(`side-td-${id}`);
+        const box1              = await document.getElementById(`box1-${id}`);
+        const box2              = await document.getElementById(`box2-${id}`);
+        const box3              = await document.getElementById(`box3-${id}`);
+        const box4              = await document.getElementById(`box4-${id}`);
+        const box5              = await document.getElementById(`box5-${id}`);
+        const box6              = await document.getElementById(`box6-${id}`);
+        const listingimg        = await document.getElementById(`listing-img-${id}`)
 
-            if(expandBox.getAttribute('colspan')){
-                setTimeout(() => {
-                    expandBox.removeAttribute('colspan')   
-                    try {
-                        for (var i in sideTds) {
-                              sideTds[i].classList.remove('td-hidden');
-                          }
-                    } catch(err){
-                        console.log(err)
-                    }
-                }, 300)
-    
-            } else{
-                // setTimeout(() =>, 300)
-                expandBox.setAttribute('colspan', '5')
-                try {
-                    for (var i in sideTds) {
-                          sideTds[i].classList.add('td-hidden');
-                      }
-                } catch(err){
-                    console.log(err)
+        if(expandBox.getAttribute('colspan')){
+            box1.classList.remove('listing-show');
+            box2.classList.remove('listing-show');
+            box3.classList.remove('listing-show');
+            box4.classList.remove('listing-show');
+            box5.classList.remove('listing-show');
+            box6.classList.remove('listing-show');
+            // listingimg.classList.remove('listing-show');
+            expandAccordion.classList.add('listing-collapse');
+            
+            setTimeout(() => {
+                expandBox.removeAttribute('colspan');  
+                expandAccordion.classList.remove('listing-expand');
+            try {
+                for (var i in sideTds) {
+                    sideTds[i].classList.remove('td-hidden');
                 }
+            } catch(err){
+                console.log(err)
             }
+            }, 500)
+            
+        } else{
+            expandBox.setAttribute('colspan', '5');
+            expandAccordion.classList.add('listing-expand');
+            expandAccordion.classList.remove('listing-collapse');
+            try {
+                for (var i in sideTds) {
+                    sideTds[i].classList.add('td-hidden');
+                }
+            } catch(err){
+                console.log(err)
+            }
+
+            setTimeout(() => {
+                box1.classList.add('listing-show');
+                box2.classList.add('listing-show');
+                box3.classList.add('listing-show');
+                box4.classList.add('listing-show');
+                box5.classList.add('listing-show');
+                box6.classList.add('listing-show');
+            }, 500);
+        }
     }
 
     return (
@@ -44,7 +72,7 @@ const PendingTable = ({currentRecords}) => {
                 return(
                     <tr key={key}>
                         <td id={`main-td-${key}`}>
-                            <div className="accordion">
+                            <div className="accordion" id={`accordion-${key}`}>
                                 <div className="accordion-item">
                                     <h2 className="accordion-header">
                                         <button 
@@ -64,11 +92,12 @@ const PendingTable = ({currentRecords}) => {
                                             <div className='container'>
                                                 <div className='row'>
                                                     <div className='col-sm-6'>
-                                                        <Element
+                                                        <Element     
+                                                            id={`listing-img-${key}`}
                                                             class='listing-img' 
                                                             body={(
                                                                 <>
-                                                                    <img src={placeholder} className='product-img' />
+                                                                    <img src={data.imageurl ? data.imageurl : placeholder} className='product-img' />
                                                                 </>
                                                             )}
                                                         />    
@@ -76,7 +105,7 @@ const PendingTable = ({currentRecords}) => {
                                                     <div className='col'>
                                                         <div className='row'>
                                                             <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box">
+                                                                <div className="card listing-box" id={`box1-${key}`}>
                                                                     <div className="card-header listing-header">
                                                                         View on
                                                                     </div>
@@ -86,7 +115,7 @@ const PendingTable = ({currentRecords}) => {
                                                                 </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box">
+                                                                <div className="card listing-box" id={`box2-${key}`}>
                                                                     <div className="card-header listing-header">
                                                                         Listed on
                                                                     </div>
@@ -96,7 +125,7 @@ const PendingTable = ({currentRecords}) => {
                                                                 </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box">
+                                                                <div className="card listing-box" id={`box3-${key}`}>
                                                                     <div className="card-header listing-header">
                                                                         Sold on:
                                                                     </div>
@@ -106,7 +135,7 @@ const PendingTable = ({currentRecords}) => {
                                                                 </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box">
+                                                                <div className="card listing-box" id={`box4-${key}`}>
                                                                     <div className="card-header listing-header">
                                                                         Status:
                                                                     </div>
@@ -116,21 +145,21 @@ const PendingTable = ({currentRecords}) => {
                                                                 </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box">
+                                                                <div className="card listing-box" id={`box5-${key}`}>
                                                                     <div className="card-header listing-header">
                                                                         Total Price:
                                                                     </div>
-                                                                    <div className="card-body listing-body">
+                                                                    <div className="card-body listing-body num">
                                                                         $ {data.price.toFixed(2)}
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box">
+                                                                <div className="card listing-box" id={`box6-${key}`}>
                                                                     <div className="card-header listing-header">
                                                                         Total Payout:
                                                                     </div>
-                                                                    <div className="card-body listing-body">
+                                                                    <div className="card-body listing-body total">
                                                                         $ {payout(data.price)}
                                                                     </div>
                                                                 </div>

@@ -19,6 +19,8 @@ import Messenger from './components/Messenger';
 import Notifications from './components/Notifications';
 import Profile from './components/Profile';
 import Settings from './components/Settings';
+import UserInfo from './components/UserInfo';
+import Rules from './components/Rules';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import authApp from './config/firebase';
 import Modal from 'react-modal';
@@ -31,6 +33,7 @@ Modal.setAppElement(document.getElementById('root'));
 function App() {
   const auth                      = getAuth(authApp);
   const [ userAuth, setUserAuth ] = useState(null);
+  
   // var userData = {};
 
   useEffect (() => {
@@ -77,7 +80,7 @@ function App() {
               {userAuth && <UserPanel />}
             </div>
             <Routes>
-              <Route path='/' index element={<Home />} />
+              <Route exact path='/' index element={<Home />} />
               <Route path='/info' element={<Info />} />
               <Route path='/login' element={<Login />} />
               <Route path='/contact' element={<Contact />} />
@@ -92,6 +95,8 @@ function App() {
                 {userAuth && <Route path='/usr/notifications' element={<Notifications />} />}
                 {userAuth && <Route path='/usr/profile' element={<Profile />} />}
                 {userAuth && <Route path='/usr/settings' element={<Settings />} />}
+                {userAuth && <Route path='/usr/userinfo' element={<UserInfo />} />}
+                {userAuth && <Route path='/usr/rules' element={<Rules />} />}
             </Routes>
           </div>
         </BrowserRouter>

@@ -39,6 +39,8 @@ app.use('/update/user', require('./routes/UpdateUserSettingsRoute'));
 app.use('/request', require('./routes/requestRoute'));
 app.use('/delete', require('./routes/deleteUserRoute'));
 app.use('/avatar', require('./routes/avatarRoute'));
+app.use('/mail', require('./routes/sendMailRoute'));
+app.use('/acceptrules', require('./routes/acceptRulesRoute'));
 
 // app.use('/user', require('./routes/redisCacheUserRoute'));
 app.use('/user', require('./routes/getUserRoute')); // Route to get userData for user without Redis cache
@@ -54,7 +56,7 @@ app.use('/user/unsold', require('./routes/getUserUnsoldListingsRoute')); // Rout
 
 
 // Route to index file
-app.get(['/', '/info', '/login', '/tos', '/contact','/about', '/register', '/usr','/usr/credit', '/usr/cashout', '/usr/message', '/usr/notifications', '/usr/profile', '/usr/settings' ], (req, res) => {
+app.get(['/', '/info', '/login', '/tos', '/contact','/about', '/register', '/usr','/usr/credit', '/usr/cashout', '/usr/message', '/usr/notifications', '/usr/profile', '/usr/settings', 'usr/rules' ], (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
 

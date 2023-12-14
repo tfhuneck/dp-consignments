@@ -3,8 +3,12 @@ import { AuthContext } from '../App';
 import Element from "./DashElement";
 import axios from 'axios';
 import {today} from './hooks/date'
+import { useRules } from './hooks/useRules';
 
 function Cashout(props) {
+
+    // Check for Rules agreement
+    useRules();
 
     const serverUrl                         = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
     const date                              = today();

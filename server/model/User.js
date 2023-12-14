@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
         avatar: { type: String, default: null},
         skucode: {type: String, default: 'assign_sku'},
         currentbalance: {type: Number, default: 0},
+        rules: {type: Boolean, default: false},
         activeitems: [{
             itemid: {type: String, default: null}
         }],

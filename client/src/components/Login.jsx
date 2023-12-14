@@ -127,7 +127,6 @@ function Login() {
                                 </span>
                             </div>
                             <div id="error"></div>
-                            <br />
                             <button className="submit btn btn-outline-danger" type="button" onClick={handleLogin} >
                                 Sign in
                             </button>
@@ -146,6 +145,7 @@ function Login() {
                             </svg>
                                 Sign in with Facebook 
                             </button> */}
+                            <br />
                             <p className="signup-link">
                                 No account? &nbsp;
                                 <a href="/register">Create Account</a>

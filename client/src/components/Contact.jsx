@@ -1,17 +1,73 @@
 import { Container } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Contact() {
+
+    const serverUrl                     = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
+    const validRegex  = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const errors = {
+        error1 : 'Please enter a name.',
+        error2 : 'Please enter a valid email address.',
+        error3 : 'Please enter a message.',
+        error4 : 'An error has occurred.'
+    }
+
+    const [ name, setName ]         = useState();
+    const [ sender, setSender]      = useState();
+    const [ message, setMessage ]   = useState();
+
+    const sendMessage = async () => {
+
+        
+
+        const error = document.getElementById('error');
+
+        if(!name){
+            error.innerHTML = errors.error1;
+            return;
+        }
+        if(!sender || !sender.match(validRegex)){
+            error.innerHTML = errors.error2;
+            return;
+        }
+        if(!message){
+            error.innerHTML = errors.error3;
+            return
+        }
+
+
+        await axios.post(
+            // serverUrl + 
+            '/mail',
+            {
+                'name'      : name,
+                'sender'    : sender,
+                'message'   : message
+        })
+        .then(async res => {
+            console.log(res.data);
+            error.innerHTML = 'success: Message was sent.';
+        })
+        .catch((err) => {
+            console.log(err);
+            error.innerHTML = errors.error4;
+        });
+
+
+
+    }
+
 
     return (
         <>
             <Container>
                 <div className='row'>
                     <div className='col d-flex justify-content-center'> 
-                        <div className='background-box'></div>
-                        <form className="contact">
+                        <div className="contact">
                             <p className="login-title">Contact Us</p>
                             <div className="input-container">
-                                <input placeholder="Enter name" type="text" />
+                                <input placeholder="Enter name" type="text" id='name' onChange={(e) => setName(e.target.value)} />
                                 <span>
                                 <svg
                                         stroke="currentColor"
@@ -31,7 +87,7 @@ function Contact() {
                                 </span>
                             </div>
                             <div className="input-container">
-                                <input placeholder="Enter email" type="email" />
+                                <input placeholder="Enter email" type="email" id='email' onChange={(e) => setSender(e.target.value)} />
                                 <span>
                                     <svg
                                         stroke="currentColor"
@@ -49,15 +105,19 @@ function Contact() {
                                 </span>
                             </div>
                             <div className="input-container">
-                                <textarea className="form-control" placeholder="Enter Message" type="text" rows="3" />
+                                <textarea className="form-control" placeholder="Enter Message" type="text" rows="3" id='message' onChange={(e) => setMessage(e.target.value)}/>
                             </div>
-                            <button className="submit btn btn-outline-danger" type="submit">
+                            <button className="submit btn btn-outline-danger" type="submit" onClick={sendMessage} >
                                 Submit
                             </button>
-                        </form>
+                        </div>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="error col d-flex justify-content-center" id="error"></div>
+                </div>
             </Container>
+
         </>
     )
 }

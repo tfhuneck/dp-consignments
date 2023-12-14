@@ -6,6 +6,7 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import authApp from '../config/firebase';
 import { getAuth, signOut } from "firebase/auth";
 import { useFetchData } from './hooks/useFetchData';
+import { today, greeting, weekDay} from './hooks/date';
 
 
 function UserPanel() {
@@ -43,9 +44,19 @@ function UserPanel() {
                     </div>
                 </div>
                 <div className='row d-flex '>
-                    <div className='col d-flex justify-content-center'>
+                    <div className='col d-flex justify-content-center usr-pnl'>
+                        <br />
+                        {greeting()}
                         <br />
                         {userData && userData.name}
+                    </div>
+                </div>
+                <div className='row d-flex '>
+                    <div className='col d-flex justify-content-center usr-pnl'>
+                        <br />
+                        {weekDay()}
+                        <br />
+                        {today()}
                     </div>
                 </div>
                 <div className='card-body d-flex flex-column justify-content-evenly'>

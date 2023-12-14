@@ -51,7 +51,7 @@ const UpdateLogin = ({id}) => {
                 .then(async() => {
                     // User deleted.
                     await axios.post(
-                        serverUrl +
+                        // serverUrl +
                         '/delete',
                         {userAuth}
                     )

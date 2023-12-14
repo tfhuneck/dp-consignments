@@ -1,13 +1,21 @@
 import { Container } from "react-bootstrap";
+import logo from '../images/logo.png' 
 
 function About() {
     
     return (
         <>
             <Container>
+                <div className="row">
+                    <div>
+                        <div className="col">
+                            <img src={logo} className='logoabout' />
+                        </div>
+                    </div>
+                </div>
                 <div className='row'>
                     <div className='col d-flex justify-content-center home-text'>
-                        <h5 className='home-header'>
+                        <h5 className='home-header about'>
                             We are a brick and mortar hobby shop located in the heart of Sacramento, 
                             and are very experienced in listing and auctioning sports and trading cards 
                             effectively, to achieve high sale prices. If you are looking to move a large quantity of 
