@@ -13,24 +13,12 @@ const PendingTable = ({currentRecords}) => {
         const expandBox         = await document.getElementById(`main-td-${id}`);
         const expandAccordion   = await document.getElementById(`accordion-${id}`);
         const sideTds           = await document.getElementsByClassName(`side-td-${id}`);
-        const box1              = await document.getElementById(`box1-${id}`);
-        const box2              = await document.getElementById(`box2-${id}`);
-        const box3              = await document.getElementById(`box3-${id}`);
-        const box4              = await document.getElementById(`box4-${id}`);
-        const box5              = await document.getElementById(`box5-${id}`);
-        const box6              = await document.getElementById(`box6-${id}`);
-        const listingimg        = await document.getElementById(`listing-img-${id}`)
+        const details           = await document.getElementById(`listing-detail${id}`);
 
         if(expandBox.getAttribute('colspan')){
-            box1.classList.remove('listing-show');
-            box2.classList.remove('listing-show');
-            box3.classList.remove('listing-show');
-            box4.classList.remove('listing-show');
-            box5.classList.remove('listing-show');
-            box6.classList.remove('listing-show');
-            // listingimg.classList.remove('listing-show');
+            expandBox.classList.add('mobile-main-td');
             expandAccordion.classList.add('listing-collapse');
-            
+            details.classList.remove('listing-show');   
             setTimeout(() => {
                 expandBox.removeAttribute('colspan');  
                 expandAccordion.classList.remove('listing-expand');
@@ -45,6 +33,7 @@ const PendingTable = ({currentRecords}) => {
             
         } else{
             expandBox.setAttribute('colspan', '5');
+            expandBox.classList.remove('mobile-main-td');
             expandAccordion.classList.add('listing-expand');
             expandAccordion.classList.remove('listing-collapse');
             try {
@@ -54,15 +43,9 @@ const PendingTable = ({currentRecords}) => {
             } catch(err){
                 console.log(err)
             }
-
             setTimeout(() => {
-                box1.classList.add('listing-show');
-                box2.classList.add('listing-show');
-                box3.classList.add('listing-show');
-                box4.classList.add('listing-show');
-                box5.classList.add('listing-show');
-                box6.classList.add('listing-show');
-            }, 500);
+                details.classList.add('listing-show');
+            },500);
         }
     }
 
@@ -71,7 +54,7 @@ const PendingTable = ({currentRecords}) => {
             {currentRecords.map((data, key) => {
                 return(
                     <tr key={key}>
-                        <td id={`main-td-${key}`}>
+                        <td id={`main-td-${key}`} className="mobile-main-td">
                             <div className="accordion" id={`accordion-${key}`}>
                                 <div className="accordion-item">
                                     <h2 className="accordion-header">
@@ -91,9 +74,8 @@ const PendingTable = ({currentRecords}) => {
                                         <div className="accordion-body">
                                             <div className='container'>
                                                 <div className='row'>
-                                                    <div className='col-sm-6'>
+                                                    <div className='col-3'>
                                                         <Element     
-                                                            id={`listing-img-${key}`}
                                                             class='listing-img' 
                                                             body={(
                                                                 <>
@@ -102,65 +84,60 @@ const PendingTable = ({currentRecords}) => {
                                                             )}
                                                         />    
                                                     </div>
-                                                    <div className='col'>
+                                                    <div className='col col-details'>
                                                         <div className='row'>
-                                                            <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box1-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        View on
-                                                                    </div>
-                                                                    <div className="card-body listing-body">
-                                                                    <a href={data.itemurl} target="_blank"><img src={ebayLogo} style={{height:"1.5rem", width:"auto"}} /> </a>
-                                                                    </div>
+                                                            <div className="card listing-details" id={`listing-detail${key}`}>
+                                                                <div className='card-header'>
+                                                                    Details
                                                                 </div>
-                                                            </div>
-                                                            <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box2-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        Listed on
+                                                                <div className='card-body container'>
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            View on
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                            <a href={data.itemurl} target="_blank"><img src={ebayLogo} style={{height:"1.5rem", width:"auto"}} /> </a>
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="card-body listing-body">
-                                                                        {listed(data.starttime)}
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            Listed on
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                            {listed(data.starttime)}
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box3-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        Sold on:
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            Sold on
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                            {listed(data.endtime)}
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="card-body listing-body">
-                                                                        {listed(data.endtime)}
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            Status
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                            {data.paymentstatus}
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box4-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        Status:
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            Total Price
+                                                                        </div>
+                                                                        <div className="col listing-body num">
+                                                                            $ {data.price.toFixed(2)}
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="card-body listing-body">
-                                                                        {data.paymentstatus}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box5-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        Total Price:
-                                                                    </div>
-                                                                    <div className="card-body listing-body num">
-                                                                        $ {data.price.toFixed(2)}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box6-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        Total Payout:
-                                                                    </div>
-                                                                    <div className="card-body listing-body total">
-                                                                        $ {payout(data.price)}
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                                Total Payout
+                                                                        </div>
+                                                                        <div className="col listing-body total">
+                                                                            $ {payout(data.price)}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>

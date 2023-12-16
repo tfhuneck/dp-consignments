@@ -468,6 +468,14 @@ a{
   transform: translate(-50%);
   filter: drop-shadow(0 0 1rem #282c31);
 }
+.logoinfo{
+  width: auto;
+  height: 10em;
+  margin-bottom: 3rem;
+  margin-left: 50%;
+  transform: translate(-50%);
+  filter: drop-shadow(0 0 1rem #282c31)
+}
 .about{
   padding: 0 5rem 0 5rem;
 }
@@ -541,8 +549,77 @@ a{
   /* overflow-y: auto; */
 }
 .usr-pnl{
-  font-size: small;
+  font-size: 0.9rem;
   font-weight: 300;
+}
+.userbanner{
+  font-weight: 400;
+  padding: 1em;
+  color: #d4e2ee;
+  text-align: end;
+  position: relative;
+  right: 1rem;
+  border-radius: 1rem;
+  height: 7rem;
+  margin-top: 1rem;
+  /* margin-left: 11rem; */
+  margin-right: 1rem;
+}
+.userbanner-nav{
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  padding-left: 2rem;
+  padding-top: 2rem;
+  right: 0.5rem;
+  top: 0rem;
+  border-radius: 1rem;
+  width: 32rem;
+  height: 7rem;
+  z-index: 1;
+  text-align: left;
+}
+.userbanner-nav-behind{
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  right: 0.5rem;
+  top: 0rem;
+  border-radius: 1rem;
+  width: 32rem;
+  height: 7rem;
+  z-index: 1;
+  text-align: left;
+  backdrop-filter: blur(1px);
+  background-color: rgba(29,44,57, 0.8);
+  z-index: -1;
+}
+.userbanner-nav-expand{
+  display: block;
+  animation: banner-expand 0.5s;
+}
+.userbanner-nav-collapse{
+  animation: banner-collapse 0.5s;
+}
+.userbanner-name{
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  z-index: 2;
+}
+.user-banner-btn{
+  display: inline-block;
+  transition: all 0.5s;
+}
+.user-banner-btn-expand{
+  transform: rotate(90deg);
+}
+.userbanner-links{
+  display: none;
+}
+.userbanner-links-show{
+  display:flex;
+  animation: listings-show .75s; 
 }
 .profile{
   height: 4.75rem;
@@ -561,22 +638,6 @@ a{
   height: 11rem;
   background-color: #1d2c39;
   color: #CFE6FC;
-  transition: all 1s;
-}
-.dash-header::before{
-  content: '';
-  opacity: 0%;
-  /* top: -0.25em; */
-  left: -0.3em;
-  position: absolute;
-  margin: auto;
-  z-index: -1;
-  width: 17vw;
-  height: 11rem;
-  border-radius: 1rem;
-  pointer-events: none;
-  background: #2AB0E9;
-  filter: blur(15px);
   transition: all 1s;
 }
 .dash-header:hover::before{
@@ -604,11 +665,11 @@ a{
 }
 .num{
   color: #d50924 !important;
-  text-shadow: 0 0 20px #d50924;
+  /* text-shadow: 0 0 20px #d50924; */
 }
 .total{
   color: rgb(2, 208, 2) !important;
-  text-shadow: 0 0 20px rgb(2, 208, 2);
+  /* text-shadow: 0 0 20px rgb(2, 208, 2); */
 
 }
 .card-subtitle{
@@ -620,13 +681,20 @@ a{
   font-size: 1.5rem;
   text-align: center;
   color: rgb(2, 208, 2) !important;
-  text-shadow: 0 0 20px rgb(2, 208, 2);
+  /* text-shadow: 0 0 20px rgb(2, 208, 2); */
 }
 .dash-main{
   margin-top: 1rem;
   margin-bottom: 2rem;
   min-height: 50vh;
+  max-height: fit-content !important;
   background-color: #1d2c39;
+}
+.pending-disclaimer{
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #d50924;
+  font-weight: 400;
 }
 table{
   width: inherit;
@@ -648,9 +716,11 @@ table tbody tr:last-child td:last-child {
   border-radius: 0 0 10px 0;
 }
 .dash-element{
-  height: 95vh;
+  min-height: 40rem;
+  min-width: 20rem;
+  height: fit-content;
   background-color: #1d2c39;
-  overflow: auto;
+  /* overflow: auto; */
   margin-bottom: 2rem;
   transition: all 1s ease;
 }
@@ -722,24 +792,20 @@ table tbody tr:last-child td:last-child {
   background-color: rgba(0, 0, 0, 0.8);
   transform: scale(1.05);
 }
-.listing-box{
+.col-details{
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.details-row{
+  border-bottom: rgba(0, 0, 0, 0.7) 0.5px solid;
+}
+.listing-details{
   display: none;
   backdrop-filter: blur(3px);
   box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
   background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-  text-align: center;
-  height: 6.5rem;
-  width: 11rem;
-  margin-bottom: 1rem;
-  transition: all 1s;
-}
-.listing-box:hover{
-  background-color: rgba(0, 0, 0, 0.8);
-  transform: scale(1.05);
 }
 .listing-header{
-  background-color: rgba(0, 0, 0, 0.1);
   color: #d4e2ee;
   font-size: 1em;
   font-weight: 400;
@@ -750,9 +816,7 @@ table tbody tr:last-child td:last-child {
   font-size: 1.2em;
 }
 .listing-show{
-  /* transition: all 1s; */
   display: block;
-  /* animation: listings-show .25s;  */
 }
 .col-sm-6{
   max-width: 210px !important;
@@ -764,6 +828,10 @@ table tbody tr:last-child td:last-child {
 .price{
   font-weight: 500 !important;
   color: rgb(2, 208, 2) !important;
+}
+.active-content-main{
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 .product-img{
   height: 14rem;
@@ -882,12 +950,15 @@ table tbody tr:last-child td:last-child {
   margin-top: 1rem;
 }
 .profile-info-container{
-  margin-top: 0;
+  margin-top: 1em;
 }
 .profile-info-box{
   background-color: #16222c;
   border-radius: 1rem;
   padding: 2rem;
+}
+.profile-info-box-mobile{
+  display: none;
 }
 .profile-info{
   color: #ffff;
@@ -905,7 +976,9 @@ table tbody tr:last-child td:last-child {
   background-color: rgba(0, 0, 0, 0.2);
   transform: scale(1.02);
 }
-
+.balances{
+  margin-top: 2rem;
+}
 .credit-box{
   box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
   background-color: rgba(0, 0, 0, 0.2);
@@ -956,16 +1029,16 @@ table tbody tr:last-child td:last-child {
 .payout-elements{
   color: #ffff;
   padding: 1rem;
-  margin: 2px;
+  margin: 5px 2px 5px 2px;
   font-weight: 300;
   box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
-  background-color: rgba(255,255,255, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   transition: all 0.5s;
   white-space: nowrap;
 }
 .payout-elements:hover{
-  background-color: rgba(255,255,255, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   transform: scale(1.05);
 }
 .payout-title{
@@ -1254,8 +1327,15 @@ td{
   color: #d50924;
 }
   
-  /* Largest devices such as desktops (1280px and up) */
-@media only screen and (min-width: 80em) {
+
+
+/* Large devices such as laptops (1024px and up) */
+@media only screen and (min-width: 87.5em) {
+  .listing-details{
+    backdrop-filter: blur(3px);
+    box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
+    background-color: rgba(0, 0, 0, 0.6);
+  }
   .mobile-nav{
     display: none;
   }
@@ -1265,14 +1345,122 @@ td{
   .mobile-navbar-link{
     display: none;
   }
+  .userbanner{
+    display: none;
+  }
+  .usr{
+    display: flex;
+  }
+  .box-active-mobile{
+    display: flex;
+    margin: 0 1rem 0 1rem;
+  }
 }
 
 
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 48em) and (max-width: 87.5em) {
+  .listing-details{
+    backdrop-filter: blur(3px);
+    box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  .userbanner{
+    display: block;
+  }
+  .mobile-nav{
+    display: none;
+  }
+  .mobile-navbar-icn{
+    display: none;
+  }
+  .mobile-navbar-link{
+    display: none;
+  }
+  .usr{
+    display: none;
+  }
+  .user-dash{
+    margin-top: 1rem;
+    margin-left: 11.5rem;
+    margin-right: 1rem;
+    transition: all 1s ease;
+  }
+  .navcontainer{
+    width: 50em;
+  }
+  .navbtn{
+    width: 8em;
+  } */
+  .details{
+    width: 70vw;
+  }
+  .card-info {
+    width: 35em;
+  }
+  .info-cards{
+    width: 15rem;
+    margin-bottom: 2rem;
+  }
+  .table-mobile{
+    margin-top: 4rem;
+    /* width: 90vw; */
+  }
+  .box-active-mobile{
+    display: flex;
+    margin: 0 1rem 0 1rem;
+  }
+  .col-details{
+    margin-left: 4rem;
+  }
+}
+
+@media only screen and (min-width: 538px) and (max-width: 768px) {
+  .table-mobile{
+    margin-top: 4rem;
+    min-width: 90vw !important;
+  }
+}
+
+@media only screen and (min-width: 48em) and (max-width: 1049px) {
+  .table-mobile{
+    margin-top: 4rem;
+    min-width: 69vw;
+  }
+  .col-details{
+    margin-left: 4rem;
+  }
+  .dash-list{
+    width: 20rem;
+  }
+}
+@media only screen and (min-width: 537px) and (max-width: 1028px) {
+  .clear-search{
+    top: 12.25rem !important;
+  }
+  .col-details{
+    margin-left: 4rem;
+  }
+}
+
+@media only screen and (min-width: 506px) and (max-width: 536px) {
+  .clear-search{
+    top: 12.25rem !important;
+  }
+}
+
 /**************** Small devices such as phones ( below 640px) ***************/
-@media only screen and (max-width: 40em) {
+@media only screen and (max-width: 48em) {
+  .userbanner{
+    display: none;
+  }
   body {
     width: 100%;
     min-height: 100vh;
+  }
+  h2{
+    text-align: center;
+    font-weight: 400 !important;
   }
   .navcontainer{
     display: none;
@@ -1408,6 +1596,13 @@ td{
     height: 2rem;
     margin-right: 2rem;
   }
+  #info-icn{
+    margin-top: 0.5rem;
+    position: absolute;
+    margin-top: 10px;
+    left: 3rem;
+    height: 1.5rem;
+  } 
   .mobile-navbar-usr{
     padding-top: 3rem;
     margin-left: -1rem;
@@ -1486,9 +1681,10 @@ td{
     padding: 0.5em 0em 0.5em 0em;
   }
   .details{
+    margin-top: 5rem;
     font-weight: 300;
     margin-bottom: 4rem;
-    width: 85vw;
+    width: 90vw;
     text-align: left;
   }
   .card{
@@ -1540,32 +1736,129 @@ td{
   .user-dash{
     margin: 0;
   }
+  .pending-disclaimer{
+    margin-top: 0;
+  }
   .table-mobile{
     margin-top: 4rem;
     width: 85vw;
   }
+  .mobile-main-td{
+    width: 20rem;
+  }
+  .user-dash{
+    margin-top: 4rem;
+  }
+  .dash-element{
+    height: 35rem;
+    min-width: 15rem;
+    width: 100%;
+  }
+  .settings-element{
+    height: 48rem;
+  }
+  .dash-header{
+    position: relative;
+    box-sizing: border-box;
+    min-width: 15rem;
+    width: 100%;
+  }
+  .dash-main{
+    margin-top: 1rem;
+    min-height: 40rem;
+  }
+  .card-title{
+    text-align: center;
+  }
+  .dash-list{
+    width: 30rem;
+  }
+  .search{
+    width: 80vw;
+  }
+  .clear-search{
+    top: 340px;
+  }
+  .col-details{
+    margin-left: 4rem;
+  }
+  .table-listings-mobile{
+    min-width: 50rem;
+  }
+  .listing-img{
+    /* display: none; */
+    backdrop-filter: blur(3px);
+    margin-top: .2rem;
+    width: fit-content;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 1s;
+    border-radius: 10px;
+    padding: 0;
 
+  }
+  .listing-img:hover{
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.05);
+  }
+  .listing-details{
+    backdrop-filter: blur(3px);
+    box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  .listing-header{
+    color: #d4e2ee;
+    font-size: 1em;
+    font-weight: 400;
+  }
+  .listing-body{
+    color: #ffffff;
+    font-weight: 300;
+    font-size: 1.2em;
+  }
+  .listing-show{
+    /* transition: all 1s; */
+    display: block;
+    /* animation: listings-show .25s;  */
+  }
+  .box-active-mobile{
+    display: block !important;
+    margin: 0 1rem 0 1rem;
+  }
+  .credit-element{
+    height: 40rem;
+  }
+  .profile-info-box{
+    display: none;
+  }
+  .profile-page-img{
+    margin-left: 50%;
+    transform: translate(-50%);
+  }
+  .profile-info-box-mobile{
+    margin-top: 2rem;
+    display: block;
+  }
+  .profile-settings-img{
+    margin-left: 50%;
+    transform: translate(-50%);
+  }
+  .settings{
+    text-align: center;
+  }
+  .settings-input{
+    min-width: 12rem;
+  }
+  .settings-element{
+    height: fit-content;
+  }
+  .pagination{
+    margin-top: 1rem;
+    min-width: 91vw;
+    display: flex;  
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
-
-
-
-/* Small devices such as large phones (640px and up) */
-@media only screen and (min-width: 40em) {
-  
-  
-}
-
-/* Medium devices such as tablets (768px and up) */
-@media only screen and (min-width: 48em) {
-
-}
-
-/* Large devices such as laptops (1024px and up) */
-@media only screen and (min-width: 64em) {
-
-}
-
-
 
 
 /* Animation and Keyframes */
@@ -1741,3 +2034,49 @@ td{
     width: 30vw;
   }
 }
+@keyframes banner-expand {
+  from{
+    width: 0%;
+  }
+  to{
+    width: 32rem;
+  }
+}
+@keyframes banner-collapse {
+  from{
+    width: 32rem;
+  }
+  to{
+    width: 0%;
+  }
+}
+
+
+
+  /* Largest devices such as desktops (1280px and up) */
+/* @media only screen and (min-width: 80em) {
+  .mobile-nav{
+    display: none;
+  }
+  .mobile-navbar-icn{
+    display: none;
+  }
+  .mobile-navbar-link{
+    display: none;
+  }
+  .userpanel-mobile{
+    display: none;
+  }
+} */
+
+
+/* Small devices such as large phones (640px and up) */
+/* @media only screen and (min-width: 40em) and (max-width: 48em) {
+  .userpanel-mobile{
+    display: none;
+  }
+  .usr{
+    display: none;
+  }
+  
+} */

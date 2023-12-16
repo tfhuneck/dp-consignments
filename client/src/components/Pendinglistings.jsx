@@ -42,11 +42,12 @@ function Pending() {
         
         return (
             <>  
-                <span className='payout-sale'>
-                    Pending Items awaiting Payments!
-                </span>
+               
                 <Search clearSearch={clearSearch} handleSearch={handleSearch} searchValue={searchValue} />
                 <div className='table-responsive-lg table-mobile'>
+                    <div className='pending-disclaimer'>
+                        Pending Items awaiting Payments!
+                    </div>
                     <table className='table table-dark table-striped table-hover'>
                         <thead>
                             <tr>
