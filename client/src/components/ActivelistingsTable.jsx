@@ -13,27 +13,12 @@ const Table = ({currentRecords}) => {
         const expandBox         = await document.getElementById(`main-td-${id}`);
         const expandAccordion   = await document.getElementById(`accordion-${id}`);
         const sideTds           = await document.getElementsByClassName(`side-td-${id}`);
-        const box1              = await document.getElementById(`box1-${id}`);
-        const box2              = await document.getElementById(`box2-${id}`);
-        const box3              = await document.getElementById(`box3-${id}`);
-        const box4              = await document.getElementById(`box4-${id}`);
-        const box5              = await document.getElementById(`box5-${id}`);
-        const box6              = await document.getElementById(`box6-${id}`);
-        const box7              = await document.getElementById(`box7-${id}`);
-        const box8              = await document.getElementById(`box8-${id}`);
-        const listingimg        = await document.getElementById(`listing-img-${id}`)
+        const details           = await document.getElementById(`listing-detail${id}`);
 
         if(expandBox.getAttribute('colspan')){
-            box1.classList.remove('listing-show');
-            box2.classList.remove('listing-show');
-            box3.classList.remove('listing-show');
-            box4.classList.remove('listing-show');
-            box5.classList.remove('listing-show');
-            box6.classList.remove('listing-show');
-            box7.classList.remove('listing-show');
-            box8.classList.remove('listing-show');
-            // listingimg.classList.remove('listing-show');
+            expandBox.classList.add('mobile-main-td');
             expandAccordion.classList.add('listing-collapse');
+            details.classList.remove('listing-show');   
             
             setTimeout(() => {
                 expandBox.removeAttribute('colspan');  
@@ -49,6 +34,7 @@ const Table = ({currentRecords}) => {
             
         } else{
             expandBox.setAttribute('colspan', '4');
+            expandBox.classList.remove('mobile-main-td');
             expandAccordion.classList.add('listing-expand');
             expandAccordion.classList.remove('listing-collapse');
             try {
@@ -58,19 +44,9 @@ const Table = ({currentRecords}) => {
             } catch(err){
                 console.log(err)
             }
-            // setTimeout(() => {
-            //     listingimg.classList.add('listing-show');
-            // }, 500);
             setTimeout(() => {
-                box1.classList.add('listing-show');
-                box2.classList.add('listing-show');
-                box3.classList.add('listing-show');
-                box4.classList.add('listing-show');
-                box5.classList.add('listing-show');
-                box6.classList.add('listing-show');
-                box7.classList.add('listing-show');
-                box8.classList.add('listing-show');
-            }, 500);
+                details.classList.add('listing-show');
+            },500);
         }
     }
 
@@ -79,7 +55,7 @@ const Table = ({currentRecords}) => {
             {currentRecords.map((data, key) => {
                 return(
                     <tr key={key}>
-                        <td id={`main-td-${key}`}>
+                        <td id={`main-td-${key}`} className="mobile-main-td">
                             <div className="accordion" id={`accordion-${key}`}>
                                 <div className="accordion-item">
                                     <h2 className="accordion-header">
@@ -97,9 +73,9 @@ const Table = ({currentRecords}) => {
                                     </h2>
                                     <div id={`flush-collapse${key}`} className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                         <div className="accordion-body">
-                                            <div className='container'>
+                                            <div className='container active-content-main'>
                                                 <div className='row'>
-                                                    <div className='col-sm-3'>
+                                                    <div className='col-3'>
                                                         <Element
                                                             class='listing-img' 
                                                             body={(
@@ -110,85 +86,68 @@ const Table = ({currentRecords}) => {
                                                             )}
                                                         />    
                                                     </div>
-                                                    <div className='col'>
+                                                    <div className='col col-details'>
                                                         <div className='row'>
-                                                            <div className='col-sm-3 d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box1-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        View on
-                                                                    </div>
-                                                                    <div className="card-body listing-body">
-                                                                    <a href={data.itemurl} target="_blank"><img src={ebayLogo} style={{height:"1.5rem", width:"auto"}} /> </a>
-                                                                    </div>
+                                                            <div className="card listing-details" id={`listing-detail${key}`}>
+                                                                <div className='card-header'>
+                                                                    Details
                                                                 </div>
-                                                            </div>
-                                                            <div className='col-sm-3 d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box2-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        Listed on
+                                                                <div className='card-body container'>
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            View on ebay
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                            <a href={data.itemurl} target="_blank"><img src={ebayLogo} style={{height:"1.5rem", width:"auto"}} /> </a>
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="card-body listing-body">
-                                                                        {listed(data.starttime)}
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            Listed on
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                            {listed(data.starttime)}
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col-sm-3 d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box5-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        Time Left
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            Time Left
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                            {time(data.timeleft)}
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="card-body listing-body">
-                                                                        {time(data.timeleft)}
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            Watching
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                            {data.watchcount}
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col-sm-3 d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box8-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        Updated at:
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            Bids
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                            {data.bidcount}
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="card-body listing-body">
-                                                                        {time(data.updatedAt)}
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                        Current Price
+                                                                        </div>
+                                                                        <div className="col listing-body total">
+                                                                            $ {data.currentprice.toFixed(2)}
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col-sm-3 d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box4-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        Watching:
-                                                                    </div>
-                                                                    <div className="card-body listing-body">
-                                                                        {data.watchcount}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col-sm-3 d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box3-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        Bids
-                                                                    </div>
-                                                                    <div className="card-body listing-body">
-                                                                        {data.bidcount}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col-sm-3 d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box6-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        Current Price:
-                                                                    </div>
-                                                                    <div className="card-body listing-body num">
-                                                                        $ {data.currentprice.toFixed(2)}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col-sm-3 d-flex justify-content-center'>
-                                                                <div className="card listing-box" id={`box7-${key}`}>
-                                                                    <div className="card-header listing-header">
-                                                                        Payout:
-                                                                    </div>
-                                                                    <div className="card-body listing-body total">
-                                                                        $ {payout(data.currentprice.toFixed(2))}
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                        Payout
+                                                                        </div>
+                                                                        <div className="col listing-body num">
+                                                                            $ {payout(data.currentprice.toFixed(2))}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>

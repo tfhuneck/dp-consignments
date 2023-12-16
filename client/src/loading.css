@@ -285,3 +285,11 @@
     background: #CFE6FC;
   }
 }
+
+
+/**************** Small devices such as phones ( below 640px) ***************/
+@media only screen and (max-width: 40em) {
+  .socket{
+    margin-top: 5rem;
+  }
+}

@@ -1,5 +1,6 @@
 import Element from "./DashElement";
 import { Link } from "react-router-dom";
+import logo from '../images/logo.png' 
 
 const UserInfo = () => {
 
@@ -16,6 +17,9 @@ const UserInfo = () => {
                             <>
                             <br /><br /><br />
                             <div className="container">
+                                <div className="row">
+                                    <img src={logo} className='logoinfo' />
+                                </div>
                                 <div className='row'>
                                     <div className='col d-flex justify-content-center home-text'>
                                         <h2>

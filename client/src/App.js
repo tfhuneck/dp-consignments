@@ -2,6 +2,7 @@ import './index.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState, createContext, useEffect } from 'react';
 import Navigation from "./components/Navbar";
+import UserBanner from './components/UserBanner';
 import logo from './images/logo.png'
 import Home from './components/Home';
 import Info from './components/Info';
@@ -79,6 +80,7 @@ function App() {
             <div className="fixed-top">
               {userAuth && <UserPanel />}
             </div>
+            {userAuth && <UserBanner />}
             <Routes>
               <Route exact path='/' index element={<Home />} />
               <Route path='/info' element={<Info />} />

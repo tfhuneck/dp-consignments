@@ -19,7 +19,7 @@ function Credit(props) {
     useEffect(() => {
         async function fetchData(){
             await axios.get(
-                // serverUrl +
+                serverUrl +
                 '/user',
                 {params:{
                         userAuth
@@ -63,14 +63,14 @@ function Credit(props) {
                             subtitle='Available Balance'
                             body={(
                                 <>
-                                <div className="container">
+                                <div className="container balances">
                                     <div className="row">
                                         <div className='col justify-content-center'>
                                         <div className="card credit-box">
                                                 <div className="card-header credit-header">
                                                     Sales Total Before Fees
                                                 </div>
-                                                <div className="card-body credit-body">
+                                                <div className="card-body credit-body num">
                                                     $ {totalBalance()}
                                                 </div>
                                             </div>
@@ -78,7 +78,7 @@ function Credit(props) {
                                                 <div className="card-header credit-header">
                                                     Sales Total After Fees
                                                 </div>
-                                                <div className="card-body credit-body">
+                                                <div className="card-body credit-body total">
                                                     $ {totalPayout().toFixed(2)}
                                                 </div>
                                             </div>
@@ -86,7 +86,7 @@ function Credit(props) {
                                                 <div className="card-header credit-header">
                                                     Total Cashouts Withdrawn
                                                 </div>
-                                                <div className="card-body credit-body">
+                                                <div className="card-body credit-body num">
                                                     $ {totalCashouts(userData).toFixed(2)}
                                                 </div>
                                             </div>
@@ -94,8 +94,8 @@ function Credit(props) {
                                                 <div className="card-header credit-header">
                                                     Current Balance
                                                 </div>
-                                                <div className="card-body credit-body">
-                                                    $ {userData && userData.currentbalance}
+                                                <div className="card-body credit-body total">
+                                                    $ {userData && userData.currentbalance ? userData.currentbalance : '0.00'}
                                                 </div>
                                             </div>
                                         </div>

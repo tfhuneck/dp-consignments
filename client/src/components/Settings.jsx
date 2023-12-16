@@ -64,7 +64,7 @@ function Settings(props) {
         <>
             <div className="user-dash">
                 <Element
-                    class='dash-element' 
+                    class='dash-element settings-element' 
                     title='Settings'
                     subtitle='Change your Profile Settings'
                     body={(
@@ -92,32 +92,36 @@ function Settings(props) {
                                         </div>
                                     </div>
                                 </div>
+                                <br />
                                 <div className="row">
                                     <h6>Contact Information</h6>
                                 </div>
-                                <div className="row">
-                                    <div className="col settings-input">
-                                        <label htmlFor="name" className="form-label">Name</label>
-                                        <input type="text" className="form-control" id="name" placeholder={userData ? userData.name : null} />
-                                    </div>  
-                                    <div className="col settings-input">
-                                        <label htmlFor="email" className="form-label">Email address</label>
-                                        <input type="email" className="form-control" id="email" placeholder={userData ? userData.email : null} />
-                                    </div>  
-                                </div>
-                                <div className="row">
-                                    <div className="col settings-input">
-                                        <label htmlFor="address" className="form-label">Address</label>
-                                        <input type="text" className="form-control" id="address" placeholder={userData ? userData.address : null} />
-                                    </div>  
-                                    <div className="col settings-input">
-                                        <label htmlFor="phone" className="form-label">Phone Number</label>
-                                        <input type="phone" className="form-control" id="phone" placeholder={userData ? userData.phone : null} />
-                                    </div>  
-                                </div>
-                                <div className="row">
-                                    <div className="col">
-                                        <button type="button" className="btn-settings settings-submit" onClick={handleUpdate} >Update Contact Info</button>
+                                <div className="settings-input">
+                                    <div className="row">
+                                        <div className="col settings-input">
+                                            <label htmlFor="name" className="form-label">Name</label>
+                                            <input type="text" className="form-control" id="name" placeholder={userData ? userData.name : null} />
+                                        </div>  
+                                        <div className="col settings-input">
+                                            <label htmlFor="email" className="form-label">Email address</label>
+                                            <input type="email" className="form-control" id="email" placeholder={userData ? userData.email : null} />
+                                        </div>  
+                                    </div>
+                                    <div className="row">
+                                        <div className="col settings-input">
+                                            <label htmlFor="address" className="form-label">Address</label>
+                                            <input type="text" className="form-control" id="address" placeholder={userData ? userData.address : null} />
+                                        </div>  
+                                        <div className="col settings-input">
+                                            <label htmlFor="phone" className="form-label">Phone Number</label>
+                                            <input type="phone" className="form-control" id="phone" placeholder={userData ? userData.phone : null} />
+                                        </div>  
+                                    </div>
+                                    <br />
+                                    <div className="row">
+                                        <div className="col">
+                                            <button type="button" className="btn-settings" onClick={handleUpdate} >Update Contact Info</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -8,32 +8,44 @@ const UnsoldTable = ({currentRecords}) => {
 
     const handleCollapse = async (id) => {
        
-        const expandBox = await document.getElementById(`main-td-${id}`);
-        const sideTds = await document.getElementsByClassName(`side-td-${id}`);
+        const expandBox         = await document.getElementById(`main-td-${id}`);
+        const expandAccordion   = await document.getElementById(`accordion-${id}`);
+        const sideTds           = await document.getElementsByClassName(`side-td-${id}`);
+        const details           = await document.getElementById(`listing-detail${id}`);
 
-            if(expandBox.getAttribute('colspan')){
-                setTimeout(() => {
-                    expandBox.removeAttribute('colspan')   
-                    try {
-                        for (var i in sideTds) {
-                              sideTds[i].classList.remove('td-hidden');
-                          }
-                    } catch(err){
-                        console.log(err)
-                    }
-                }, 300)
-                
-            } else{
-                // setTimeout(() =>, 300)
-                expandBox.setAttribute('colspan', '5')
-                try {
-                    for (var i in sideTds) {
-                          sideTds[i].classList.add('td-hidden');
-                      }
-                } catch(err){
-                    console.log(err)
+        if(expandBox.getAttribute('colspan')){
+            expandBox.classList.add('mobile-main-td');
+            expandAccordion.classList.add('listing-collapse');
+            details.classList.remove('listing-show');   
+            
+            setTimeout(() => {
+                expandBox.removeAttribute('colspan');  
+                expandAccordion.classList.remove('listing-expand');
+            try {
+                for (var i in sideTds) {
+                    sideTds[i].classList.remove('td-hidden');
                 }
+            } catch(err){
+                console.log(err)
             }
+            }, 500)
+            
+        } else{
+            expandBox.setAttribute('colspan', '4');
+            expandBox.classList.remove('mobile-main-td');
+            expandAccordion.classList.add('listing-expand');
+            expandAccordion.classList.remove('listing-collapse');
+            try {
+                for (var i in sideTds) {
+                    sideTds[i].classList.add('td-hidden');
+                }
+            } catch(err){
+                console.log(err)
+            }
+            setTimeout(() => {
+                details.classList.add('listing-show');
+            },500);
+        }
     }
 
     return (
@@ -41,8 +53,8 @@ const UnsoldTable = ({currentRecords}) => {
             {currentRecords.map((data, key) => {
                 return(
                     <tr key={key}>
-                        <td id={`main-td-${key}`}>
-                            <div className="accordion">
+                        <td id={`main-td-${key}`} className="mobile-main-td">
+                            <div className="accordion" id={`accordion-${key}`}>
                                 <div className="accordion-item">
                                     <h2 className="accordion-header">
                                         <button 
@@ -61,7 +73,7 @@ const UnsoldTable = ({currentRecords}) => {
                                         <div className="accordion-body">
                                             <div className='container'>
                                                 <div className='row'>
-                                                    <div className='col-sm-6'>
+                                                    <div className='col-3'>
                                                         <Element
                                                             class='listing-img' 
                                                             body={(
@@ -71,35 +83,36 @@ const UnsoldTable = ({currentRecords}) => {
                                                             )}
                                                         />    
                                                     </div>
-                                                    <div className='col'>
+                                                    <div className='col col-details'>
                                                         <div className='row'>
-                                                            <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box">
-                                                                    <div className="card-header listing-header">
-                                                                        View on
-                                                                    </div>
-                                                                    <div className="card-body listing-body">
-                                                                    <a href={data.itemurl} target="_blank"><img src={ebayLogo} style={{height:"1.5rem", width:"auto"}} /> </a>
-                                                                    </div>
+                                                            <div className="card listing-details" id={`listing-detail${key}`} >
+                                                                <div className='card-header'>
+                                                                    Details
                                                                 </div>
-                                                            </div>
-                                                            <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box">
-                                                                    <div className="card-header listing-header">
-                                                                        Listed on
+                                                                <div className='card-body container'>
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            View on ebay
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                            <a href={data.itemurl} target="_blank"><img src={ebayLogo} style={{height:"1.5rem", width:"auto"}} /> </a>
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="card-body listing-body">
-                                                                        {listed(data.starttime)}
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            Listed on
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                            {listed(data.starttime)}
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className='col d-flex justify-content-center'>
-                                                                <div className="card listing-box">
-                                                                    <div className="card-header listing-header">
-                                                                        Ended on:
-                                                                    </div>
-                                                                    <div className="card-body listing-body">
-                                                                        {listed(data.endtime)}
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            Ended on
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                            {listed(data.endtime)}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
