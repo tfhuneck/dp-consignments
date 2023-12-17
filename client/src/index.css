@@ -574,7 +574,7 @@ a{
   right: 0.5rem;
   top: 0rem;
   border-radius: 1rem;
-  width: 32rem;
+  width: 34rem;
   height: 7rem;
   z-index: 1;
   text-align: left;
@@ -586,7 +586,7 @@ a{
   right: 0.5rem;
   top: 0rem;
   border-radius: 1rem;
-  width: 32rem;
+  width: 34rem;
   height: 7rem;
   z-index: 1;
   text-align: left;
@@ -602,6 +602,7 @@ a{
   animation: banner-collapse 0.5s;
 }
 .userbanner-name{
+  max-width: 12rem;
   display: inline-block;
   cursor: pointer;
   margin-right: 0.5rem;
@@ -658,6 +659,7 @@ a{
   font-weight: 300;
 }
 .dash-header-num{
+  min-width: fit-content;
   text-align: end;
   font-weight: 500;
   font-size: 1.5rem;
@@ -742,9 +744,17 @@ table tbody tr:last-child td:last-child {
   /* max-width: 49vw !important; */
   margin-right: 0 !important;
 }
+.mobile-main-td{
+  padding: 0;
+}
 .open{
   width: inherit;
   /* max-width: 49vw !important; */
+}
+.listing-container{
+  max-width: none;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 .accordion-button{
   /* background-color: #16222c; */
@@ -797,9 +807,10 @@ table tbody tr:last-child td:last-child {
   margin-right: 2rem;
 }
 .details-row{
-  border-bottom: rgba(0, 0, 0, 0.7) 0.5px solid;
+  border-bottom: rgba(0, 0, 0, 0.3) 0.5px solid;
 }
 .listing-details{
+  border-radius: 10px;
   display: none;
   backdrop-filter: blur(3px);
   box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
@@ -834,9 +845,47 @@ table tbody tr:last-child td:last-child {
   margin-right: 1rem;
 }
 .product-img{
-  height: 14rem;
+  height: 15rem;
   width: inherit;
   border-radius: 5px;
+}
+.view-image{
+  height: 100vh;
+  padding: 4rem;
+  margin-top: 1rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  margin-bottom: 5rem;
+}
+.image-full-screen{
+  /* width: 70vw; */
+  height: 80vh;
+}
+.open-image{
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.image-close{
+  color: #d4e2ee;
+  position: absolute;
+  cursor: pointer;
+  right: 15rem;
+  background-color: #282c31;
+}
+.image-close:hover{
+  color: #d50924;
+}
+
+.image-fullscreen{
+  z-index: 10;
+  position: absolute;
+  padding: 5rem;
+  left: -5rem;
+  width: 90vw;
+  height: 90vh;
 }
 .search {
   position: relative;
@@ -861,6 +910,9 @@ table tbody tr:last-child td:last-child {
 .clear-search:hover{
   cursor: pointer;
   transform: rotate(180deg);
+}
+.list-buttons{
+  text-align: center;
 }
 .dash-list {
   margin: 0.5rem;
@@ -1039,7 +1091,7 @@ table tbody tr:last-child td:last-child {
 }
 .payout-elements:hover{
   background-color: rgba(0, 0, 0, 0.5);
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 .payout-title{
   font-size: 0.9rem;
@@ -1147,19 +1199,6 @@ table tbody tr:last-child td:last-child {
   margin-left: 1rem;
   border: none;
 }
-.edit-avatar{
-  position: absolute;
-  margin-left: 3.5rem;
-  top: 13.5rem;
-  font-weight: 300;
-  font-size: 1.5rem;
-  opacity: 0;
-  transition: all 0.2s;
-}
-.edit-avatar:hover{
-  opacity: 1;
-  cursor: pointer;
-}
 .profile-settings-img{
   height: 10rem;
   width: 10rem;
@@ -1169,11 +1208,8 @@ table tbody tr:last-child td:last-child {
 .profile-settings-img:hover{
   cursor: pointer;
 }
-.profile-settings-img:hover + .edit-avatar{
-  cursor: pointer;
-  opacity: 1;
-}
 .popup{
+  z-index: 2;
   color: #d4e2ee;
   position: relative;
   height: 28rem;
@@ -1332,6 +1368,7 @@ td{
 /* Large devices such as laptops (1024px and up) */
 @media only screen and (min-width: 87.5em) {
   .listing-details{
+    border-radius: 10px;
     backdrop-filter: blur(3px);
     box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
     background-color: rgba(0, 0, 0, 0.6);
@@ -1355,12 +1392,17 @@ td{
     display: flex;
     margin: 0 1rem 0 1rem;
   }
+  .col-details{
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
 }
 
 
 /* Medium devices such as tablets (768px and up) */
 @media only screen and (min-width: 48em) and (max-width: 87.5em) {
   .listing-details{
+    border-radius: 10px;
     backdrop-filter: blur(3px);
     box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
     background-color: rgba(0, 0, 0, 0.6);
@@ -1402,55 +1444,79 @@ td{
     width: 15rem;
     margin-bottom: 2rem;
   }
-  .table-mobile{
-    margin-top: 4rem;
-    /* width: 90vw; */
-  }
   .box-active-mobile{
     display: flex;
     margin: 0 1rem 0 1rem;
   }
   .col-details{
-    margin-left: 4rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  .view-image{
+    margin: 0rem 0rem 0rem 10rem;
+  }
+  .image-full-screen{
+   max-width: 70vw;
+   height: auto;
+   max-height: 80vh;
+  }
+  .image-close{
+   right: 1rem; 
+  }
+
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1028px) {
+  .clear-search{
+    top: 12.25rem;
+  }
+  .table-mobile{
+    margin-top: 4rem;
+    min-width: 68vw !important;
+    overflow-x: auto;
+  }
+  .listing-container{
+    min-width: 60rem;
   }
 }
 
-@media only screen and (min-width: 538px) and (max-width: 768px) {
+@media only screen and (min-width: 538px) and (max-width: 769px) {
   .table-mobile{
     margin-top: 4rem;
-    min-width: 90vw !important;
+    min-width: 92vw !important;
+  }
+  .clear-search{
+    top: 12.25rem !important;
   }
 }
 
 @media only screen and (min-width: 48em) and (max-width: 1049px) {
-  .table-mobile{
-    margin-top: 4rem;
-    min-width: 69vw;
-  }
-  .col-details{
-    margin-left: 4rem;
-  }
   .dash-list{
     width: 20rem;
   }
-}
-@media only screen and (min-width: 537px) and (max-width: 1028px) {
-  .clear-search{
-    top: 12.25rem !important;
+  .dash-main{
+    min-height: 30rem;
   }
-  .col-details{
-    margin-left: 4rem;
-  }
+  
 }
 
 @media only screen and (min-width: 506px) and (max-width: 536px) {
   .clear-search{
-    top: 12.25rem !important;
+    top: 12.25rem !important; 
   }
 }
 
+/**********************!!!!!!!!  Main Styling for Mobile devise below !!!!!!!!!!**********************/
+
+
+
 /**************** Small devices such as phones ( below 640px) ***************/
 @media only screen and (max-width: 48em) {
+  .popup{
+    width: 90vw;
+    height: max-content;
+    padding: 1rem;
+  }
   .userbanner{
     display: none;
   }
@@ -1768,7 +1834,7 @@ td{
     min-height: 40rem;
   }
   .card-title{
-    text-align: center;
+    text-align: left;
   }
   .dash-list{
     width: 30rem;
@@ -1796,11 +1862,23 @@ td{
     padding: 0;
 
   }
+  .view-image{
+    margin: 0rem;
+  }
+  .image-full-screen{
+   max-width: 95vw;
+   height: auto;
+   max-height: 80vh;
+  }
+  .image-close{
+   right: 1rem; 
+  }
   .listing-img:hover{
     background-color: rgba(0, 0, 0, 0.8);
     transform: scale(1.05);
   }
   .listing-details{
+    border-radius: 10px;
     backdrop-filter: blur(3px);
     box-shadow: 2px 7px 15px -2px rgb(8, 19, 30);
     background-color: rgba(0, 0, 0, 0.6);
@@ -1847,9 +1925,17 @@ td{
   }
   .settings-input{
     min-width: 12rem;
+    text-align: left;
+    margin-top: 0;
+  }
+  .form-label{
+    font-weight: 300;
   }
   .settings-element{
     height: fit-content;
+  }
+  .update-buttons{
+    margin-top: 2rem;
   }
   .pagination{
     margin-top: 1rem;

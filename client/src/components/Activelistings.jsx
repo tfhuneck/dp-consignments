@@ -44,7 +44,7 @@ function Listings(props) {
             <>
                 <Search clearSearch={clearSearch} handleSearch={handleSearch} searchValue={searchValue} />
                 <div className='table-responsive-lg table-mobile'>
-                    <table className='table table-dark table-striped table-hover'>
+                    <table className='table table-dark table-striped table-hover '>
                         <thead>
                             <tr>
                                 <th className="list-header" scope='col'>

@@ -288,6 +288,11 @@
 
 
 /**************** Small devices such as phones ( below 640px) ***************/
+@media only screen and (max-width: 1049px) {
+  .socket{
+    margin-top: 1rem;
+  }
+}
 @media only screen and (max-width: 40em) {
   .socket{
     margin-top: 5rem;

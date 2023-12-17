@@ -67,8 +67,8 @@ const Popup = ({id}) => {
     return(
 
         <>
-            <div className="edit-avatar" onClick={openModal} >
-                edit
+            <div>
+                <button type="button" className="btn-settings" onClick={openModal}> Update Image </button>
             </div>
             <Modal
                 className='popup'
@@ -97,4 +97,4 @@ const Popup = ({id}) => {
     )
 }
 
-export default Popup
+export default Popup;

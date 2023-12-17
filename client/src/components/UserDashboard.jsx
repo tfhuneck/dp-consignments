@@ -153,10 +153,12 @@ function UserDashboard() {
                             class='dash-main' 
                             title={(
                                 <>
-                                    <button id="dashListActive" className="dash-list" onClick={()=> setDisplayList('activeListings')}>Active</button>
-                                    <button id="dashListPending" className="dash-list" onClick={()=> setDisplayList('pendingListings')}>Pending</button>
-                                    <button id="dashListSold" className="dash-list" onClick={()=> setDisplayList('soldListings')}>Completed</button>
-                                    <button id="dashListUnsold" className="dash-list" onClick={()=> setDisplayList('unsoldListings')}>Unsold</button>
+                                    <div className="list-buttons">
+                                        <button id="dashListActive" className="dash-list" onClick={()=> setDisplayList('activeListings')}>Active</button>
+                                        <button id="dashListPending" className="dash-list" onClick={()=> setDisplayList('pendingListings')}>Pending</button>
+                                        <button id="dashListSold" className="dash-list" onClick={()=> setDisplayList('soldListings')}>Completed</button>
+                                        <button id="dashListUnsold" className="dash-list" onClick={()=> setDisplayList('unsoldListings')}>Unsold</button>
+                                    </div>
                                 </>
                             )}
                             text=''
