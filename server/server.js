@@ -31,7 +31,6 @@ app.use(jsonParser);
 
 // =====routes===== 
 app.use(express.static(path.join(__dirname, 'build'))); // Route to serve static
-app.use('/soldimage', require('./routes/soldImageRoute'));
 app.use('/create', require('./routes/createNewUserRoute'));
 app.use('/updateuser', require('./routes/updateUserRoute'));
 app.use('/getuser', require('./routes/getUserRoute'));

@@ -4,7 +4,7 @@ import listed from './hooks/listed';
 import time from './hooks/time'
 import placeholder from '../images/placeholder.png'
 import payout from './hooks/payout';
-
+import ViewImage from './ImageView';
 
 const Table = ({currentRecords}) => {
 
@@ -73,13 +73,14 @@ const Table = ({currentRecords}) => {
                                     </h2>
                                     <div id={`flush-collapse${key}`} className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                         <div className="accordion-body">
-                                            <div className='container active-content-main'>
+                                            <div className='container listing-container'>
                                                 <div className='row'>
                                                     <div className='col-3'>
                                                         <Element
                                                             class='listing-img' 
                                                             body={(
                                                                 <>
+                                                                    <ViewImage url={data.imageurl ? data.imageurl : placeholder}/>
                                                                     <img src={data.imageurl ? data.imageurl : placeholder} className='product-img' />
                                                                     {/* <img src={getImages(data.ListingDetails.ViewItemURL._text)} className='product-img' /> */}
                                                                 </>
@@ -139,6 +140,14 @@ const Table = ({currentRecords}) => {
                                                                         </div>
                                                                         <div className="col listing-body total">
                                                                             $ {data.currentprice.toFixed(2)}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            Total Fees
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                        $ {(data.currentprice - payout(data.currentprice)).toFixed(2)}
                                                                         </div>
                                                                     </div>
                                                                     <div className='row details-row'>

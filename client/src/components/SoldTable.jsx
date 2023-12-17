@@ -4,7 +4,8 @@ import Element from "./DashElement";
 import ebayLogo from '../images/ebay-logo.png';
 import payout from './hooks/payout';
 import listed from './hooks/listed';
-import placeholder from '../images/placeholder.png'
+import placeholder from '../images/placeholder.png';
+import ViewImage from './ImageView';
 
 const SoldTable = ({currentRecords}) => {
 
@@ -72,14 +73,15 @@ const SoldTable = ({currentRecords}) => {
                                     </h2>
                                     <div id={`flush-collapse${key}`} className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                         <div className="accordion-body">
-                                            <div className='container'>
-                                                <div className='row'>
-                                                    <div className='col-sm-6'>
+                                            <div className='container listing-container'>
+                                                <div className='row d-flex justify-content'>
+                                                    <div className='col  d-flex justify-content-center'>
                                                         <Element
                                                             id={`listing-img-${key}`}
                                                             class={`listing-img`}
                                                             body={(
                                                                 <>
+                                                                    <ViewImage url={data.imageurl ? data.imageurl : placeholder}/>
                                                                     <img src={data.imageurl ? data.imageurl : placeholder} className='product-img' />
                                                                 </>
                                                             )}
@@ -130,6 +132,14 @@ const SoldTable = ({currentRecords}) => {
                                                                         </div>
                                                                         <div className="col listing-body num">
                                                                             $ {data.price.toFixed(2)}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className='row details-row'>
+                                                                        <div className="col listing-header">
+                                                                            Total Fees
+                                                                        </div>
+                                                                        <div className="col listing-body">
+                                                                        $ {(data.price - payout(data.price)).toFixed(2)}
                                                                         </div>
                                                                     </div>
                                                                     <div className='row details-row'>

@@ -38,6 +38,7 @@ function Settings(props) {
         const email     = document.getElementById('email');
         const address   = document.getElementById('address');
         const phone     = document.getElementById('phone');
+        const error     = document.getElementById('error');
 
         name.value = name.value === '' ? name.placeholder : name.value;
         email.value = email.value === '' ? email.placeholder : email.value;
@@ -45,7 +46,7 @@ function Settings(props) {
         phone.value = phone.value === '' ? phone.placeholder : phone.value;
 
         await axios.post(
-            // serverUrl + 
+            serverUrl + 
             '/update/user', 
             {
                 'userid': userAuth.userid,
@@ -56,6 +57,8 @@ function Settings(props) {
             })
             .then(async res => {
                 console.log('User updated');
+                error.innerHTML = 'success, contact info updated';
+                window.location.reload(false);
             })
             .catch(err => console.log(err));
     }
@@ -73,11 +76,11 @@ function Settings(props) {
                                 <div className="row">
                                     <div className="col">
                                         <img className='profile-settings-img' src={profile} />
-                                        <Popup
-                                            id={userAuth.userid}
-                                        />
                                     </div>
-                                    <div className="col">
+                                    <div className="col update-buttons">
+                                        <div>
+                                            <Popup id={userAuth.userid}/>
+                                        </div>
                                         <div>
                                             <UpdateLogin/>
                                             {/* <button type="button" className="btn-settings"> Update Login email </button> */}
@@ -117,6 +120,7 @@ function Settings(props) {
                                             <input type="phone" className="form-control" id="phone" placeholder={userData ? userData.phone : null} />
                                         </div>  
                                     </div>
+                                    <div className='row d-flex justify-content-center' id='error'></div>
                                     <br />
                                     <div className="row">
                                         <div className="col">
