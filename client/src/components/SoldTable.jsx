@@ -18,6 +18,7 @@ const SoldTable = ({currentRecords}) => {
 
         if(expandBox.getAttribute('colspan')){
             expandBox.classList.add('mobile-main-td');
+            expandBox.classList.remove('listing-open-fix');
             expandAccordion.classList.add('listing-collapse');
             details.classList.remove('listing-show');   
             setTimeout(() => {
@@ -34,6 +35,7 @@ const SoldTable = ({currentRecords}) => {
             
         } else{
             expandBox.setAttribute('colspan', '5');
+            expandBox.classList.add('listing-open-fix');
             expandBox.classList.remove('mobile-main-td');
             expandAccordion.classList.add('listing-expand');
             expandAccordion.classList.remove('listing-collapse');
@@ -75,7 +77,7 @@ const SoldTable = ({currentRecords}) => {
                                         <div className="accordion-body">
                                             <div className='container listing-container'>
                                                 <div className='row d-flex justify-content'>
-                                                    <div className='col  d-flex justify-content-center'>
+                                                    <div className='col-md-4 d-flex justify-content-center'>
                                                         <Element
                                                             id={`listing-img-${key}`}
                                                             class={`listing-img`}
@@ -87,7 +89,7 @@ const SoldTable = ({currentRecords}) => {
                                                             )}
                                                         />    
                                                     </div>
-                                                    <div className='col col-details'>
+                                                    <div className='col-md col-details'>
                                                         <div className='row'>
                                                             <div className="card listing-details" id={`listing-detail${key}`}>
                                                                 <div className='card-header'>

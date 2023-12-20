@@ -26,6 +26,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import authApp from './config/firebase';
 import Modal from 'react-modal';
 import Tos from './components/Tos';
+import ScrollToTop from './components/ScrollTop';
 
 export const AuthContext = createContext();
 
@@ -69,6 +70,7 @@ function App() {
     <>
       <AuthContext.Provider value={[ userAuth, setUserAuth ]}>
         <BrowserRouter>
+          <ScrollToTop />
           {/* <img className='logo' src={logo}/> */}
           {!userAuth && <Navigation />}
           <div className='container-fluid'>
@@ -86,7 +88,7 @@ function App() {
               <Route path='/info' element={<Info />} />
               <Route path='/login' element={<Login />} />
               <Route path='/contact' element={<Contact />} />
-              <Route path='/about' element={<About />} />
+              {/* <Route path='/about' element={<About />} /> */}
               <Route path='/tos' element={<Tos />} />
               <Route path='/register' element={<Register />} />
               <Route path='/reset' element={<Reset />} />

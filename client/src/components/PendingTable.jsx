@@ -18,6 +18,7 @@ const PendingTable = ({currentRecords}) => {
 
         if(expandBox.getAttribute('colspan')){
             expandBox.classList.add('mobile-main-td');
+            expandBox.classList.remove('listing-open-fix');
             expandAccordion.classList.add('listing-collapse');
             details.classList.remove('listing-show');   
             setTimeout(() => {
@@ -34,6 +35,7 @@ const PendingTable = ({currentRecords}) => {
             
         } else{
             expandBox.setAttribute('colspan', '5');
+            expandBox.classList.add('listing-open-fix');
             expandBox.classList.remove('mobile-main-td');
             expandAccordion.classList.add('listing-expand');
             expandAccordion.classList.remove('listing-collapse');
@@ -74,8 +76,8 @@ const PendingTable = ({currentRecords}) => {
                                     <div id={`flush-collapse${key}`} className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                         <div className="accordion-body">
                                             <div className='container listing-container'>
-                                                <div className='row'>
-                                                    <div className='col-3'>
+                                                <div className='row d-flex justify-content'>
+                                                    <div className='col-md-4 d-flex justify-content-center'>
                                                         <Element     
                                                             class='listing-img' 
                                                             body={(
@@ -86,7 +88,7 @@ const PendingTable = ({currentRecords}) => {
                                                             )}
                                                         />    
                                                     </div>
-                                                    <div className='col col-details'>
+                                                    <div className='col-md col-details'>
                                                         <div className='row'>
                                                             <div className="card listing-details" id={`listing-detail${key}`}>
                                                                 <div className='card-header'>

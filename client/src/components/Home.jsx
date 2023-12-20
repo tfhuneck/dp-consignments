@@ -31,12 +31,12 @@ function Home() {
                     <br /><br />
                     <div className='row'>
                         <div className='col d-flex justify-content-center home-text'>
-                             <h4 className='home-header'>Tired of getting low offers at Shows?</h4> 
+                             <h4 className='home-header'>Tired of getting low offers at shows?</h4> 
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col d-flex justify-content-center home-text'>
-                             <h5 className='home-header'>We make Selling Cards easy!</h5> 
+                             <h5 className='home-header'>We make selling cards easy!</h5> 
                         </div>
                     </div>
                     <br /><br />
@@ -89,7 +89,7 @@ function Home() {
                             <a className='link' href="https://www.instagram.com/dandpsportscards/" target="_blank">
                                <Instagram className='socials' />
                             </a>
-                            <a className='link' href="https://www.facebook.com/dandpcards/" target="_blank">
+                            <a className='link' href="https://www.facebook.com/groups/556610461641475" target="_blank">
                                <Facebook className='socials'/>
                             </a>
                             <a className='link' href="https://www.youtube.com/channel/UCncAlcBPo_DijZvtnPu0tiA" target="_blank">
