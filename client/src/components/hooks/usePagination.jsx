@@ -6,7 +6,7 @@ export const usePagination = (state, userData, filteredData) => {
      const [ currentRecords, setCurrentRecords]  = useState();
      const [ currentPage, setCurrentPage ]       = useState(1); 
      const [ nPages, setNPages ]                 = useState();  
-     const [ recordsPerPage ]                    = useState(10);
+     const [ recordsPerPage ]                    = useState(30);
      const indexOfLastRecord                     = currentPage * recordsPerPage;
      const indexOfFirstRecord                    = indexOfLastRecord - recordsPerPage; 
 

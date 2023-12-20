@@ -98,7 +98,7 @@ function Navigation() {
         <>
             <Container className='navcontainer' >
                 <Navbar expand="md">
-                    <Container>
+                    <Container className='d-flex justify-content'>
                         <Navbutton 
                             to='/'
                             id='home'
@@ -123,12 +123,12 @@ function Navigation() {
                             image={mail}
                             name='Contact'
                         />
-                        <Navbutton 
+                        {/* <Navbutton 
                             to="/about"
                             id='about'
                             image={about}
                             name='About'
-                        />
+                        /> */}
                     </Container>
                 </Navbar>
             </Container>  
@@ -174,14 +174,14 @@ function Navigation() {
                         </Link>
                     </div>
                 </div>
-                <div className='row'>
+                {/* <div className='row'>
                     <div className='col d-flex justify-content-center'>
                         <Link className='mobile-navbar-link' id='mobile-navbar-link-5' to='/about' onClick={() => setExpand(!expand)}>
                             <img src={about} className='mobile-navbar-icn' />
                             About
                         </Link>
                     </div>
-                </div>
+                </div> */}
             </div>
         </> 
     )

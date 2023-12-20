@@ -92,23 +92,25 @@ function Cashout(props) {
 
     const submitRequest = async () => {
 
-        axios.post(
-            serverUrl + 
-            '/request',
-            {
-                userData,
-                amount,
-                type,
-                date,
-                comment
-            }
-        )
-        .then(res => {
-            console.log(res.data);
-            fetchrequests();
-            clearInputs();
-        })
-        .catch(err => console.log(err));
+        if(valid){
+            axios.post(
+                serverUrl + 
+                '/request',
+                {
+                    userData,
+                    amount,
+                    type,
+                    date,
+                    comment
+                }
+            )
+            .then(res => {
+                console.log(res.data);
+                fetchrequests();
+                clearInputs();
+            })
+            .catch(err => console.log(err));
+        }
     };
 
     return (
@@ -133,11 +135,12 @@ function Cashout(props) {
                                             <option value={'check'}>Check</option>
                                         </select>
                                     </div>
-                                    <label htmlFor="amount">Cashout Amount</label>
+                                        <label htmlFor="amount">Cashout Amount</label>
                                     <div>
                                         <input type="number" name="amount" id="amount" placeholder="Enter Cashout Amount" className="form-control" onChange={(e) => setAmount(Number(e.target.value))} />
                                     </div>
-                                    <label htmlFor="comment">Comment</label>
+                                        <label htmlFor="comment">Comment</label>
+                                        <div className="error"> Please include your payment information</div>
                                     <div>
                                         <input type="text" name="comment" id="comment" placeholder="Comment" className="form-control" onChange={(e) => setComment(e.target.value)} />
                                     </div>
@@ -146,7 +149,7 @@ function Cashout(props) {
                                             Current Balance: &nbsp; 
                                         </b>
                                         <span className="payout-final">
-                                            $ {userData && userData.currentbalance}
+                                             {userData && "$" + userData.currentbalance}
                                         </span>
                                     </div>
                                     { valid == false &&
@@ -291,6 +294,7 @@ function Cashout(props) {
                                                                 {i.comment && i.comment}
                                                                 </div>
                                                             </div>
+                                                            <br />
                                                             <div className="row">
                                                                 <div className="col"> 
                                                                     <button className="btn btn-outline-danger"

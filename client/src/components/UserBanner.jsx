@@ -1,4 +1,3 @@
-import axios from 'axios';
 import avatar from '../images/avatar.png'
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../App';
@@ -6,7 +5,7 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import authApp from '../config/firebase';
 import { getAuth, signOut } from "firebase/auth";
 import { useFetchData } from './hooks/useFetchData';
-import { today, greeting, weekDay} from './hooks/date';
+import logo from '../images/logo.png'
 
 
 const UserBanner = () => {
@@ -64,6 +63,9 @@ const UserBanner = () => {
 
     return (
         <>
+            <div className='mobile-banner'>
+                <img src={logo} className='mobile-banner-logo'/>
+            </div>
             <div className='userbanner'>
                 <div className='userbanner-nav-behind' id='userbanner-nav-behind'/>
                 <div className='userbanner-nav' id='userbanner-nav'  onClick={() => setExpand(!expand)}>

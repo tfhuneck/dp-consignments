@@ -46,7 +46,7 @@ function Settings(props) {
         phone.value = phone.value === '' ? phone.placeholder : phone.value;
 
         await axios.post(
-            serverUrl + 
+            // serverUrl + 
             '/update/user', 
             {
                 'userid': userAuth.userid,

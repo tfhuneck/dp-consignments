@@ -2,7 +2,8 @@ import Loading from './Loading';
 import Pagination from "./Pagination";
 import Sort from "./Sort";
 import Search from "./Search";
-import Table from './ActivelistingsTable'
+import Table from './ActivelistingsTable';
+import TableMobile from './ActiveListingsMobile';
 import { useSort } from "./hooks/useSort";
 import { useSearch } from "./hooks/useSearch";
 import { usePagination } from "./hooks/usePagination";
@@ -43,7 +44,7 @@ function Listings(props) {
         return (
             <>
                 <Search clearSearch={clearSearch} handleSearch={handleSearch} searchValue={searchValue} />
-                <div className='table-responsive-lg table-mobile'>
+                <div className='table-responsive-lg table-main'>
                     <table className='table table-dark table-striped table-hover '>
                         <thead>
                             <tr>
@@ -77,6 +78,55 @@ function Listings(props) {
                             <Table currentRecords={currentRecords} />
                         </tbody>
                     </table>
+                </div>
+                <div className='table-mobile container'>
+                    <div className='row d-flex justify-content-center'>
+                        <button className='btn-settings' onClick={handleSortName}>
+                            Sort Listing Name
+                            <span  >
+                                <Sort sort={state.sortName} />
+                            </span>
+                        </button>
+                    </div>
+                    <div className='row d-flex justify-content-center'>
+                        <button className='btn-settings' onClick={handleSortTime}>
+                            Sort Time Left
+                            <span  >
+                                <Sort sort={state.sortTime} />
+                            </span>
+                        </button>
+                    </div>
+                    <div className='row d-flex justify-content-center'>
+                        <button className='btn-settings' onClick={handleSortBids}>
+                            Sort Bids
+                            <span  >
+                                <Sort sort={state.sortBids} />
+                            </span>
+                        </button>
+                    </div>
+                    <div className='row d-flex justify-content-center'>
+                        <button className='btn-settings' onClick={handleSortPrice} >
+                            Sort Price
+                            <span >
+                                <Sort sort={state.sortPrice} />
+                            </span>
+                        </button>
+                    </div>
+                    <br />
+                    <div className='row'>
+                        <table className='table table-dark table-striped table-hover '>
+                            <thead>
+                                <tr>
+                                    <th className="list-header">
+                                        Listing
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <TableMobile currentRecords={currentRecords} />
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div className="container">
                     <div className="row">

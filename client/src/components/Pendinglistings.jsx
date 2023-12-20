@@ -8,6 +8,7 @@ import { useSearch } from "./hooks/useSearch";
 import { usePagination } from "./hooks/usePagination";
 import { useFetchData } from './hooks/useFetchData';
 import { useState, useEffect } from 'react';
+import TableMobile from './PendingMobile';
 
 function Pending() {
 
@@ -44,7 +45,7 @@ function Pending() {
             <>  
                
                 <Search clearSearch={clearSearch} handleSearch={handleSearch} searchValue={searchValue} />
-                <div className='table-responsive-lg table-mobile'>
+                <div className='table-responsive-lg table-main'>
                     <div className='pending-disclaimer'>
                         Pending Items awaiting Payments!
                     </div>
@@ -84,6 +85,47 @@ function Pending() {
                             <PendingTable currentRecords={currentRecords} />
                         </tbody>
                     </table>
+                </div>
+                <div className='table-mobile container'>
+                    <div className='row d-flex justify-content-center'>
+                        <button className='btn-settings' onClick={handleSortName}>
+                            Sort Listing Name
+                            <span  >
+                                <Sort sort={state.sortName}/>
+                            </span>
+                        </button>
+                    </div>
+                    <div className='row d-flex justify-content-center'>
+                        <button className='btn-settings' onClick={handleSortDate}>
+                            Sort Sale Date
+                            <span  >
+                                <Sort sort={state.sortDate}/>
+                            </span>
+                        </button>
+                    </div>
+                    <div className='row d-flex justify-content-center'>
+                        <button className='btn-settings' onClick={handleSortPrice} >
+                            Sort Price
+                            <span >
+                                <Sort sort={state.sortPrice}/>
+                            </span>
+                        </button>
+                    </div>
+                    <br />
+                    <div className='row'>
+                        <table className='table table-dark table-striped table-hover '>
+                            <thead>
+                                <tr>
+                                    <th className="list-header">
+                                        Listing
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <TableMobile currentRecords={currentRecords} />
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div className="container">
                     <div className="row">

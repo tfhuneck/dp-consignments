@@ -7,7 +7,6 @@ import totalBalance from "./hooks/totalBalance";
 import { useFetchData } from "./hooks/useFetchData";
 import { useActiveTotal } from './hooks/useActiveTotal'
 import { usePendingTotal } from "./hooks/usePendingTotal";
-
 import { useDisplayList } from "./hooks/useDisplayList";
 import { useRules } from './hooks/useRules';
 

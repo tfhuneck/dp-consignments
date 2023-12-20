@@ -15,7 +15,7 @@ function Info() {
                                 <table className='rates'>
                                     <tr>
                                         <th>
-                                            Sale Price 
+                                            Final Sale Price 
                                         </th>
                                         <th>
                                             Payout Rate
@@ -23,42 +23,66 @@ function Info() {
                                     </tr>
                                     <tr>
                                         <td>
-                                            $5,000 +
+                                            $10,000 +
                                         </td>
                                         <td>
-                                            97 % of Sale &nbsp; – $300
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            $1,000 - $4,999 &nbsp;&nbsp;
-                                        </td>
-                                        <td>
-                                            88 % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; – &nbsp;&nbsp; 50¢
+                                            95 % 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            $25  - $999.99
+                                            $5,000 - $9,999.99 &nbsp;&nbsp;
                                         </td>
                                         <td>
-                                            85 % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; – &nbsp;&nbsp; 50¢
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            $10 - $24.99
-                                        </td>
-                                        <td>
-                                            80 % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; – &nbsp; 50¢
+                                            92 % 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            under $10 
+                                            $2,500  - $4,999.99
                                         </td>
                                         <td>
-                                            80 % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; – &nbsp; 75¢
+                                            90 % 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            $1,000 - $2,499.99 &nbsp;&nbsp;&nbsp;&nbsp;
+                                        </td>
+                                        <td>
+                                            88 % 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            $500 - $999.99 
+                                        </td>
+                                        <td>
+                                            87 % 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            $100 - $499.99 
+                                        </td>
+                                        <td>
+                                            86 % 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            $50 - $99.99 
+                                        </td>
+                                        <td>
+                                            85 % 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            under $50
+                                        </td>
+                                        <td>
+                                            83 % &nbsp;&nbsp; – &nbsp;&nbsp; $0.99 
                                         </td>
                                     </tr>
                                 </table>
@@ -80,13 +104,16 @@ function Info() {
                 </div>
                 <br /><br />
                 <div className='row'>
-                    <div className='col d-flex justify-content-center home-text'>
+                    <h4>
+                        About us
+                    </h4>
+                </div>
+                <div className='row'>
+                    <div className='col d-flex justify-content-start home-text'>
                         <h5 className='home-header info-header'>
-                            We are a brick and mortar hobby shop located in the heart of Sacramento. 
-                            We are very experienced in listing and auctioning sports and trading cards 
-                            effectively, to achieve high sale prices. If you are looking to move a large quantity of 
-                            cards, we can not only save you the time and hassel of listing each card, but through our 
-                            experience and reach, achieve better sale results. Our track record of over 40k cards sold and outstanding reviews speak for themself.
+                        We are a hobby shop located in Sacramento. 
+                        We have many years of experience with ebay and consignments, specializing in trading cards and memorabilia. 
+                        If you are looking to move parts or all of your collection, we can help you save time and maximize your return. With over 55k items sold and being Top Rated Seller (TRS), we are a well respected member of ebay. 
                         </h5>
                     </div>
                 </div>
@@ -138,12 +165,12 @@ function Info() {
                 <br />
                 <br />
                 <div className='row'> 
-                    <h3>
+                    <h4>
                         Ship To
-                    </h3>
+                    </h4>
                 </div>
                 <br />
-                <div className='row'> 
+                <div className='col d-flex justify-content-start home-text'> 
                     You can bring your cards or ship them to us at our Hobby Shop in Sacramento.
                 </div>
                 <br />
@@ -158,34 +185,6 @@ function Info() {
                 </div>
                 <br /><br />
                 <div className='row'> 
-                    <h3>Payout Breakdown</h3>
-                </div>
-                <br />
-                <div className='row'> 
-                    We offer an incremental Payout system based on the sale price of your card.
-                </div>
-                <br />
-                <div className='row'> 
-                    If your card sells under $10, we charge a 20% consignment fee plus 75¢ listing fee.
-                </div>
-                <br />
-                <div className='row'> 
-                    If your card sells between $10 and $24.99, we charge a 20% consignment fee plus 50¢ listing fee.
-                </div>
-                <br />
-                <div className='row'> 
-                    If your card sells between $25 and $999.99, we charge a 15% consignment fee plus 50¢ listing fee.
-                </div>
-                <br />
-                <div className='row'> 
-                    If your card sells between $1,000 and $4,999, we charge a 12% consignment fee plus 50¢ listing fee.
-                </div>
-                <br />
-                <div className='row'> 
-                    If your card sells for more than $5,000, we only charge you 3% plus $300 consignment fee. 
-                </div>
-                <br /><br /><br />
-                <div className='row'> 
                     <h3>
                         Consignment Rules
                     </h3>
@@ -196,19 +195,19 @@ function Info() {
                         Bidding
                     </h4>
                 </div>
-                <div className='row'> 
-                We value the integrity of our customers and the card community, 
-                therefore we will not condone in shill bidding of your own or anyone’s items. 
-                Anyone found doing so, will result in a Ban from consigning with us.  
+                <div className='col d-flex justify-content-start home-text'> 
+                    We value the integrity of our customers and the card community, 
+                    therefore we will not condone in shill bidding of your own or anyone’s items. 
+                    Anyone found doing so will result in a ban from consigning with us.  
                 </div>
                 <br />
                 <div className='row'> 
                     <h4>
-                        No Bid Listings
+                        Listings with no bids
                     </h4>
                 </div>
-                <div className='row'> 
-                    Any listings that ends with 0 bids, will be released to D&P Sports Cards.
+                <div className='col d-flex justify-content-start home-text'> 
+                    Any listing that end with 0 bids will not be returned.
                 </div>
                 <br />
                 <div className='row'> 
@@ -216,8 +215,8 @@ function Info() {
                         Payments
                     </h4>
                 </div>
-                <div className='row'> 
-                    Any Listing that has concluded in a sale, requires a 2 week period for the sale to finalize and the payment from the buyer to be processed.
+                <div className='col d-flex justify-content-start home-text'> 
+                    Any listing that has concluded in a sale will require a 1 week period from the time of buyer payment.
                     Once the payment has been recieved and the card has been sent to the buyer succesfully, the payout balance will be available to you.
                 </div>
                 <br />
@@ -226,9 +225,9 @@ function Info() {
                         Canceled Sales
                     </h4>
                 </div>
-                <div className='row'> 
-                    In case a listing has concluded in a sale, but the buyer cancels the sale or fails to pay for the item within the required timeframe, 
-                    the sale will count as unsold. In this case the item will be relisted for a second consignment.
+                <div className='col d-flex justify-content-start home-text'> 
+                    If an item sells and the buyer fails to pay or decides to cancel, 
+                    we will treat it as a non-sale. We will relist the item within one week.
                 </div>
                 <div className='row'>
                     <div className='col d-flex justify-content-center '>

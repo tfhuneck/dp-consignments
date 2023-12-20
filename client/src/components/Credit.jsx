@@ -19,7 +19,7 @@ function Credit(props) {
     useEffect(() => {
         async function fetchData(){
             await axios.get(
-                serverUrl +
+                // serverUrl +
                 '/user',
                 {params:{
                         userAuth

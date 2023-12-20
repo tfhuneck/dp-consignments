@@ -17,6 +17,7 @@ const Table = ({currentRecords}) => {
 
         if(expandBox.getAttribute('colspan')){
             expandBox.classList.add('mobile-main-td');
+            expandBox.classList.remove('listing-open-fix');
             expandAccordion.classList.add('listing-collapse');
             details.classList.remove('listing-show');   
             
@@ -35,6 +36,7 @@ const Table = ({currentRecords}) => {
         } else{
             expandBox.setAttribute('colspan', '4');
             expandBox.classList.remove('mobile-main-td');
+            expandBox.classList.add('listing-open-fix');
             expandAccordion.classList.add('listing-expand');
             expandAccordion.classList.remove('listing-collapse');
             try {
@@ -74,20 +76,19 @@ const Table = ({currentRecords}) => {
                                     <div id={`flush-collapse${key}`} className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                         <div className="accordion-body">
                                             <div className='container listing-container'>
-                                                <div className='row'>
-                                                    <div className='col-3'>
+                                                <div className='row d-flex justify-content'>
+                                                    <div className='col-md-4 d-flex justify-content-center'>
                                                         <Element
                                                             class='listing-img' 
                                                             body={(
                                                                 <>
                                                                     <ViewImage url={data.imageurl ? data.imageurl : placeholder}/>
                                                                     <img src={data.imageurl ? data.imageurl : placeholder} className='product-img' />
-                                                                    {/* <img src={getImages(data.ListingDetails.ViewItemURL._text)} className='product-img' /> */}
                                                                 </>
                                                             )}
                                                         />    
                                                     </div>
-                                                    <div className='col col-details'>
+                                                    <div className='col-md col-details'>
                                                         <div className='row'>
                                                             <div className="card listing-details" id={`listing-detail${key}`}>
                                                                 <div className='card-header'>

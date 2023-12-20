@@ -30,7 +30,7 @@ function Register() {
             return
         }
         
-        else{
+        if(valid && password.length >= 6 && password !== password2){
             createUserWithEmailAndPassword(auth, email, password)
                 .then(async (userCredential) => {
                     // Signed in 
@@ -61,7 +61,6 @@ function Register() {
                     if (errorCode === 'auth/email-already-in-use'){
                         error.innerHTML = 'E-mail already in use'
                     }
-
                     console.log(errorCode)
                     // ..
                 });
