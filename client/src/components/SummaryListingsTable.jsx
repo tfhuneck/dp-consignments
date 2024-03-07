@@ -1,12 +1,14 @@
 import Element from "./DashElement";
 import ebayLogo from '../images/ebay-logo.png';
-import payout from './hooks/payout';
 import listed from './hooks/listed';
-import placeholder from '../images/placeholder.png';
-import ViewImage from './ImageView';
+import time from './hooks/time';
+import payout from './hooks/payout';
 import Status from "./Status";
+import ViewImage from './ImageView';
+import placeholder from '../images/placeholder.png'
 
-const UnsoldTable = ({currentRecords}) => {
+
+const Table = ({currentRecords}) => {
 
     const handleCollapse = async (id) => {
        
@@ -35,8 +37,8 @@ const UnsoldTable = ({currentRecords}) => {
             
         } else{
             expandBox.setAttribute('colspan', '4');
-            expandBox.classList.add('listing-open-fix');
             expandBox.classList.remove('mobile-main-td');
+            expandBox.classList.add('listing-open-fix');
             expandAccordion.classList.add('listing-expand');
             expandAccordion.classList.remove('listing-collapse');
             try {
@@ -68,7 +70,7 @@ const UnsoldTable = ({currentRecords}) => {
                                             data-bs-target={`#flush-collapse${key}`} 
                                             aria-expanded="false" 
                                             aria-controls="flush-collapseOne"
-                                            onClick={() => handleCollapse(key)}
+                                            onClick={() => handleCollapse(key)} 
                                         >
                                             {data.title}
                                         </button>
@@ -90,7 +92,7 @@ const UnsoldTable = ({currentRecords}) => {
                                                     </div>
                                                     <div className='col-md col-details'>
                                                         <div className='row'>
-                                                            <div className="card listing-details" id={`listing-detail${key}`} >
+                                                            <div className="card listing-details" id={`listing-detail${key}`}>
                                                                 <div className='card-header'>
                                                                     Details
                                                                 </div>
@@ -128,6 +130,78 @@ const UnsoldTable = ({currentRecords}) => {
                                                                         </div>
                                                                         :null
                                                                     }
+                                                                    {data.status === 'active' ? 
+                                                                        <div className='row details-row'>
+                                                                            <div className="col listing-header">
+                                                                                Time Left
+                                                                            </div>
+                                                                            <div className="col listing-body">
+                                                                                {data.timeleft && time(data.timeleft)}
+                                                                            </div>
+                                                                        </div>
+                                                                        : null
+                                                                    }
+                                                                    {data.watchcount ?
+                                                                        <div className='row details-row'>
+                                                                            <div className="col listing-header">
+                                                                                Watching
+                                                                            </div>
+                                                                            <div className="col listing-body">
+                                                                                {data.watchcount}
+                                                                            </div>
+                                                                        </div>
+                                                                        : null
+                                                                    }
+                                                                    {data.bidcount ?
+                                                                        <div className='row details-row'>
+                                                                            <div className="col listing-header">
+                                                                                Bids
+                                                                            </div>
+                                                                            <div className="col listing-body">
+                                                                                {data.bidcount}
+                                                                            </div>
+                                                                        </div>
+                                                                        : null
+                                                                    }
+                                                                    {data.currentprice ? 
+                                                                        <>
+                                                                            <div className='row details-row'>
+                                                                                <div className="col listing-header">
+                                                                                    Auction Price
+                                                                                </div>
+                                                                                <div className="col listing-body total">
+                                                                                    $ {data.currentprice.toFixed(2)}
+                                                                                </div>
+                                                                            </div>
+                                                                        </>
+                                                                        : null
+                                                                    }
+                                                                    {data.currentprice ? 
+                                                                        <>
+                                                                            <div className='row details-row'>
+                                                                                <div className="col listing-header">
+                                                                                    (Auction) Fees
+                                                                                </div>
+                                                                                <div className="col listing-body">
+                                                                                $ {data.status === 'unsold' || data.status === 'canceled' ? '0.00' : (data.currentprice - payout(data.currentprice)).toFixed(2)}
+                                                                                </div>
+                                                                            </div>
+                                                                        </>
+                                                                        : null
+                                                                    }
+                                                                    {data.currentprice ? 
+                                                                        <>
+                                                                            <div className='row details-row'>
+                                                                                <div className="col listing-header">
+                                                                                (Auction) Payout
+                                                                                </div>
+                                                                                <div className="col listing-body num">
+                                                                                    $ {data.status === 'unsold' || data.status === 'canceled' ? '0.00' : payout(data.currentprice.toFixed(2))}
+                                                                                </div>
+                                                                            </div>
+                                                                        </>
+                                                                        : null
+                                                                    }
                                                                     {data.paymentstatus ? 
                                                                         <>
                                                                             <div className='row details-row'>
@@ -141,7 +215,7 @@ const UnsoldTable = ({currentRecords}) => {
                                                                         </>
                                                                         : null
                                                                     }
-                                                                    {data.finalprice ? 
+                                                                    {data.paymentstatus ? 
                                                                         <>
                                                                             <div className='row details-row'>
                                                                                 <div className="col listing-header">
@@ -154,26 +228,32 @@ const UnsoldTable = ({currentRecords}) => {
                                                                         </>
                                                                         : null
                                                                     }
-                                                                    <>
-                                                                        <div className='row details-row'>
-                                                                            <div className="col listing-header">
-                                                                                Final Fees
+                                                                    {data.paymentstatus ? 
+                                                                        <>
+                                                                            <div className='row details-row'>
+                                                                                <div className="col listing-header">
+                                                                                    Final Fees
+                                                                                </div>
+                                                                                <div className="col listing-body">
+                                                                                $ {data.status === 'unsold' || data.status === 'canceled' ? '0.00' : (data.finalprice - payout(data.finalprice)).toFixed(2)}
+                                                                                </div>
                                                                             </div>
-                                                                            <div className="col listing-body">
-                                                                            $ 0
+                                                                        </>
+                                                                        : null
+                                                                    }
+                                                                    {data.paymentstatus ? 
+                                                                        <>
+                                                                            <div className='row details-row'>
+                                                                                <div className="col listing-header">
+                                                                                    Final Payout
+                                                                                </div>
+                                                                                <div className="col listing-body total">
+                                                                                    $ {data.status === 'unsold' || data.status === 'canceled' ? '0.00' : payout(data.finalprice)}
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </>
-                                                                    <>
-                                                                        <div className='row details-row'>
-                                                                            <div className="col listing-header">
-                                                                                Final Payout
-                                                                            </div>
-                                                                            <div className="col listing-body total">
-                                                                                $ 0
-                                                                            </div>
-                                                                        </div>
-                                                                    </>
+                                                                        </>
+                                                                        : null
+                                                                    }
                                                                     {data.canceldate ?
                                                                         <div className='row details-row'>
                                                                             <div className="col listing-header">
@@ -197,13 +277,16 @@ const UnsoldTable = ({currentRecords}) => {
                             </div>
                         </td>
                         <td className={`side-td-${key}`}>
-                            <span>
-                                <Status stat={data.status} /> 
+                            <Status stat={data.status} /> 
+                        </td>
+                        <td className={`side-td-${key}`}>
+                            <span className='time-left'>
+                                $ {data.status === 'active' ? data.currentprice.toFixed(2) : data.status === 'unsold' ? '0.00'  : data.finalprice.toFixed(2)}
                             </span>
                         </td>
                         <td className={`side-td-${key}`}>
-                            <span>
-                                {data.endtime && data.status === 'unsold' ? listed(data.endtime) : data.canceldate && data.status === 'canceled' ? listed(data.canceldate) : null}
+                            <span className='price'>
+                                $ {data.status === 'unsold' ? '0.00' : data.status === 'canceled' ? '0.00' : data.status === 'active' ? payout(data.currentprice.toFixed(2)) : payout(data.finalprice.toFixed(2))}
                             </span>
                         </td>
                     </tr>
@@ -211,6 +294,6 @@ const UnsoldTable = ({currentRecords}) => {
             })} 
         </>
     )
-};
+}
 
-export default UnsoldTable;
+export default Table;

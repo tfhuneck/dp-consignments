@@ -285,6 +285,12 @@ a{
   width: 50vw;
   text-align: left;
 }
+.trs{
+  display: inline;
+  height: 2rem;
+  margin-left: 0.4rem;
+  margin-right: 0.4rem;
+}
 .background-box:hover{
   transform: rotate(-180deg);
 }
@@ -701,7 +707,7 @@ a{
   background-color: #1d2c39;
 }
 .pending-disclaimer{
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   margin-bottom: 1rem;
   color: #d50924;
   font-weight: 400;
@@ -711,6 +717,9 @@ table{
 }
 .table-main{
   margin-top: 6rem;
+}
+.table-include{
+  margin-top: 2rem;
 }
 table tbody td{
   overflow-y:auto;
@@ -823,6 +832,28 @@ table tbody tr:last-child td:last-child {
 }
 .details-row{
   border-bottom: rgba(0, 0, 0, 0.3) 0.5px solid;
+}
+.status{
+  width: 6rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  border-radius: 20px;
+  padding: 0.5rem;
+}
+.status-active{
+  background-color: green;
+}
+.status-pending{
+  background-color: orange;
+}
+.status-sold{
+  background-color: #d50924;
+}
+.status-unsold{
+  background-color: blueviolet;
+}
+.status-canceled{
+  background-color: darkmagenta;
 }
 .listing-details{
   border-radius: 10px;
@@ -1303,6 +1334,21 @@ input::file-selector-button:active {
   margin-left: 0.5rem;
   cursor: pointer;
 }
+.include{
+  padding: 0.5rem;
+  /* margin-top: 0.5rem; */
+  cursor: pointer;
+  background-color: rgb(5, 5, 5, 0.2);
+  border-radius: 5px;
+}
+.include-checkbox{
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+.include-label{
+  cursor: pointer;
+  font-weight: 200;
+}
 .comment{
   white-space: wrap;
 }
@@ -1702,6 +1748,9 @@ td{
   .table-main{
     display: none;
   }
+  .table-include{
+    display: none;
+  }
   table thead th:first-child {
     border-radius: 10px 0 0 0 !important;
   }
@@ -1769,7 +1818,7 @@ td{
     width: 80vw;
   }
   .clear-search{
-    top: 340px;
+    top: 412px;
   }
   .col-details{
     margin-left: 4rem;
@@ -1958,6 +2007,10 @@ td{
     display: block;
     margin-top: 6rem;
   }
+  .table-include{
+    display: block;
+    margin-top: 2rem;
+  }
 
 }
 
@@ -1973,26 +2026,40 @@ td{
 
 @media only screen and (min-width: 506px) and (max-width: 536px) {
   .clear-search{
-    top: 12.25rem !important; 
+    top: 16.75rem !important; 
   }
 }
 
 
 @media only screen and (min-width: 538px) and (max-width: 776px) {
   .clear-search{
-    top: 12.25rem !important;
+    top: 16.75rem !important;
   }
   
 }
 
-@media only screen and (min-width: 769px) and (max-width: 1028px) {
+@media only screen and (min-width: 769px) and (max-width: 929px) {
   .clear-search{
-    top: 12.25rem;
+    top: 16.75rem !important;
   }
+}
+
+@media only screen and (min-width: 930px) and (max-width: 1223px) {
+  .clear-search{
+    top: 12.25rem !important;
+  }
+}
+
+
+@media only screen and (min-width: 769px) and (max-width: 1028px) {
   .listing-container{
     min-width: 60rem;
   }
   .table-main{
+    max-width: inherit;
+    overflow-y: auto;
+  }
+  .table-include{
     max-width: inherit;
     overflow-y: auto;
   }
@@ -2033,6 +2100,10 @@ td{
     margin-right: 2rem;
   }
   .table-main{
+    max-width: inherit;
+    overflow-y: auto;
+  }
+  .table-include{
     max-width: inherit;
     overflow-y: auto;
   }

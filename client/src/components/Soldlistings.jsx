@@ -9,12 +9,12 @@ import { usePagination } from "./hooks/usePagination";
 import { useFetchData } from './hooks/useFetchData';
 import { useState, useEffect } from 'react';
 import TableMobile from './SoldMobile';
+import { useListingData } from './hooks/useListingData';
 
-// Sold Elements Component
 function Sold() {
 
-    // fetch User Data hook
-    const {userData} = useFetchData('/user/sold');
+    // User Listing Data
+    const { userData } = useListingData('sold');
 
     // Custom Search hook 
     const { searchValue, filteredData, clearSearch, handleSearch } = useSearch(userData);

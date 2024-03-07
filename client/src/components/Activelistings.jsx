@@ -7,15 +7,14 @@ import TableMobile from './ActiveListingsMobile';
 import { useSort } from "./hooks/useSort";
 import { useSearch } from "./hooks/useSearch";
 import { usePagination } from "./hooks/usePagination";
-import { useFetchData } from './hooks/useFetchData';
 import { useState, useEffect } from 'react';
-
+import { useListingData } from './hooks/useListingData';
 
 function Listings(props) {
     
-    // fetch User Data hook
-    const {userData} = useFetchData('/user/listings');
-
+    // User Listing Data
+    const { userData } = useListingData('active')
+   
     // Custom Search hook 
     const { searchValue, filteredData, clearSearch, handleSearch } = useSearch(userData);
 

@@ -10,18 +10,27 @@ const userSchema = new mongoose.Schema({
         skucode: {type: String, default: 'assign_sku'},
         currentbalance: {type: Number, default: 0},
         rules: {type: Boolean, default: false},
-        activeitems: [{
-            itemid: {type: String, default: null}
-        }],
-        solditems: [{
-            itemid: {type: String, default: null}
-        }],
-        unsolditems: [{
-            itemid: {type: String, default: null}
-        }],
-        pendingitems: [{
-            itemid: {type: String, default: null}
-        }],
+        activeitems: {
+            sum: {type: Number, default: 0},
+            total: {type: Number, default: 0},
+            payout: {type: Number, default: 0}
+        },
+        pendingitems: {
+            sum: {type: Number, default: 0},
+            total: {type: Number, default: 0},
+            payout: {type: Number, default: 0}
+        },
+        solditems: {
+            sum: {type: Number, default: 0},
+            total: {type: Number, default: 0},
+            payout: {type: Number, default: 0}
+        },
+        unsolditems: {
+            sum: {type: Number, default: 0},
+        },
+        canceleditems: {
+            sum: {type: Number, default: 0},
+        }, 
         balance: [{
             title: {type: String, default: null},
             price: {type: Number, default: 0}, 
@@ -38,7 +47,7 @@ const userSchema = new mongoose.Schema({
     { timestamps: true }
 );
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('NewUser', userSchema);
 
 User.createCollection()
     .then((collection) => {

@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import trs from '../images/trs.png'
 
 function Info() {
 
@@ -113,7 +114,9 @@ function Info() {
                         <h5 className='home-header info-header'>
                         We are a hobby shop located in Sacramento. 
                         We have many years of experience with ebay and consignments, specializing in trading cards and memorabilia. 
-                        If you are looking to move parts or all of your collection, we can help you save time and maximize your return. With over 55k items sold and being Top Rated Seller (TRS), we are a well respected member of ebay. 
+                        If you are looking to move parts or all of your collection, we can help you save time and maximize your return. With over 55k items sold and being Top Rated Seller 
+                        <img src={trs} className='trs'/>
+                        (TRS), we are a well respected member of ebay. 
                         </h5>
                     </div>
                 </div>

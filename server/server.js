@@ -40,17 +40,23 @@ app.use('/delete', require('./routes/deleteUserRoute'));
 app.use('/avatar', require('./routes/avatarRoute'));
 app.use('/mail', require('./routes/sendMailRoute'));
 app.use('/acceptrules', require('./routes/acceptRulesRoute'));
+app.use('/summary', require('./routes/allItemsRoute'))
 
-// app.use('/user', require('./routes/redisCacheUserRoute'));
 app.use('/user', require('./routes/getUserRoute')); // Route to get userData for user without Redis cache
-// app.use('/user/listings', require('./routes/redisCacheListingsRoute'));
+app.use('/listingdata', require('./routes/allItemsRoute')); // Route to get all user Listing Data
+
+// ======= Original Listing Data Routes ========
 app.use('/user/listings', require('./routes/getUserActiveListingsRoute')); // Route to get user active listings for user without Redis cache
-// app.use('/user/sold', require('./routes/redisCacheSoldRoute'));
 app.use('/user/sold', require('./routes/getUserSoldListingsRoute')); // Route to get user sold listings without redis cache
-// app.use('/user/pending', require('./routes/redisCachePendingRoute'));
 app.use('/user/pending', require('./routes/getUserPendingListingsRoute'));  // Route to get user pending listings without redis cache
-// app.use('/user/update/image', require('./routes/UserUpdateImageRoute'));
 app.use('/user/unsold', require('./routes/getUserUnsoldListingsRoute')); // Route to get user unsol listings without redis cache
+
+// ========DATA CACHE FUNCTION ROUTES WITH REDIS ========
+// app.use('/user', require('./routes/redisCacheUserRoute'));
+// app.use('/user/listings', require('./routes/redisCacheListingsRoute'));
+// app.use('/user/sold', require('./routes/redisCacheSoldRoute'));
+// app.use('/user/pending', require('./routes/redisCachePendingRoute'));
+// app.use('/user/update/image', require('./routes/UserUpdateImageRoute'));
 
 
 

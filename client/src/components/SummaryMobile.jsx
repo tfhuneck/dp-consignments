@@ -83,6 +83,78 @@ const TableMobile = ({currentRecords}) => {
                                                             </div>
                                                             :null
                                                         }
+                                                        {data.status === 'active' ? 
+                                                            <div className='row details-row'>
+                                                                <div className="col listing-header">
+                                                                    Time Left
+                                                                </div>
+                                                                <div className="col listing-body">
+                                                                    {data.timeleft && time(data.timeleft)}
+                                                                </div>
+                                                            </div>
+                                                            : null
+                                                        }
+                                                        {data.watchcount ?
+                                                            <div className='row details-row'>
+                                                                <div className="col listing-header">
+                                                                    Watching
+                                                                </div>
+                                                                <div className="col listing-body">
+                                                                    {data.watchcount}
+                                                                </div>
+                                                            </div>
+                                                            : null
+                                                        }
+                                                        {data.bidcount ?
+                                                            <div className='row details-row'>
+                                                                <div className="col listing-header">
+                                                                    Bids
+                                                                </div>
+                                                                <div className="col listing-body">
+                                                                    {data.bidcount}
+                                                                </div>
+                                                            </div>
+                                                            : null
+                                                        }
+                                                        {data.currentprice ? 
+                                                            <>
+                                                                <div className='row details-row'>
+                                                                    <div className="col listing-header">
+                                                                        Auction Price
+                                                                    </div>
+                                                                    <div className="col listing-body total">
+                                                                        $ {data.currentprice.toFixed(2)}
+                                                                    </div>
+                                                                </div>
+                                                            </>
+                                                            : null
+                                                        }
+                                                        {data.currentprice ? 
+                                                            <>
+                                                                <div className='row details-row'>
+                                                                    <div className="col listing-header">
+                                                                        (Auction) Fees
+                                                                    </div>
+                                                                    <div className="col listing-body">
+                                                                    $ {data.status === 'unsold' || data.status === 'canceled' ? '0.00' : (data.currentprice - payout(data.currentprice)).toFixed(2)}
+                                                                    </div>
+                                                                </div>
+                                                            </>
+                                                            : null
+                                                        }
+                                                        {data.currentprice ? 
+                                                            <>
+                                                                <div className='row details-row'>
+                                                                    <div className="col listing-header">
+                                                                    (Auction) Payout
+                                                                    </div>
+                                                                    <div className="col listing-body num">
+                                                                        $ {data.status === 'unsold' || data.status === 'canceled' ? '0.00' : payout(data.currentprice.toFixed(2))}
+                                                                    </div>
+                                                                </div>
+                                                            </>
+                                                            : null
+                                                        }
                                                         {data.paymentstatus ? 
                                                             <>
                                                                 <div className='row details-row'>
@@ -96,7 +168,7 @@ const TableMobile = ({currentRecords}) => {
                                                             </>
                                                             : null
                                                         }
-                                                        {data.finalprice ? 
+                                                        {data.paymentstatus ? 
                                                             <>
                                                                 <div className='row details-row'>
                                                                     <div className="col listing-header">
@@ -109,26 +181,32 @@ const TableMobile = ({currentRecords}) => {
                                                             </>
                                                             : null
                                                         }
-                                                        <>
-                                                            <div className='row details-row'>
-                                                                <div className="col listing-header">
-                                                                    Final Fees
+                                                        {data.paymentstatus ? 
+                                                            <>
+                                                                <div className='row details-row'>
+                                                                    <div className="col listing-header">
+                                                                        Final Fees
+                                                                    </div>
+                                                                    <div className="col listing-body">
+                                                                    $ {data.status === 'unsold' || data.status === 'canceled' ? '0.00' : (data.finalprice - payout(data.finalprice)).toFixed(2)}
+                                                                    </div>
                                                                 </div>
-                                                                <div className="col listing-body">
-                                                                $ 0
+                                                            </>
+                                                            : null
+                                                        }
+                                                        {data.paymentstatus ? 
+                                                            <>
+                                                                <div className='row details-row'>
+                                                                    <div className="col listing-header">
+                                                                        Final Payout
+                                                                    </div>
+                                                                    <div className="col listing-body total">
+                                                                        $ {data.status === 'unsold' || data.status === 'canceled' ? '0.00' : payout(data.finalprice)}
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </>
-                                                        <>
-                                                            <div className='row details-row'>
-                                                                <div className="col listing-header">
-                                                                    Final Payout
-                                                                </div>
-                                                                <div className="col listing-body total">
-                                                                    $ 0
-                                                                </div>
-                                                            </div>
-                                                        </>
+                                                            </>
+                                                            : null
+                                                        }
                                                         {data.canceldate ?
                                                             <div className='row details-row'>
                                                                 <div className="col listing-header">
@@ -151,18 +229,18 @@ const TableMobile = ({currentRecords}) => {
                             <div className="container">
                                 <div className="row">
                                     <div className="col">
-                                        <Status stat={data.status} />                     
+                                        <Status stat={data.status} /> 
                                     </div>
                                     <div className="col">
-                                        Date
+                                        Price
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col">                    
+                                    <div className="col">
                                     </div>
                                     <div className="col">
-                                        <span>
-                                        {data.endtime && data.status === 'unsold' ? listed(data.endtime) : data.canceldate && data.status === 'canceled' ? listed(data.canceldate) : null}
+                                        <span className='price'>
+                                            $ {data.status === 'unsold' ? '0.00' : data.status === 'canceled' ? '0.00' : data.status === 'active' ? payout(data.currentprice.toFixed(2)) : payout(data.finalprice.toFixed(2))}
                                         </span>
                                     </div>
                                 </div>

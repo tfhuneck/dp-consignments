@@ -1,6 +1,8 @@
 import './index.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState, createContext, useEffect } from 'react';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import axios from 'axios';
 import Navigation from "./components/Navbar";
 import UserBanner from './components/UserBanner';
 import logo from './images/logo.png'
@@ -22,19 +24,21 @@ import Profile from './components/Profile';
 import Settings from './components/Settings';
 import UserInfo from './components/UserInfo';
 import Rules from './components/Rules';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import authApp from './config/firebase';
 import Modal from 'react-modal';
 import Tos from './components/Tos';
 import ScrollToTop from './components/ScrollTop';
 
 export const AuthContext = createContext();
+export const ListingContext = createContext();
 
 Modal.setAppElement(document.getElementById('root'));
 
 function App() {
-  const auth                      = getAuth(authApp);
-  const [ userAuth, setUserAuth ] = useState(null);
+  const serverUrl                       = 'http://localhost:8080' || `${process.env.REACT_APP_production_url}`;
+  const auth                            = getAuth(authApp);
+  const [ userAuth, setUserAuth ]       = useState(null);
+  const [ listingData, setListingData ] = useState(null);
   
   // var userData = {};
 
@@ -59,6 +63,18 @@ function App() {
           verified: verified
         }
         setUserAuth(userData);
+        let userAuth= userData;
+        await axios.get(
+          serverUrl +
+          '/listingdata',
+          {params:{
+                  userAuth
+          }})
+          .then(async res => {
+              let data = (res.data);
+              setListingData(data);
+          })
+          .catch(err => console.log(err));
       } else {
         setUserAuth(null);
         // console.log(userAuth)
@@ -69,13 +85,14 @@ function App() {
   return (
     <>
       <AuthContext.Provider value={[ userAuth, setUserAuth ]}>
+      <ListingContext.Provider value={[ listingData, setListingData ]}>
         <BrowserRouter>
           <ScrollToTop />
           {/* <img className='logo' src={logo}/> */}
           {!userAuth && <Navigation />}
           <div className='container-fluid'>
             <div className='row'>
-              <div className='col-sm-2 fixed-top one'>
+              <div className='col-sm-1 fixed-top one'>
                 {userAuth && <UserNav />}
               </div>
             </div>
@@ -104,6 +121,7 @@ function App() {
             </Routes>
           </div>
         </BrowserRouter>
+      </ListingContext.Provider>
       </AuthContext.Provider>
     </>
   );

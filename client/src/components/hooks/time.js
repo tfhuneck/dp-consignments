@@ -1,6 +1,6 @@
 
 const time = (data) => {
-    let fixed = data.replace('PT','').replace('D', 'd ').replace('H', 'h ').replace('M', 'min ').replace('S', 'sec')
+    let fixed = data.replace('P','').replace('T','').replace('D', 'd ').replace('H', 'h ').replace('M', 'min ').replace('S', 'sec')
     return fixed
 }
 

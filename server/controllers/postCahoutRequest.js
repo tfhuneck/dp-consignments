@@ -2,9 +2,9 @@ const Request = require('../model/Cashoutrequests');
 
 const postRequest = async (req, res, next) => {
     
-    const userId    = req.body.userData.userid;
-    const name      = req.body.userData.name;
-    const skucode   = req.body.userData.skucode;
+    const userId    = req.body.userId;
+    const name      = req.body.name;
+    const skucode   = req.body.sku;
     const amount    = req.body.amount;
     const date      = req.body.date;
     const type      = req.body.type;

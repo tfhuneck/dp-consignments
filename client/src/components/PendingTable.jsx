@@ -132,7 +132,7 @@ const PendingTable = ({currentRecords}) => {
                                                                             Total Price
                                                                         </div>
                                                                         <div className="col listing-body num">
-                                                                            $ {data.price.toFixed(2)}
+                                                                            $ {data.finalprice.toFixed(2)}
                                                                         </div>
                                                                     </div>
                                                                     <div className='row details-row'>
@@ -140,7 +140,7 @@ const PendingTable = ({currentRecords}) => {
                                                                             Total Fees
                                                                         </div>
                                                                         <div className="col listing-body">
-                                                                        $ {(data.price - payout(data.price)).toFixed(2)}
+                                                                        $ {(data.finalprice - payout(data.finalprice)).toFixed(2)}
                                                                         </div>
                                                                     </div>
                                                                     <div className='row details-row'>
@@ -148,7 +148,7 @@ const PendingTable = ({currentRecords}) => {
                                                                                 Total Payout
                                                                         </div>
                                                                         <div className="col listing-body total">
-                                                                            $ {payout(data.price)}
+                                                                            $ {payout(data.finalprice)}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -169,17 +169,17 @@ const PendingTable = ({currentRecords}) => {
                         </td>
                         <td className={`side-td-${key}`}>
                             <span className='time-left'>
-                                $ {data.price.toFixed(2)}
+                                $ {data.finalprice.toFixed(2)}
                             </span>
                         </td>
                         <td className={`side-td-${key}`}>
                             <span>
-                                $ {(data.price - payout(data.price)).toFixed(2)}
+                                $ {(data.finalprice - payout(data.finalprice)).toFixed(2)}
                             </span>
                         </td>
                         <td className={`side-td-${key}`}>
                             <span className='price'>
-                                $ {payout(data.price)}
+                                $ {payout(data.finalprice)}
                             </span>
                         </td>
                     </tr>

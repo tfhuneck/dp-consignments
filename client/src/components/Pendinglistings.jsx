@@ -9,12 +9,13 @@ import { usePagination } from "./hooks/usePagination";
 import { useFetchData } from './hooks/useFetchData';
 import { useState, useEffect } from 'react';
 import TableMobile from './PendingMobile';
+import { useListingData } from './hooks/useListingData';
 
 function Pending() {
 
-    // fetch User Data hook
-    const {userData} = useFetchData('/user/pending');
-
+    // User Listing Data
+    const { userData } = useListingData('pending');
+   
     // Custom Search hook 
     const { searchValue, filteredData, clearSearch, handleSearch } = useSearch(userData);
 

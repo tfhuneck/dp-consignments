@@ -30,7 +30,7 @@ function Register() {
             return
         }
         
-        if(valid && password.length >= 6 && password !== password2){
+        if(valid && password.length >= 6 && password === password2){
             createUserWithEmailAndPassword(auth, email, password)
                 .then(async (userCredential) => {
                     // Signed in 

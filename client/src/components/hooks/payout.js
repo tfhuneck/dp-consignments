@@ -1,4 +1,3 @@
-
 const payout = (price) => {
 
     let result = Number
@@ -23,12 +22,9 @@ const payout = (price) => {
     if(price >= 50 && price <= 99.99 ){
         result = (price * 0.85).toFixed(2)
     } 
-    if(price >= 1 && price <= 49.99){
+    if(price <= 49.99){
         let deduction = (price * 0.83).toFixed(2); 
         result = (deduction - 0.99).toFixed(2);
-    }
-    if(price <= 0.99 ){
-        result = 0;
     }
     return result;
 }

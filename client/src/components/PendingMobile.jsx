@@ -86,7 +86,7 @@ const TableMobile = ({currentRecords}) => {
                                                                 Total Price
                                                             </div>
                                                             <div className="col listing-body num">
-                                                                $ {data.price.toFixed(2)}
+                                                                $ {data.finalprice.toFixed(2)}
                                                             </div>
                                                         </div>
                                                         <div className='row details-row'>
@@ -94,7 +94,7 @@ const TableMobile = ({currentRecords}) => {
                                                                 Total Fees
                                                             </div>
                                                             <div className="col listing-body">
-                                                            $ {(data.price - payout(data.price)).toFixed(2)}
+                                                            $ {(data.finalprice - payout(data.finalprice)).toFixed(2)}
                                                             </div>
                                                         </div>
                                                         <div className='row details-row'>
@@ -102,7 +102,7 @@ const TableMobile = ({currentRecords}) => {
                                                                     Total Payout
                                                             </div>
                                                             <div className="col listing-body total">
-                                                                $ {payout(data.price)}
+                                                                $ {payout(data.finalprice)}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -129,7 +129,7 @@ const TableMobile = ({currentRecords}) => {
                                     </div>             
                                     <div className="col">
                                         <span  className='time-left'>
-                                        $ {data.price.toFixed(2)}
+                                        $ {data.finalprice.toFixed(2)}
                                         </span>
                                     </div>             
                                 </div>
@@ -139,7 +139,7 @@ const TableMobile = ({currentRecords}) => {
                                     </div>
                                     <div className="col">
                                         <span>
-                                            $ {(data.price - payout(data.price)).toFixed(2)}
+                                            $ {(data.finalprice - payout(data.finalprice)).toFixed(2)}
                                         </span>
                                     </div>
                                 </div>
@@ -149,7 +149,7 @@ const TableMobile = ({currentRecords}) => {
                                     </div>
                                     <div className="col">
                                         <span className='price'>
-                                            $ {payout(data.price)}
+                                            $ {payout(data.finalprice)}
                                         </span>
                                     </div>
                                 </div>
