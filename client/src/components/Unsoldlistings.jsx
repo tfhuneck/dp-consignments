@@ -22,10 +22,10 @@ function Unsold() {
     const {stateInclude, handleAll, handleUnsold, handleCanceled} = useInclude(userData)
 
     // Custom Search hook 
-    const { searchValue, filteredData, clearSearch, handleSearch } = useSearch(userData);
+    const { searchValue, filteredData, clearSearch, handleSearch } = useSearch(stateInclude.dataIncluded);
 
     // Sorting Table hook
-    const {state, handleSortName, handleSortPrice, handleSortPay, handleSortDate}  = useSortPay(stateInclude.dataIncluded);
+    const {state, handleSortName, handleSortDate}  = useSortPay(filteredData);
 
     // Pagination Hook that also handles rerenders on search and Sorting table
     const { currentRecords, currentPage, setCurrentPage, nPages } = usePagination(state, userData, filteredData);

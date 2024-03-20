@@ -22,7 +22,7 @@ function Cashout(props) {
 
     async function fetchData(){
         await axios.get(
-            serverUrl +
+            // serverUrl +
             '/user',
             {params:{
                     userAuth

@@ -83,19 +83,19 @@ function Profile(props) {
                                             <div className="row d-flex justify-content-evenly">
                                             <div className="col profile-info">
                                                     Active Listings: &nbsp; 
-                                                    {userData ? userData.activeitems.length : null}
+                                                    {userData ? userData.activeitems.sum : null}
                                                 </div> 
                                                 <div className="col profile-info">
                                                     Pending Items: &nbsp; 
-                                                    {userData ? userData.pendingitems.length : null}
+                                                    {userData ? userData.pendingitems.sum : null}
                                                 </div>
                                                 <div className="col profile-info">
                                                     Sold Items: &nbsp; 
-                                                    {userData ? userData.solditems.length : null}
+                                                    {userData ? userData.solditems.sum : null}
                                                 </div>
                                                 <div className="col profile-info">
                                                     Unsold Items: &nbsp; 
-                                                    {userData ? userData.unsolditems.length : null}
+                                                    {userData ? userData.unsolditems.sum : null}
                                                 </div>
                                             </div>
                                             <br />

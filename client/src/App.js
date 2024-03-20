@@ -65,7 +65,7 @@ function App() {
         setUserAuth(userData);
         let userAuth= userData;
         await axios.get(
-          serverUrl +
+          // serverUrl +
           '/listingdata',
           {params:{
                   userAuth

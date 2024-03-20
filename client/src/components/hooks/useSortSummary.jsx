@@ -40,7 +40,7 @@ function reducer(state, action) {
 
 export const useSort = (data) => {
     
-     const [ state, dispatch ] = useReducer(reducer, { sorted: [], sortName: 'default', sortPrice: 'default', sortTime: 'default', sortBids: 'default'});
+     const [ state, dispatch ] = useReducer(reducer, { sorted: [], sortName: 'default', sortPrice: 'default'});
 
      const handleSortName = () =>{
          if(state.sortName === 'default'){
@@ -57,16 +57,17 @@ export const useSort = (data) => {
          }
      }
      const handleSortPrice = () =>{
+
          if(state.sortPrice === 'default'){
-             let sorted = data.sort((a,b) => (data.status === 'active' || data.status === 'unsold' ? a.currentprice > b.currentprice ? 1: -1 : a.finalprice > b.finalprice ? 1: -1));
+             let sorted = data.sort((a,b) => (a.status === 'active' || b.status === 'active' ? a.currentprice > b.currentprice ? 1: -1 : a.finalprice > b.finalprice ? 1: -1));
              dispatch({ type: ACTION.SORTPRICE, value:'ascend', filter: sorted });
          }
          if(state.sortPrice === 'ascend'){
-             let sorted = data.sort((a,b) => (data.status === 'active' || data.status === 'unsold' ? a.currentprice < b.currentprice ? 1: -1 : a.finalprice < b.finalprice ? 1: -1));
+             let sorted = data.sort((a,b) => (a.status === 'active' || b.status === 'active' ? a.currentprice < b.currentprice ? 1: -1 : a.finalprice < b.finalprice ? 1: -1));
              dispatch({ type: ACTION.SORTPRICE, value:'descend', filter: sorted  });
          }
          if(state.sortPrice === 'descend'){
-             let sorted = data.sort((a,b) => (data.status === 'active' || data.status === 'unsold' ? a.currentprice > b.currentprice ? 1: -1 : a.finalprice > b.finalprice ? 1: -1));
+             let sorted = data.sort((a,b) => (a.status === 'active' || b.status === 'active' ? a.currentprice > b.currentprice ? 1: -1 : a.finalprice > b.finalprice ? 1: -1));
              dispatch({ type: ACTION.SORTPRICE, value:'ascend', filter: sorted  });
          }
      }

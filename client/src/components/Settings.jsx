@@ -48,7 +48,7 @@ function Settings(props) {
         error.innerHTML = 'updating';
 
         await axios.post(
-            serverUrl + 
+            // serverUrl + 
             '/update/user', 
             {
                 'userid': userAuth.userid,

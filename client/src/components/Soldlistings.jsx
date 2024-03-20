@@ -3,12 +3,12 @@ import Pagination from "./Pagination";
 import Search from "./Search";
 import Sort from "./Sort";
 import SoldTable from './SoldTable';
+import TableMobile from './SoldMobile';
 import { useSortPay } from "./hooks/useSortPay";
 import { useSearch } from "./hooks/useSearch";
 import { usePagination } from "./hooks/usePagination";
 import { useFetchData } from './hooks/useFetchData';
 import { useState, useEffect } from 'react';
-import TableMobile from './SoldMobile';
 import { useListingData } from './hooks/useListingData';
 
 function Sold() {

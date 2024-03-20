@@ -66,29 +66,29 @@ export const useSortPay = (data) => {
     }
     const handleSortPrice = () =>{
         if(state.sortPrice === 'default'){
-            let sorted = data.sort((a,b) => (a.price > b.price ? 1: -1));
+            let sorted = data.sort((a,b) => (a.finalprice > b.finalprice ? 1: -1));
             dispatch({ type: ACTION.SORTPRICE, value:'ascend', filter: sorted });
         }
         if(state.sortPrice === 'ascend'){
-            let sorted = data.sort((a,b) => (a.price < b.price ? 1: -1));
+            let sorted = data.sort((a,b) => (a.finalprice < b.finalprice ? 1: -1));
             dispatch({ type: ACTION.SORTPRICE, value:'descend', filter: sorted  });
         }
         if(state.sortPrice === 'descend'){
-            let sorted = data.sort((a,b) => (a.price > b.price ? 1: -1));
+            let sorted = data.sort((a,b) => (a.finalprice > b.finalprice ? 1: -1));
             dispatch({ type: ACTION.SORTPRICE, value:'ascend', filter: sorted  });
         }
     }
     const handleSortPay = () =>{
         if(state.sortPay === 'default'){
-            let sorted = data.sort((a,b) => (a.price > b.price ? 1: -1));
+            let sorted = data.sort((a,b) => (a.finalprice > b.finalprice ? 1: -1));
             dispatch({ type: ACTION.SORTPAY, value:'ascend', filter: sorted });
         }
         if(state.sortPay === 'ascend'){
-            let sorted = data.sort((a,b) => (a.price < b.price ? 1: -1));
+            let sorted = data.sort((a,b) => (a.finalprice < b.finalprice ? 1: -1));
             dispatch({ type: ACTION.SORTPAY, value:'descend', filter: sorted  });
         }
         if(state.sortPay === 'descend'){
-            let sorted = data.sort((a,b) => (a.price > b.price ? 1: -1));
+            let sorted = data.sort((a,b) => (a.finalprice > b.finalprice ? 1: -1));
             dispatch({ type: ACTION.SORTPAY, value:'ascend', filter: sorted  });
         }
     }

@@ -41,7 +41,6 @@ app.use('/avatar', require('./routes/avatarRoute'));
 app.use('/mail', require('./routes/sendMailRoute'));
 app.use('/acceptrules', require('./routes/acceptRulesRoute'));
 app.use('/summary', require('./routes/allItemsRoute'))
-
 app.use('/user', require('./routes/getUserRoute')); // Route to get userData for user without Redis cache
 app.use('/listingdata', require('./routes/allItemsRoute')); // Route to get all user Listing Data
 
