@@ -60,7 +60,7 @@ app.use('/user/unsold', require('./routes/getUserUnsoldListingsRoute')); // Rout
 
 
 // Route to index file
-app.get(['/', '/info', '/login', '/tos', '/contact', '/register', '/usr','/usr/credit', '/usr/cashout', '/usr/message', '/usr/notifications', '/usr/profile', '/usr/settings', 'usr/rules' ], (req, res) => {
+app.get(['/', '/info', '/login', '/tos', '/contact', '/register', '/usr','/usr/credit', '/usr/cashout', '/usr/message', '/usr/notifications', '/usr/profile', '/usr/settings', 'usr/rules', '/reset' ], (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
 

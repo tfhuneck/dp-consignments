@@ -11,6 +11,7 @@
   "author": "tfhuneck",
   "license": "MIT",
   "dependencies": {
+    "@aws-sdk/client-sns": "^3.575.0",
     "aws-sdk": "^2.1513.0",
     "axios": "^1.4.0",
     "body-parser": "^1.20.2",

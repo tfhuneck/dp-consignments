@@ -21,6 +21,7 @@ const postRequest = async (req, res, next) => {
             'comment' : comment
         });
         res.status(201).json({'success' : 'cashout request saved'})
+        return next();
     } catch (err) {
         console.log(err);
         res.status(500).json({ 'message': err.message });
